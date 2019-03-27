@@ -1,21 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/app_bar_main"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:showIn="@layout/app_bar_main">
 
     <TextView
+        android:id="@+id/TextViewRitiro"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="2dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:singleLine="false"
+        android:text="RITIRO"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TextViewRiconsegna"
+        android:layout_width="170dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="136dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="RICONSEGNA"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+    <Button
+        android:id="@+id/search_button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="CERCA"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="411dp"
+        android:layout_height="218dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/search_button1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextViewRiconsegna">
+
+        <ImageButton
+            android:id="@+id/timeButton2"
+            style="@android:style/Widget.Holo.ImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintEnd_toStartOf="@+id/textViewOraRiconsegna"
+            app:layout_constraintStart_toEndOf="@+id/calendarButton2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/hour_button" />
+
+        <ImageButton
+            android:id="@+id/calendarButton2"
+            style="@android:style/Widget.Holo.ImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="169dp"
+            app:layout_constraintEnd_toStartOf="@+id/timeButton2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewCalendarRiconsegna"
+            app:srcCompat="@drawable/calendar_button" />
+
+        <TextView
+            android:id="@+id/textViewCalendarRiconsegna"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="Inserisci la data di riconsegna"
+            android:inputType="date"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextRiconsegna"
+            app:layout_constraintEnd_toStartOf="@+id/timeButton2"
+            app:layout_constraintStart_toEndOf="@+id/calendarButton2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewOraRiconsegna"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="Inserisci l'ora di riconsegna"
+            android:inputType="time"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextRiconsegna"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/timeButton2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextRiconsegna"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="68dp"
+            android:layout_marginEnd="68dp"
+            android:layout_marginBottom="49dp"
+            android:ems="10"
+            android:hint="Seleziona la stazione"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewOraRiconsegna" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="402dp"
+        android:layout_height="191dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/TextViewRiconsegna"
+        app:layout_constraintEnd_toEndOf="@+id/TextViewCalendarRitiro"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toEndOf="@+id/TextViewCalendarRitiro"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/CalendarButton"
+            style="@android:style/Widget.Holo.ImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/TextViewCalendarRitiro"
+            app:layout_constraintEnd_toStartOf="@+id/TextViewCalendarRitiro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/calendar_button" />
+
+        <ImageButton
+            android:id="@+id/TimeButton"
+            style="@android:style/Widget.Holo.ImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp"
+            app:layout_constraintBottom_toBottomOf="@+id/TextViewOraRitiro"
+            app:layout_constraintEnd_toStartOf="@+id/TextViewOraRitiro"
+            app:layout_constraintStart_toEndOf="@+id/TextViewCalendarRitiro"
+            app:srcCompat="@drawable/hour_button" />
+
+        <TextView
+            android:id="@+id/TextViewCalendarRitiro"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="Inserisci la data di ritiro"
+            android:inputType="date"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/EditTextRitiro"
+            app:layout_constraintEnd_toStartOf="@+id/TimeButton"
+            app:layout_constraintStart_toEndOf="@+id/CalendarButton"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/TextViewOraRitiro"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="3dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="Inserisci l'ora di ritiro"
+            android:inputType="time"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/EditTextRitiro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/TimeButton"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/EditTextRitiro"
+            android:layout_width="285dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="47dp"
+            android:ems="10"
+            android:hint="Seleziona la stazione"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/TextViewCalendarRitiro"
+            app:layout_constraintStart_toEndOf="@+id/TextViewCalendarRitiro"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewCalendarRitiro" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
