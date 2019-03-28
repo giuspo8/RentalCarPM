@@ -1,5 +1,6 @@
 package com.example.rentalcar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,14 +13,63 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    ImageButton btnCalendarRetire;
+    ImageButton btnCalendarRestitution;
+    TextView textCalendarRetire;
+    TextView textCalendarRestitution;
+//non funzionano questi due metodi non so perchè
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("RetireText",textCalendarRetire.getText().toString());
+        outState.putString("RestitutionText",textCalendarRestitution.getText().toString());
+    }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        textCalendarRetire.setText(savedInstanceState.getString("RetireText"));
+        textCalendarRestitution.setText(savedInstanceState.getString("RestitutionText"));
+    }
+//da qui in poi ok
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        btnCalendarRetire= findViewById(R.id.CalendarButton);//bottone calendario ritiro
+        btnCalendarRestitution=findViewById(R.id.CalendarButton2);//bottone calenario riconsegna
+        textCalendarRetire= findViewById(R.id.TextViewCalendarRitiro);//textview calendario ritiro
+        textCalendarRestitution=findViewById(R.id.TextViewCalendarRiconsegna);//textview calendario riconsegna
+        Intent retireDateIntent= getIntent();//intent per ottenere data dalla calendar activity
+        String retireDate=retireDateIntent.getStringExtra("RetireDate");
+        textCalendarRetire.setText(retireDate);
+        Intent restitutionDateIntent=getIntent();//intent per ottenere data dalla calendar activity2
+        String restitutionDate=restitutionDateIntent.getStringExtra("RestitutionDate");
+        textCalendarRestitution.setText(restitutionDate);
+
+        btnCalendarRetire.setOnClickListener(new View.OnClickListener() {
+            //gestisce il click sull'icona del calendario del ritiro
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(MainActivity.this,CalendarActivity.class);//andiamo all'activity del calendario di ritiro
+                startActivity(i);
+            }
+        });
+        btnCalendarRestitution.setOnClickListener(new View.OnClickListener() {
+            //gestisce il click sull'icona del calendario della riconsegna
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(MainActivity.this,CalendarActivity2.class);
+                startActivity(i);
+            }
+        });
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -41,6 +91,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
 
     @Override
     public void onBackPressed() {
