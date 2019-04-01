@@ -1,7 +1,9 @@
 package com.example.rentalcar;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -20,6 +22,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final int REQUEST_CODE_CALENDAR=10;
+    private static final int REQUEST_CODE_CALENDAR2=11;
     ImageButton btnCalendarRetire;
     ImageButton btnCalendarRestitution;
     TextView textCalendarRetire;
@@ -47,40 +51,27 @@ public class MainActivity extends AppCompatActivity
         btnCalendarRestitution=findViewById(R.id.CalendarButton2);//bottone calenario riconsegna
         textCalendarRetire= findViewById(R.id.TextViewCalendarRitiro);//textview calendario ritiro
         textCalendarRestitution=findViewById(R.id.TextViewCalendarRiconsegna);//textview calendario riconsegna
-        Intent retireDateIntent= getIntent();//intent per ottenere data dalla calendar activity
-        String retireDate=retireDateIntent.getStringExtra("RetireDate");
-        textCalendarRetire.setText(retireDate);
-        Intent restitutionDateIntent=getIntent();//intent per ottenere data dalla calendar activity2
-        String restitutionDate=restitutionDateIntent.getStringExtra("RestitutionDate");
-        textCalendarRestitution.setText(restitutionDate);
 
         btnCalendarRetire.setOnClickListener(new View.OnClickListener() {
             //gestisce il click sull'icona del calendario del ritiro
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(MainActivity.this,CalendarActivity.class);//andiamo all'activity del calendario di ritiro
-                startActivity(i);
+                startActivityForResult(i,REQUEST_CODE_CALENDAR);
             }
         });
         btnCalendarRestitution.setOnClickListener(new View.OnClickListener() {
             //gestisce il click sull'icona del calendario della riconsegna
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(MainActivity.this,CalendarActivity2.class);
-                startActivity(i);
+                Intent i=new Intent(MainActivity.this,CalendarActivity.class);
+                startActivityForResult(i,REQUEST_CODE_CALENDAR2);
             }
         });
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -92,6 +83,18 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ((requestCode==REQUEST_CODE_CALENDAR)&&(resultCode== Activity.RESULT_OK)) {
+            String retireDate=data.getStringExtra("Date");
+            textCalendarRetire.setText(retireDate);
+        }
+        else if ((requestCode==REQUEST_CODE_CALENDAR2)&&(resultCode== Activity.RESULT_OK)) {
+            String restitutionDate=data.getStringExtra("Date");
+            textCalendarRestitution.setText(restitutionDate);
+        }
+    }
 
     @Override
     public void onBackPressed() {
