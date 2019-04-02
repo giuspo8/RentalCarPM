@@ -14,20 +14,34 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="331dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/TextViewRitiro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="RITIRO"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraintLayout2"
                 android:layout_width="380dp"
                 android:layout_height="189dp"
                 android:background="@color/colorPrimary"
-                android:visibility="visible">
+                android:visibility="visible"
+                android:layout_marginTop="10dp">
 
                 <ImageButton
                     android:id="@+id/CalendarButton2"
@@ -99,15 +113,6 @@
 
             </android.support.constraint.ConstraintLayout>
 
-            <Button
-                android:id="@+id/search_button1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CERCA"
-                android:background="@color/colorPrimaryDark"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
             <TextView
                 android:id="@+id/TextViewRiconsegna"
                 android:layout_width="wrap_content"
@@ -115,8 +120,10 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:text="RICONSEGNA"
                 android:textAlignment="center"
-                android:textSize="24sp"
+                android:layout_gravity="center"
                 android:textColor="@color/black"
+                android:textSize="24sp"
+                android:layout_marginTop="10dp"
                 android:textStyle="bold" />
 
             <android.support.constraint.ConstraintLayout
@@ -124,7 +131,10 @@
                 android:layout_width="380dp"
                 android:layout_height="189dp"
                 android:background="@color/colorPrimary"
-                android:visibility="visible">
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent">
 
                 <ImageButton
                     android:id="@+id/CalendarButton"
@@ -196,17 +206,18 @@
 
             </android.support.constraint.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/TextViewRitiro"
+            <Button
+                android:id="@+id/search_button1"
                 android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="RITIRO"
-                android:textColor="@color/black"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_gravity="center"
+                android:background="@color/colorPrimaryDark"
+                android:text="CERCA"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent" />
+
         </LinearLayout>
     </ScrollView>
 
