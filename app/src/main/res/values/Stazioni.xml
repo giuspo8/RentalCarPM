@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="stazioni">
+        <item>Milano</item>
+        <item>Roma</item>
+        <item>Torino</item>
+        <item>Pescara</item>
+    </string-array>
+</resources>
