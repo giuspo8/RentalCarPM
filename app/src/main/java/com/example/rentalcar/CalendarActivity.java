@@ -15,7 +15,6 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         retireDate=findViewById(R.id.calendarView);
-       // restitutionDate=findViewById(R.id.calendarView2);
         retireDate.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             //una volta cliccato su una data esegue queste azioni
             @Override
@@ -23,7 +22,7 @@ public class CalendarActivity extends AppCompatActivity {
                 String date=dayOfMonth+"/"+(month+1)+"/"+year;//salva su una stringa il risultato(al mese va sommato 1)
                 Intent intent=new Intent(CalendarActivity.this,MainActivity.class);
                 intent.putExtra("Date",date);//lo rimandiamo indietro
-                setResult(Activity.RESULT_OK,intent);
+                setResult(Activity.RESULT_OK,intent);//diciamo che è andato tutto bene e mandiamo indietro l'intent
                 finish();
             }
         });

@@ -1,11 +1,16 @@
 package com.example.rentalcar;
 
 import android.app.Activity;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,30 +24,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, TimePickerDialog.OnTimeSetListener {
     private static final int REQUEST_CODE_CALENDAR=10;
     private static final int REQUEST_CODE_CALENDAR2=11;
-    ImageButton btnCalendarRetire;
-    ImageButton btnCalendarRestitution;
-    TextView textCalendarRetire;
-    TextView textCalendarRestitution;
-//non funzionano questi due metodi non so perchè
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString("RetireText",textCalendarRetire.getText().toString());
-        outState.putString("RestitutionText",textCalendarRestitution.getText().toString());
-    }
+    private ImageButton btnCalendarRetire;
+    private ImageButton btnCalendarRestitution;
+    private ImageButton btnTimeRetire;
+    private ImageButton btnTimeRestitution;
+    private TextView textCalendarRetire;
+    private TextView textCalendarRestitution;
+    private TextView textHourRetire;
+    private TextView textHourRestitution;
+    boolean flagTime;//variabile che mi serve per controllare se ho chiamato il primo o il secondo bottone per l'ora
 
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        textCalendarRetire.setText(savedInstanceState.getString("RetireText"));
-        textCalendarRestitution.setText(savedInstanceState.getString("RestitutionText"));
-    }
-//da qui in poi ok
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +48,10 @@ public class MainActivity extends AppCompatActivity
         btnCalendarRestitution=findViewById(R.id.CalendarButton2);//bottone calenario riconsegna
         textCalendarRetire= findViewById(R.id.TextViewCalendarRitiro);//textview calendario ritiro
         textCalendarRestitution=findViewById(R.id.TextViewCalendarRiconsegna);//textview calendario riconsegna
+        btnTimeRetire=findViewById(R.id.TimeButton);//bottone orario ritiro
+        btnTimeRestitution=findViewById(R.id.TimeButton2);//bottone orario riconsegna
+        textHourRetire=findViewById(R.id.TextViewOraRitiro);//textview orario ritiro
+        textHourRestitution=findViewById(R.id.TextViewOraRiconsegna);//textview orario riconsegna
 
         btnCalendarRetire.setOnClickListener(new View.OnClickListener() {
             //gestisce il click sull'icona del calendario del ritiro
@@ -65,9 +66,28 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(MainActivity.this,CalendarActivity.class);
-                startActivityForResult(i,REQUEST_CODE_CALENDAR2);
+                startActivityForResult(i,REQUEST_CODE_CALENDAR2);//gli diamo un request code diverso per discriminarlo dall'altro
             }
         });
+        btnTimeRetire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flagTime=true;//settiamo la variabile di controllo
+                DialogFragment timePicker=new TimePickerFragment();//creiamo un nuovo oggetto di tipo TimePickerFragment
+                timePicker.show(getSupportFragmentManager(),"time picker");//chiamiamo il metodo show che ce lo fa visualizzare
+            }
+        });
+        btnTimeRestitution.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flagTime=false;
+                DialogFragment timePicker2=new TimePickerFragment();//creiamo un nuovo oggetto di tipo TimePickerFragment
+                timePicker2.show(getSupportFragmentManager(),"time picker 2");//chiamiamo il metodo show che ce lo fa visualizzare
+            }
+        });
+
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -84,10 +104,21 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        if (flagTime==true){//fatto il controllo, se flagTime==true vuol dire che abbiamo schiacciato sul bottone del ritiro
+            textHourRetire.setText(hourOfDay+":"+minute);
+        }
+        else{
+            textHourRestitution.setText(hourOfDay+":"+minute);
+        }
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //controlliamo quale delle due richieste sono state mandate indietro e agiamo di conseguenza
         if ((requestCode==REQUEST_CODE_CALENDAR)&&(resultCode== Activity.RESULT_OK)) {
-            String retireDate=data.getStringExtra("Date");
+            String retireDate=data.getStringExtra("Date");//prendiamo la data proveniente dall'activity del calendario e la salviamo su una stringa
             textCalendarRetire.setText(retireDate);
         }
         else if ((requestCode==REQUEST_CODE_CALENDAR2)&&(resultCode== Activity.RESULT_OK)) {
