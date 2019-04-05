@@ -21,7 +21,11 @@ public class CalendarActivity extends AppCompatActivity {
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 String date=dayOfMonth+"/"+(month+1)+"/"+year;//salva su una stringa il risultato(al mese va sommato 1)
                 Intent intent=new Intent(CalendarActivity.this,MainActivity.class);
-                intent.putExtra("Date",date);//lo rimandiamo indietro
+                Bundle b=new Bundle();
+                b.putInt("anno",year);
+                b.putInt("mese",month+1);
+                b.putInt("giorno",dayOfMonth);
+                intent.putExtra("Date",b);//lo rimandiamo indietro
                 setResult(Activity.RESULT_OK,intent);//diciamo che è andato tutto bene e mandiamo indietro l'intent
                 finish();
             }

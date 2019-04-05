@@ -25,6 +25,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import java.sql.Time;
+import java.text.DecimalFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, TimePickerDialog.OnTimeSetListener {
@@ -38,20 +43,24 @@ public class MainActivity extends AppCompatActivity
     private TextView textCalendarRestitution;
     private TextView textHourRetire;
     private TextView textHourRestitution;
+    private Button searchBtn;
+    Bundle search=new Bundle();
     boolean flagTime;//variabile che mi serve per controllare se ho chiamato il primo o il secondo bottone per l'ora
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnCalendarRetire= findViewById(R.id.CalendarButton);//bottone calendario ritiro
-        btnCalendarRestitution=findViewById(R.id.CalendarButton2);//bottone calenario riconsegna
-        textCalendarRetire= findViewById(R.id.TextViewCalendarRitiro);//textview calendario ritiro
-        textCalendarRestitution=findViewById(R.id.TextViewCalendarRiconsegna);//textview calendario riconsegna
-        btnTimeRetire=findViewById(R.id.TimeButton);//bottone orario ritiro
-        btnTimeRestitution=findViewById(R.id.TimeButton2);//bottone orario riconsegna
-        textHourRetire=findViewById(R.id.TextViewOraRitiro);//textview orario ritiro
-        textHourRestitution=findViewById(R.id.TextViewOraRiconsegna);//textview orario riconsegna
+        btnCalendarRetire = findViewById(R.id.CalendarButton);//bottone calendario ritiro
+        btnCalendarRestitution = findViewById(R.id.CalendarButton2);//bottone calenario riconsegna
+        textCalendarRetire = findViewById(R.id.TextViewCalendarRitiro);//textview calendario ritiro
+        textCalendarRestitution = findViewById(R.id.TextViewCalendarRiconsegna);//textview calendario riconsegna
+        btnTimeRetire = findViewById(R.id.TimeButton);//bottone orario ritiro
+        btnTimeRestitution = findViewById(R.id.TimeButton2);//bottone orario riconsegna
+        textHourRetire = findViewById(R.id.TextViewOraRitiro);//textview orario ritiro
+        textHourRestitution = findViewById(R.id.TextViewOraRiconsegna);//textview orario riconsegna
+        searchBtn = findViewById(R.id.search_button1);
+
 
         btnCalendarRetire.setOnClickListener(new View.OnClickListener() {
             //gestisce il click sull'icona del calendario del ritiro
@@ -85,13 +94,24 @@ public class MainActivity extends AppCompatActivity
                 timePicker2.show(getSupportFragmentManager(),"time picker 2");//chiamiamo il metodo show che ce lo fa visualizzare
             }
         });
-
-
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (textCalendarRestitution.getText().toString().equals("")||textCalendarRetire.getText().toString().equals("")||
+                        textHourRestitution.getText().toString().equals("")||textHourRetire.getText().toString().equals(""))
+                {
+                    show("Per Favore Riempi Tutti i Campi!!!");//richiama il metodo creato da me che fa il toast
+                }
+                else {
+                    Intent i = new Intent(MainActivity.this, CarChoosing.class);
+                    i.putExtra("search data", search);//metto i dati della prenotazione nel bundle
+                    startActivity(i);
+                }
+            }
+        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -102,14 +122,25 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+    public void show(String message){
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show();//metodo per fare i toast
+    }
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         if (flagTime==true){//fatto il controllo, se flagTime==true vuol dire che abbiamo schiacciato sul bottone del ritiro
-            textHourRetire.setText(hourOfDay+":"+minute);
+            String hour=new DecimalFormat("00").format(hourOfDay);//serve per far si che 00 non lo scriva come 0
+            String min=new DecimalFormat("00").format(minute);
+            textHourRetire.setText(hour+":"+min);
+            search.putInt("ora ritiro",hourOfDay);
+            search.putInt("minuto ritiro",minute);
         }
         else{
-            textHourRestitution.setText(hourOfDay+":"+minute);
+            String hour=new DecimalFormat("00").format(hourOfDay);//serve per far si che 00 non lo scriva come 0
+            String min=new DecimalFormat("00").format(minute);
+            textHourRestitution.setText(hour+":"+min);
+            search.putInt("ora restituzione",hourOfDay);
+            search.putInt("minuto restituzione",minute);
         }
     }
 
@@ -118,12 +149,24 @@ public class MainActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, data);
         //controlliamo quale delle due richieste sono state mandate indietro e agiamo di conseguenza
         if ((requestCode==REQUEST_CODE_CALENDAR)&&(resultCode== Activity.RESULT_OK)) {
-            String retireDate=data.getStringExtra("Date");//prendiamo la data proveniente dall'activity del calendario e la salviamo su una stringa
-            textCalendarRetire.setText(retireDate);
+            Bundle retire=data.getBundleExtra("Date");//creo un Bundle in cui mettere i dati provenienti dal calendario
+            int yearRetire=retire.getInt("anno");//assegno a tre interi i valori rispettivamente di anno mese e giorno
+            int monthRetire=retire.getInt("mese");
+            int dayRetire=retire.getInt("giorno");
+            textCalendarRetire.setText(String.valueOf(dayRetire)+"/"+String.valueOf(monthRetire)+"/"+String.valueOf(yearRetire));//li metto nella textview e quindi devo trasformarli in stringa
+            search.putInt("anno ritiro",yearRetire);//mando i tre valori nel bundle search che poi verrà mandato in CarChoosing
+            search.putInt("mese ritiro",monthRetire);
+            search.putInt("giorno ritiro",dayRetire);
         }
         else if ((requestCode==REQUEST_CODE_CALENDAR2)&&(resultCode== Activity.RESULT_OK)) {
-            String restitutionDate=data.getStringExtra("Date");
-            textCalendarRestitution.setText(restitutionDate);
+            Bundle restitution=data.getBundleExtra("Date");//creo un Bundle in cui mettere i dati provenienti dal calendario
+            int yearRestitution=restitution.getInt("anno");//assegno a tre interi i valori rispettivamente di anno mese e giorno
+            int monthRestitution=restitution.getInt("mese");
+            int dayRestitution=restitution.getInt("giorno");
+            textCalendarRestitution.setText(String.valueOf(dayRestitution)+"/"+String.valueOf(monthRestitution)+"/"+String.valueOf(yearRestitution));//li metto nella textview e quindi devo trasformarli in stringa
+            search.putInt("anno restituzione",yearRestitution);//mando i tre valori nel bundle search che poi verrà mandato in CarChoosing
+            search.putInt("mese restituzione",monthRestitution);
+            search.putInt("giorno restituzione",dayRestitution);
         }
     }
 
