@@ -13,8 +13,7 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
 
-    <!-- Per bottoni: ogni volta +0.18 al bias vertical
-    -->
+    <!-- Per bottoni: ogni volta +0.18 al bias vertical-->
 
     <ImageButton
         android:id="@+id/imageButtonFb"
