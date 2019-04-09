@@ -10,15 +10,30 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main">
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="16dp">
 
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
+
+
+            <ListView
+                android:id="@+id/ListViewRetire"
+                android:layout_width="324dp"
+                android:layout_height="103dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.764" />
 
             <TextView
                 android:id="@+id/TextViewRitiro"
@@ -35,16 +50,17 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraintLayout4"
-                android:layout_width="340dp"
-                android:layout_height="130dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="340sp"
+                android:layout_height="130sp"
+                android:layout_marginTop="10sp"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/colorPrimary"
-                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
+
 
                 <ImageButton
                     android:id="@+id/CalendarButton"
@@ -58,6 +74,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.15"
                     app:srcCompat="@drawable/calendar_button" />
+
 
                 <ImageButton
                     android:id="@+id/TimeButton"
@@ -112,10 +129,10 @@
                 app:layout_constraintVertical_bias="0.77"
                 android:entries="@array/stazioni"/>
 
-                <TextView
-                    android:id="@+id/TextViewStazioneRitiro"
-                    android:layout_width="308dp"
-                    android:layout_height="58dp"
+                <SearchView
+                    android:id="@+id/SearchViewStazioneRitiro"
+                    android:layout_width="308sp"
+                    android:layout_height="58sp"
                     android:ems="10"
                     android:gravity="center_vertical"
                     android:textStyle="bold"
@@ -147,13 +164,15 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraintLayout2"
-                android:layout_marginTop="12dp"
-                android:layout_width="340dp"
-                android:layout_height="130dp"
+                android:layout_marginTop="12sp"
+                android:layout_width="340sp"
+                android:layout_height="130sp"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/colorPrimary"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent">
+
+
 
                 <ImageButton
                     android:id="@+id/CalendarButton2"
@@ -167,6 +186,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.15"
                     app:srcCompat="@drawable/calendar_button" />
+
+
 
                 <ImageButton
                     android:id="@+id/TimeButton2"
@@ -221,14 +242,14 @@
                     app:layout_constraintVertical_bias="0.77"
                     android:entries="@array/stazioni"/>
 
-                <TextView
-                    android:id="@+id/TextViewStazioneRiconsegna"
-                    android:layout_width="308dp"
-                    android:layout_height="58dp"
+                <SearchView
+                    android:id="@+id/SearchViewStazioneRiconsegna"
+                    android:layout_width="308sp"
+                    android:layout_height="58sp"
                     android:ems="10"
                     android:hint="Seleziona la stazione:"
                     android:textStyle="bold"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:gravity="center_vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -244,8 +265,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="45dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="45sp"
+                android:layout_marginBottom="5sp"
                 android:background="@color/colorPrimaryDark"
                 android:text="CERCA"
                 android:textSize="18sp"

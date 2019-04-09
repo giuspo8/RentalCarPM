@@ -13,10 +13,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.example.rentalcar.R.drawable.cinquecento;
 
 public class CarChoosing extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    List<CarItem> carData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +33,23 @@ public class CarChoosing extends AppCompatActivity
         setContentView(R.layout.activity_car_choosing);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        carData=new ArrayList<>();
+
+        carData.add(new CarItem(R.drawable.cinquecento,"FIAT 500","Mini Elite",100,"Cambio Manuale",4));
+        carData.add(new CarItem(R.drawable.mercedes,"Mercedes Classe C","Premium",150,"Cambio Manuale",5));
+        carData.add(new CarItem(R.drawable.panda,"FIAT Panda","Economy",110,"Cambio Manuale",4));
+
+        ListView listViewCar=findViewById(R.id.ListViewCar);//oggetto list view
+        CustomAdapter adapter=new CustomAdapter(this,R.layout.car_item_row,carData);
+        listViewCar.setAdapter(adapter);
+
+        listViewCar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //qui passiamo l'oggetto cliccato all activity finale
+            }
+        });
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
