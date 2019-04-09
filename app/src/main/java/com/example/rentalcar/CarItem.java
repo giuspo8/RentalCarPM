@@ -1,5 +1,6 @@
 package com.example.rentalcar;
 
+//creiamo una classe CarItem con attributi caratteristici delle auto che vogliamo far visualizzare
 public class CarItem {
     int resIdImage;//id dell'immagine della macchina
     String carName;//nome dell'auto

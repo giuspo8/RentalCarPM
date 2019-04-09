@@ -2,7 +2,7 @@ package com.example.rentalcar;
 
 public class StationNames {
     private String stationName;
-
+//semplice classe che contiene come unico attributo il nome della Stazione
     public StationNames(String stationName) {
         this.stationName = stationName;
     }

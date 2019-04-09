@@ -24,7 +24,7 @@ public class CustomAdapter extends ArrayAdapter {
         this.context=context;
         this.data=objects;
     }
-
+//la classe dataHolder ha i seguenti attributi
     static class DataHolder{
         ImageView ivImage;
         TextView tvCarName;
@@ -39,7 +39,7 @@ public class CustomAdapter extends ArrayAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         DataHolder holder;
-
+        //se la view non c'è dobbiamo crearla
         if (convertView==null) {
             LayoutInflater inflater=((Activity)context).getLayoutInflater();
 
@@ -52,7 +52,7 @@ public class CustomAdapter extends ArrayAdapter {
             holder.tvCarShift=convertView.findViewById(R.id.textViewCarShift);
             holder.tvNumberOfPassengers=convertView.findViewById(R.id.textViewNumberPassengers);
             holder.tvCarPrice=convertView.findViewById(R.id.textViewCarPrice);
-
+            // Setta il tag associato con questa vista prendendo un oggetto che conterrà come attributi gli identificativi
             convertView.setTag(holder);
 
         }
@@ -60,7 +60,7 @@ public class CustomAdapter extends ArrayAdapter {
         else {
             holder=(DataHolder)convertView.getTag();
         }
-
+        //una volta presa a posizione nella list mettiamo ogni attributo nella corrispondente textview,image etc
         CarItem carItem=data.get(position);
         holder.tvCarName.setText(carItem.carName);
         holder.ivImage.setImageResource(carItem.resIdImage);

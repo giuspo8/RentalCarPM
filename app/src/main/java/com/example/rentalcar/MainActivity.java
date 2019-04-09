@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity
     private TextView textHourRestitution;
     private Button searchBtn;
     private ListView listRetire;
-    private ListViewAdapter adapter;
-    private String[] stationList;
+    private ListViewAdapter adapter;//usiamo un Adapter di una classe che abbiamo creato noi
+    private String[] stationList;//creiamo un array di stringhe
     private SearchView stationSearch;
-    ArrayList<StationNames> arraylist = new ArrayList<StationNames>();
+    ArrayList<StationNames> arraylist = new ArrayList<StationNames>();//Creiamo un oggetto ArrayList,cioè un Array a cui possiamo aggiungere oggetti di tipo StationNames tramite il metodo .add
     Bundle search=new Bundle();
     boolean flagTime;//variabile che mi serve per controllare se ho chiamato il primo o il secondo bottone per l'ora
 
@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         btnCalendarRetire = findViewById(R.id.CalendarButton);//bottone calendario ritiro
         btnCalendarRestitution = findViewById(R.id.CalendarButton2);//bottone calenario riconsegna
         textCalendarRetire = findViewById(R.id.TextViewCalendarRitiro);//textview calendario ritiro
@@ -77,20 +78,23 @@ public class MainActivity extends AppCompatActivity
 
         for (int i = 0; i < stationList.length; i++) {
             StationNames stationNames = new StationNames(stationList[i]);
-            arraylist.add(stationNames);//mette tutte le stazioni in un array
+            arraylist.add(stationNames);//mette tutte le stazioni nel nostro ArrayList
         }
 
-        // Pass results to ListViewAdapter Class
+        // Inizializziamo l'adapter e li passiamo l'ArrayList
         adapter = new ListViewAdapter(this, arraylist);
 
-        // Binds the Adapter to the ListView
+        // Setta l'adapter con l'oggetto listview
         listRetire.setAdapter(adapter);
 
+        //qui semplicemente stiamo settando il listener della searchview in attesa di azioni dell'utente
         stationSearch.setOnQueryTextListener(this);
 
         listRetire.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //qui stiamo dicendo che quando clicchiamo su un oggetto della lista quello viene trascritto sulla searchview,
+                // con il metodo get ritorniamo l'elemento nella posizione position e con getStationName ritorniamo il valore dell'attributo
                 stationSearch.setQuery(arraylist.get(position).getStationName(),true);
             }
         });
@@ -164,6 +168,8 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
+    //facciamo ritornare falso per far si che la SearchView si gestisca l'azione di default
+    //con true la query veniva gestita dal listener
     public boolean onQueryTextSubmit(String query) {
         return false;
     }
@@ -171,8 +177,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onQueryTextChange(String newText) {
         String text = newText;
-        listRetire.setVisibility(View.VISIBLE);
-        adapter.filter(text);
+        listRetire.setVisibility(View.VISIBLE);//una volta che si inizia a scrivere sulla searchview rendiamo visibile la lista
+        adapter.filter(text);//chiamiamo il metodo filter della classe ListViewAdapter e li passiamo il testo che stiamo scrivendo ogni volta che cambia
+        //ritorniamo false perchè l'azione non è gestita dal listener
         return false;
     }
 

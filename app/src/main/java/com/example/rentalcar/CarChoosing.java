@@ -25,7 +25,7 @@ import static com.example.rentalcar.R.drawable.cinquecento;
 public class CarChoosing extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    List<CarItem> carData;
+   private ArrayList<CarItem> carData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,9 @@ public class CarChoosing extends AppCompatActivity
         carData.add(new CarItem(R.drawable.panda,"FIAT Panda","Economy",110,"Cambio Manuale",4));
 
         ListView listViewCar=findViewById(R.id.ListViewCar);//oggetto list view
+        //usiamo un adapter creato da noi
         CustomAdapter adapter=new CustomAdapter(this,R.layout.car_item_row,carData);
+        //lo settiamo alla listview
         listViewCar.setAdapter(adapter);
 
         listViewCar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
