@@ -37,9 +37,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, TimePickerDialog.OnTimeSetListener, SearchView.OnQueryTextListener {
+        implements NavigationView.OnNavigationItemSelectedListener, TimePickerDialog.OnTimeSetListener {
     private static final int REQUEST_CODE_CALENDAR=10;
     private static final int REQUEST_CODE_CALENDAR2=11;
+    private static final int REQUEST_CODE_STATIONRET=12;
+    private static final int REQUEST_CODE_STATIONRES=13;
     private ImageButton btnCalendarRetire;
     private ImageButton btnCalendarRestitution;
     private ImageButton btnTimeRetire;
@@ -49,11 +51,8 @@ public class MainActivity extends AppCompatActivity
     private TextView textHourRetire;
     private TextView textHourRestitution;
     private Button searchBtn;
-    private ListView listRetire;
-    private ListViewAdapter adapter;//usiamo un Adapter di una classe che abbiamo creato noi
-    private String[] stationList;//creiamo un array di stringhe
-    private SearchView stationSearch;
-    ArrayList<StationNames> arraylist = new ArrayList<StationNames>();//Creiamo un oggetto ArrayList,cioè un Array a cui possiamo aggiungere oggetti di tipo StationNames tramite il metodo .add
+    private EditText editTextRetireStation;
+    private EditText editTextRestitutionStation;
     Bundle search=new Bundle();
     boolean flagTime;//variabile che mi serve per controllare se ho chiamato il primo o il secondo bottone per l'ora
 
@@ -71,31 +70,22 @@ public class MainActivity extends AppCompatActivity
         textHourRetire = findViewById(R.id.TextViewOraRitiro);//textview orario ritiro
         textHourRestitution = findViewById(R.id.TextViewOraRiconsegna);//textview orario riconsegna
         searchBtn = findViewById(R.id.search_button1);//bottone Cerca
-        listRetire=findViewById(R.id.ListViewRetire);//lista delle stazioni Ritiro
-        stationSearch=findViewById(R.id.SearchViewStazioneRitiro);//search view stazioni ritiro
+        editTextRetireStation= findViewById(R.id.RetireStationEditText);
+        editTextRestitutionStation=findViewById(R.id.RestitutionStationEditText);
 
-        stationList = new String[]{"Milano Centrale","Milano Aeroporto","Roma","Ancona","Pescara"};//qui vanno messi i nomi delle stazioni
-
-        for (int i = 0; i < stationList.length; i++) {
-            StationNames stationNames = new StationNames(stationList[i]);
-            arraylist.add(stationNames);//mette tutte le stazioni nel nostro ArrayList
-        }
-
-        // Inizializziamo l'adapter e li passiamo l'ArrayList
-        adapter = new ListViewAdapter(this, arraylist);
-
-        // Setta l'adapter con l'oggetto listview
-        listRetire.setAdapter(adapter);
-
-        //qui semplicemente stiamo settando il listener della searchview in attesa di azioni dell'utente
-        stationSearch.setOnQueryTextListener(this);
-
-        listRetire.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        editTextRetireStation.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //qui stiamo dicendo che quando clicchiamo su un oggetto della lista quello viene trascritto sulla searchview,
-                // con il metodo get ritorniamo l'elemento nella posizione position e con getStationName ritorniamo il valore dell'attributo
-                stationSearch.setQuery(arraylist.get(position).getStationName(),true);
+            public void onClick(View v) {
+                Intent i=new Intent(MainActivity.this,FindStationActivity.class);
+                startActivityForResult(i,REQUEST_CODE_STATIONRET);
+            }
+        });
+
+        editTextRestitutionStation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(MainActivity.this,FindStationActivity.class);
+                startActivityForResult(i,REQUEST_CODE_STATIONRES);
             }
         });
 
@@ -135,7 +125,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 if (textCalendarRestitution.getText().toString().equals("")||textCalendarRetire.getText().toString().equals("")||
-                        textHourRestitution.getText().toString().equals("")||textHourRetire.getText().toString().equals(""))
+                        textHourRestitution.getText().toString().equals("")||textHourRetire.getText().toString().equals("") ||
+                        editTextRetireStation.getText().toString().equals("")||editTextRestitutionStation.getText().toString().equals(""))
                 {
                     show("Per Favore Riempi Tutti i Campi!!!");//richiama il metodo creato da me che fa il toast
                 }
@@ -166,22 +157,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
-    @Override
-    //facciamo ritornare falso per far si che la SearchView si gestisca l'azione di default
-    //con true la query veniva gestita dal listener
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        String text = newText;
-        listRetire.setVisibility(View.VISIBLE);//una volta che si inizia a scrivere sulla searchview rendiamo visibile la lista
-        adapter.filter(text);//chiamiamo il metodo filter della classe ListViewAdapter e li passiamo il testo che stiamo scrivendo ogni volta che cambia
-        //ritorniamo false perchè l'azione non è gestita dal listener
-        return false;
-    }
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -224,6 +199,18 @@ public class MainActivity extends AppCompatActivity
             search.putInt("anno restituzione",yearRestitution);//mando i tre valori nel bundle search che poi verrà mandato in CarChoosing
             search.putInt("mese restituzione",monthRestitution);
             search.putInt("giorno restituzione",dayRestitution);
+        }
+        else if ((requestCode==REQUEST_CODE_STATIONRET)&&(resultCode== Activity.RESULT_OK)){
+            //prendo il nome della stazione che mi arriva da FindStationActivity e lo metto nella edittext
+            editTextRetireStation.setText(data.getStringExtra("station"));
+            //metto il nome della stazione nel Bundle che invierò alla CarChoosing con il search
+            search.putString("Stazione ritiro", String.valueOf(editTextRetireStation.getHint()));
+        }
+        else if ((requestCode==REQUEST_CODE_STATIONRES)&&(resultCode== Activity.RESULT_OK)) {
+            //prendo il nome della stazione che mi arriva da FindStationActivity e lo metto nella edittext
+            editTextRestitutionStation.setText(data.getStringExtra("station"));
+            //metto il nome della stazione nel Bundle che invierò alla CarChoosing con il search
+            search.putString("Stazione restituzione", String.valueOf(editTextRestitutionStation.getHint()));
         }
     }
 

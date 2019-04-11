@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".FindStationActivity"
+            android:label="@string/title_activity_find_station"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".Contacts"
             android:label="@string/title_activity_contacts"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CarChoosing"
             android:label="@string/title_activity_car_choosing"
