@@ -3,8 +3,10 @@ package com.example.rentalcar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,8 +19,20 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class FindStationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,SearchView.OnQueryTextListener {
@@ -26,8 +40,9 @@ public class FindStationActivity extends AppCompatActivity
     private ListView listRetire;
     private ListViewAdapter adapter;//usiamo un Adapter di una classe che abbiamo creato noi
     private SearchView stationSearch;
-    private String[] stationList;//creiamo un array di stringhe
-    ArrayList<StationNames> arraylist = new ArrayList<StationNames>();//Creiamo un oggetto ArrayList,cioè un Array a cui possiamo aggiungere oggetti di tipo StationNames tramite il metodo .add
+    //private String[] stationList;//creiamo un array di stringhe
+    ArrayList<StationNames> StationArray = new ArrayList<>();//Creiamo un oggetto ArrayList,cioè un Array a cui possiamo aggiungere oggetti di tipo StationNames tramite il metodo .add
+    ListViewAdapter listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,21 +51,31 @@ public class FindStationActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+
         stationSearch=findViewById(R.id.searchStation);//search view stazioni ritiro
         listRetire=findViewById(R.id.listviewStation);
 
-        stationList = new String[]{"Milano Centrale","Milano Aeroporto","Roma","Ancona","Pescara"};//qui vanno messi i nomi delle stazioni
+        //FillStations();
+
+        /*stationList = new String[]{"Milano Centrale","Milano Aeroporto","Roma","Ancona","Pescara"};//qui vanno messi i nomi delle stazioni
 
         for (int i = 0; i < stationList.length; i++) {
             StationNames stationNames = new StationNames(stationList[i]);
             arraylist.add(stationNames);//mette tutte le stazioni nel nostro ArrayList
         }
+        */
+
+        leggi_utenti();
 
         // Inizializziamo l'adapter e li passiamo l'ArrayList
-        adapter = new ListViewAdapter(this, arraylist);
+        //adapter = new ListViewAdapter(this, arraylist);
 
         // Setta l'adapter con l'oggetto listview
-        listRetire.setAdapter(adapter);
+        //listRetire.setAdapter(adapter);
+
 
         //qui semplicemente stiamo settando il listener della searchview in attesa di azioni dell'utente
         stationSearch.setOnQueryTextListener(this);
@@ -60,7 +85,7 @@ public class FindStationActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //qui stiamo dicendo che quando clicchiamo su un oggetto della lista quello viene trascritto sulla searchview,
                 // con il metodo get ritorniamo l'elemento nella posizione position e con getStationName ritorniamo il valore dell'attributo
-                stationSearch.setQuery(arraylist.get(position).getStationName(),true);
+                stationSearch.setQuery(StationArray.get(position).getStationName(),true);
                 Intent i=new Intent(FindStationActivity.this,MainActivity.class);
                 String station= String.valueOf(stationSearch.getQuery());
                 i.putExtra("station",station);
@@ -80,6 +105,55 @@ public class FindStationActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    private void leggi_utenti(){
+        HttpURLConnection client = null;
+        try {
+            URL url = new URL("http://rentalcar.altervista.org/leggi_stazioni.php");
+            client = (HttpURLConnection) url.openConnection();
+            client.setRequestMethod("POST");
+            InputStream in = client.getInputStream();
+            String json_string = ReadResponse.readStream(in);
+            JSONObject json_data = convert2JSON(json_string);
+            fill_listview(json_data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally{
+            if (client!= null){
+                client.disconnect();
+            }
+        }
+    }
+
+
+    private void fill_listview(JSONObject json_data){
+        Iterator<String> iter = json_data.keys();
+        while (iter.hasNext()) {
+            String key = iter.next();
+            try {
+                JSONObject value = json_data.getJSONObject(key);
+                StationNames s=new StationNames(value.getString("NomeStazione"));
+                StationArray.add(s);
+            } catch (JSONException e) {
+                Toast.makeText(this,"ERRORE",Toast.LENGTH_LONG).show();
+                // Something went wrong!
+            }
+        }
+        listAdapter = new ListViewAdapter(this,StationArray );
+        listRetire.setAdapter(listAdapter);
+    }
+
+    private JSONObject convert2JSON(String json_data){
+        JSONObject obj = null;
+        try {
+            obj = new JSONObject(json_data);
+            Log.d("My App", obj.toString());
+        } catch (Throwable t) {
+            Log.e("My App", "Could not parse malformed JSON: \"" + json_data + "\"");
+        }
+        return obj;
+    }
+
     @Override
     //facciamo ritornare falso per far si che la SearchView si gestisca l'azione di default
     //con true la query veniva gestita dal listener
@@ -91,7 +165,7 @@ public class FindStationActivity extends AppCompatActivity
     public boolean onQueryTextChange(String newText) {
         String text = newText;
         listRetire.setVisibility(View.VISIBLE);//una volta che si inizia a scrivere sulla searchview rendiamo visibile la lista
-        adapter.filter(text);//chiamiamo il metodo filter della classe ListViewAdapter e li passiamo il testo che stiamo scrivendo ogni volta che cambia
+        listAdapter.filter(text);//chiamiamo il metodo filter della classe ListViewAdapter e li passiamo il testo che stiamo scrivendo ogni volta che cambia
         //ritorniamo false perchè l'azione non è gestita dal listener
         return false;
     }
