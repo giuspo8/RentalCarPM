@@ -58,24 +58,8 @@ public class FindStationActivity extends AppCompatActivity
         stationSearch=findViewById(R.id.searchStation);//search view stazioni ritiro
         listRetire=findViewById(R.id.listviewStation);
 
-        //FillStations();
-
-        /*stationList = new String[]{"Milano Centrale","Milano Aeroporto","Roma","Ancona","Pescara"};//qui vanno messi i nomi delle stazioni
-
-        for (int i = 0; i < stationList.length; i++) {
-            StationNames stationNames = new StationNames(stationList[i]);
-            arraylist.add(stationNames);//mette tutte le stazioni nel nostro ArrayList
-        }
-        */
 
         leggi_utenti();
-
-        // Inizializziamo l'adapter e li passiamo l'ArrayList
-        //adapter = new ListViewAdapter(this, arraylist);
-
-        // Setta l'adapter con l'oggetto listview
-        //listRetire.setAdapter(adapter);
-
 
         //qui semplicemente stiamo settando il listener della searchview in attesa di azioni dell'utente
         stationSearch.setOnQueryTextListener(this);
@@ -114,6 +98,7 @@ public class FindStationActivity extends AppCompatActivity
             InputStream in = client.getInputStream();
             String json_string = ReadResponse.readStream(in);
             JSONObject json_data = convert2JSON(json_string);
+            //Toast.makeText(this,json_string,Toast.LENGTH_LONG).show();
             fill_listview(json_data);
         } catch (IOException e) {
             e.printStackTrace();
@@ -125,14 +110,13 @@ public class FindStationActivity extends AppCompatActivity
         }
     }
 
-
     private void fill_listview(JSONObject json_data){
         Iterator<String> iter = json_data.keys();
         while (iter.hasNext()) {
             String key = iter.next();
             try {
                 JSONObject value = json_data.getJSONObject(key);
-                StationNames s=new StationNames(value.getString("NomeStazione"));
+                StationNames s=new StationNames(value.getString("Stazione"));
                 StationArray.add(s);
             } catch (JSONException e) {
                 Toast.makeText(this,"ERRORE",Toast.LENGTH_LONG).show();
