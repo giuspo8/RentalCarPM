@@ -62,12 +62,12 @@ public class CustomAdapter extends ArrayAdapter {
         }
         //una volta presa a posizione nella list mettiamo ogni attributo nella corrispondente textview,image etc
         CarItem carItem=data.get(position);
-        holder.tvCarName.setText(carItem.carName);
-        holder.ivImage.setImageResource(carItem.resIdImage);
-        holder.tvClassName.setText(carItem.classCar);
-        holder.tvCarShift.setText(carItem.carShift);
-        holder.tvNumberOfPassengers.setText(String.valueOf(carItem.numberOfPassengers));
-        holder.tvCarPrice.setText(String.valueOf(carItem.priceGg)+" € al giorno");
+        holder.tvCarName.setText(carItem.getCarName());
+        holder.ivImage.setImageResource(carItem.getResIdImage());
+        holder.tvClassName.setText(carItem.getClassCar());
+        holder.tvCarShift.setText(carItem.getCarShift());
+        holder.tvNumberOfPassengers.setText(String.valueOf(carItem.getNumberOfPassengers()));
+        holder.tvCarPrice.setText(String.valueOf(carItem.getPriceGg())+" € al giorno");
 
         return convertView;
 
