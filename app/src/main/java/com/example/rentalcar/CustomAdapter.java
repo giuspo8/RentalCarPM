@@ -67,7 +67,7 @@ public class CustomAdapter extends ArrayAdapter {
         holder.tvClassName.setText(carItem.classCar);
         holder.tvCarShift.setText(carItem.carShift);
         holder.tvNumberOfPassengers.setText(String.valueOf(carItem.numberOfPassengers));
-        holder.tvCarPrice.setText(String.valueOf(carItem.priceGg));
+        holder.tvCarPrice.setText(String.valueOf(carItem.priceGg)+" € al giorno");
 
         return convertView;
 

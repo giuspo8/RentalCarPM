@@ -38,11 +38,9 @@ public class FindStationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,SearchView.OnQueryTextListener {
 
     private ListView listRetire;
-    private ListViewAdapter adapter;//usiamo un Adapter di una classe che abbiamo creato noi
     private SearchView stationSearch;
-    //private String[] stationList;//creiamo un array di stringhe
     ArrayList<StationNames> StationArray = new ArrayList<>();//Creiamo un oggetto ArrayList,cioè un Array a cui possiamo aggiungere oggetti di tipo StationNames tramite il metodo .add
-    ListViewAdapter listAdapter;
+    private ListViewAdapter listAdapter;//usiamo un Adapter di una classe che abbiamo creato noi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +57,7 @@ public class FindStationActivity extends AppCompatActivity
         listRetire=findViewById(R.id.listviewStation);
 
 
-        leggi_utenti();
+        read_station();
 
         //qui semplicemente stiamo settando il listener della searchview in attesa di azioni dell'utente
         stationSearch.setOnQueryTextListener(this);
@@ -89,7 +87,7 @@ public class FindStationActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    private void leggi_utenti(){
+    private void read_station(){
         HttpURLConnection client = null;
         try {
             URL url = new URL("http://rentalcar.altervista.org/leggi_stazioni.php");
@@ -98,7 +96,6 @@ public class FindStationActivity extends AppCompatActivity
             InputStream in = client.getInputStream();
             String json_string = ReadResponse.readStream(in);
             JSONObject json_data = convert2JSON(json_string);
-            //Toast.makeText(this,json_string,Toast.LENGTH_LONG).show();
             fill_listview(json_data);
         } catch (IOException e) {
             e.printStackTrace();
