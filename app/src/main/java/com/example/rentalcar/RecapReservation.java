@@ -1,6 +1,5 @@
 package com.example.rentalcar;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,20 +16,31 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class EditReservation extends AppCompatActivity
+public class RecapReservation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    private ArrayList<CarItem> carData=new ArrayList<>();//arraylist che conterrà la lista delle auto
+    private ListView listViewCar;//oggetto listview
+    private CustomAdapter adapter;//adapter fatto da noi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_reservation);
+        setContentView(R.layout.activity_recap_reservation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        listViewCar=findViewById(R.id.recap_car_list);//oggetto list view
+        adapter=new CustomAdapter(this,R.layout.car_item_row,carData);
+        int res_image=getIntent().getIntExtra("image",R.drawable.alfaromeogiulietta);
+        String model=getIntent().getStringExtra("model");
+        String Class_car=getIntent().getStringExtra("class");
+        double prezzo=getIntent().getDoubleExtra("prezzo",0.0);
+        String shift=getIntent().getStringExtra("shift");
+        int num_pass=getIntent().getIntExtra("numP",0);
+        carData.add(new CarItem(res_image,model,Class_car,prezzo,shift,num_pass));
+        listViewCar.setAdapter(adapter);
 
-
-
+        
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -39,6 +49,8 @@ public class EditReservation extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
     }
 
     @Override
@@ -54,7 +66,7 @@ public class EditReservation extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.edit_reservation, menu);
+        getMenuInflater().inflate(R.menu.recap_reservation, menu);
         return true;
     }
 
@@ -80,21 +92,17 @@ public class EditReservation extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent h=new Intent(EditReservation.this,EditReservation.class);
-            startActivity(h);
+            // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-            Intent h=new Intent(EditReservation.this,Contacts.class);
-            startActivity(h);
+
         } else if (id == R.id.nav_slideshow) {
-            Intent h=new Intent(EditReservation.this,Problems.class);
-            startActivity(h);
+
         } else if (id == R.id.nav_manage) {
-            Intent h=new Intent(EditReservation.this,faq.class);
-            startActivity(h);
-        }
-        else if (id == R.id.ReturnHome) {
-            Intent h1=new Intent(EditReservation.this,MainActivity.class);
-            startActivity(h1);
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

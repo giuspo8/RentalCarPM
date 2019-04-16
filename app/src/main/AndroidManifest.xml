@@ -12,9 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".RecapReservation"
+            android:label="@string/title_activity_recap_reservation"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".EditReservation"
             android:label="@string/title_activity_edit_reservation"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Problems"
             android:label="@string/title_activity_problems"

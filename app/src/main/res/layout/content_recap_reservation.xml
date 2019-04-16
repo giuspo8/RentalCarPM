@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".EditReservation"
+    tools:showIn="@layout/app_bar_recap_reservation">
+
+
+    <TextView
+        android:id="@+id/data_riconsegna"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="data riconsegna" />
+
+    <TextView
+        android:id="@+id/id_riconsegna"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="stazione riconsegna" />
+
+    <TextView
+        android:id="@+id/id_giorno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="data giorno" />
+
+    <TextView
+        android:id="@+id/stazione_ritiro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="stazione ritiro" />
+
+    <TextView
+        android:id="@+id/id_prenotazione"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="idprenotazione" />
+
+    <Button
+        android:id="@+id/pagas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="20dp"
+        android:text="paga alla stazione" />
+
+    <Button
+        android:id="@+id/pagao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="20dp"
+        android:text="paga ora" />
+
+    <ListView
+        android:id="@+id/recap_car_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</RelativeLayout>

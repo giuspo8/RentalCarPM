@@ -21,4 +21,5 @@
     </string-array>
     <string name="title_activity_problems">Problems</string>
     <string name="title_activity_edit_reservation">EditReservation</string>
+    <string name="title_activity_recap_reservation">RecapReservation</string>
 </resources>

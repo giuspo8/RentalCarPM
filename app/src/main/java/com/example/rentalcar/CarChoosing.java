@@ -58,6 +58,14 @@ public class CarChoosing extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //qui passiamo l'oggetto cliccato all activity finale
+                Intent i=new Intent(CarChoosing.this,RecapReservation.class);
+                i.putExtra("model",carData.get(position).getCarName());
+                i.putExtra("image",carData.get(position).getResIdImage());
+                i.putExtra("class",carData.get(position).getClassCar());
+                i.putExtra("prezzo",carData.get(position).getPriceGg());
+                i.putExtra("shift",carData.get(position).getCarShift());
+                i.putExtra("numP",carData.get(position).getNumberOfPassengers());
+                startActivity(i);
             }
         });
 
