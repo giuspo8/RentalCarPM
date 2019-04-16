@@ -113,7 +113,8 @@ public class faq extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-
+            Intent h=new Intent(faq.this,EditReservation.class);
+            startActivity(h);
         } else if (id == R.id.nav_gallery) {
             Intent h=new Intent(faq.this,Contacts.class);
             startActivity(h);

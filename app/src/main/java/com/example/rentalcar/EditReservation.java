@@ -14,13 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class Contacts extends AppCompatActivity
+public class EditReservation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contacts);
+        setContentView(R.layout.activity_edit_reservation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -56,7 +56,7 @@ public class Contacts extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.contacts, menu);
+        getMenuInflater().inflate(R.menu.edit_reservation, menu);
         return true;
     }
 
@@ -82,20 +82,20 @@ public class Contacts extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent h=new Intent(Contacts.this,EditReservation.class);
+            Intent h=new Intent(EditReservation.this,EditReservation.class);
             startActivity(h);
         } else if (id == R.id.nav_gallery) {
-            Intent h=new Intent(Contacts.this,Contacts.class);
+            Intent h=new Intent(EditReservation.this,Contacts.class);
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-            Intent h=new Intent(Contacts.this,Problems.class);
+            Intent h=new Intent(EditReservation.this,Problems.class);
             startActivity(h);
         } else if (id == R.id.nav_manage) {
-            Intent h=new Intent(Contacts.this,faq.class);
+            Intent h=new Intent(EditReservation.this,faq.class);
             startActivity(h);
         }
         else if (id == R.id.ReturnHome) {
-            Intent h1=new Intent(Contacts.this,MainActivity.class);
+            Intent h1=new Intent(EditReservation.this,MainActivity.class);
             startActivity(h1);
         }
 

@@ -13,10 +13,12 @@
     <string name="title_activity_contacts">Contacts</string>
     <string name="title_activity_find_station">FindStationActivity</string>
     <string name="title_activity_faq">faq</string>
-    <string-array name = "l_o">
+    <string-array name="l_o">
         <item>ciao</item>
     </string-array>
-    <string-array name = "l_i">
+    <string-array name="l_i">
         <item>ciao2</item>
     </string-array>
+    <string name="title_activity_problems">Problems</string>
+    <string name="title_activity_edit_reservation">EditReservation</string>
 </resources>

@@ -229,17 +229,21 @@ public class CarChoosing extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent h=new Intent(CarChoosing.this,EditReservation.class);
+            startActivity(h);
         } else if (id == R.id.nav_gallery) {
-
+            Intent h=new Intent(CarChoosing.this,Contacts.class);
+            startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-
+            Intent h=new Intent(CarChoosing.this,Problems.class);
+            startActivity(h);
         } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            Intent h=new Intent(CarChoosing.this,faq.class);
+            startActivity(h);
+        }
+        else if (id == R.id.ReturnHome) {
+            Intent h1=new Intent(CarChoosing.this,MainActivity.class);
+            startActivity(h1);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

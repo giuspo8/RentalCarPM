@@ -13,14 +13,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Toast;
 
-public class Contacts extends AppCompatActivity
+public class Problems extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contacts);
+        setContentView(R.layout.activity_problems);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -41,6 +43,14 @@ public class Contacts extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Button button= (Button)findViewById(R.id.button1);
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                //esce un toast se clicchi sul bottone
+                Toast.makeText(Problems.this, "segnalazione inviata", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -56,7 +66,7 @@ public class Contacts extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.contacts, menu);
+        getMenuInflater().inflate(R.menu.problems, menu);
         return true;
     }
 
@@ -82,20 +92,20 @@ public class Contacts extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent h=new Intent(Contacts.this,EditReservation.class);
+            Intent h=new Intent(Problems.this,EditReservation.class);
             startActivity(h);
         } else if (id == R.id.nav_gallery) {
-            Intent h=new Intent(Contacts.this,Contacts.class);
+            Intent h=new Intent(Problems.this,Contacts.class);
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-            Intent h=new Intent(Contacts.this,Problems.class);
-            startActivity(h);
+            Intent h=new Intent(Problems.this,Problems.class);
+             startActivity(h);
         } else if (id == R.id.nav_manage) {
-            Intent h=new Intent(Contacts.this,faq.class);
+            Intent h=new Intent(Problems.this,faq.class);
             startActivity(h);
         }
         else if (id == R.id.ReturnHome) {
-            Intent h1=new Intent(Contacts.this,MainActivity.class);
+            Intent h1=new Intent(Problems.this,MainActivity.class);
             startActivity(h1);
         }
 

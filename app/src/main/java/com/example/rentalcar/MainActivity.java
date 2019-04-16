@@ -253,14 +253,14 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            //Intent h=new Intent(faq.this,Modifica_Prenotazione.class);
-            //startActivity(h);
+            Intent h=new Intent(MainActivity.this,EditReservation.class);
+            startActivity(h);
         } else if (id == R.id.nav_gallery) {
-            //Intent h=new Intent(faq.this,Contacts.class);
-            //startActivity(h);
+            Intent h=new Intent(MainActivity.this,Contacts.class);
+            startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-           //Intent h=new Intent(faq.this,segnala_problemi.class);
-           // startActivity(h);
+           Intent h=new Intent(MainActivity.this,Problems.class);
+            startActivity(h);
         } else if (id == R.id.nav_manage) {
             Intent h=new Intent(MainActivity.this,faq.class);
             startActivity(h);
