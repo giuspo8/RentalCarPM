@@ -1,10 +1,10 @@
 package com.example.rentalcar;
 
 public class CreditCard {
-    private int number;
-    private String expireDate;
-    private int secureCode;
-    private double credit;
+    private int number;//numero carta di credito
+    private String expireDate;//data di scadenza
+    private int secureCode;//codice di sicurezza
+    private double credit;//saldo
 
     public CreditCard(int number, String expireDate, int secureCode, double credit) {
         this.number = number;

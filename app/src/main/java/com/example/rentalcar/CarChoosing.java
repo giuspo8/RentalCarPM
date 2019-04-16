@@ -35,9 +35,9 @@ import static com.example.rentalcar.R.drawable.cinquecento;
 public class CarChoosing extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ArrayList<CarItem> carData=new ArrayList<>();
-    private ListView listViewCar;
-    private CustomAdapter adapter;
+    private ArrayList<CarItem> carData=new ArrayList<>();//arraylist che conterrà la lista delle auto
+    private ListView listViewCar;//oggetto listview
+    private CustomAdapter adapter;//adapter fatto da noi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,7 @@ public class CarChoosing extends AppCompatActivity
 
         listViewCar=findViewById(R.id.ListViewCar);//oggetto list view
 
+        //chiamiamo il metodo che ci legge le auto dal server
         read_car();
 
         listViewCar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -76,6 +77,7 @@ public class CarChoosing extends AppCompatActivity
     private void read_car(){
         HttpURLConnection client = null;
         try {
+            //stessa cosa di FindStationActivity
             URL url = new URL("http://rentalcar.altervista.org/leggi_auto.php");
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("POST");
@@ -99,6 +101,7 @@ public class CarChoosing extends AppCompatActivity
             String key = iter.next();
             try {
                 JSONObject value = json_data.getJSONObject(key);
+                //simile a FindStationActivity
                 String model=value.getString("Model");
                 String classCar=value.getString("ClassCar");
                 Double priceGg=value.getDouble("Pricegg");
@@ -114,12 +117,53 @@ public class CarChoosing extends AppCompatActivity
                         resId = R.drawable.mercedes;
                         break;
                     }
+                    case "Fiat 500 X o similare": {
+                        resId = R.drawable.cinquecentox;
+                        break;
+                    }
+                    case "Mercedes classe E o similare": {
+                        resId = R.drawable.mercedesclassee;
+                        break;
+                    }case "Smart for Four o similare": {
+                        resId = R.drawable.smart;
+                        break;
+                    }case "Audi Q5": {
+                        resId = R.drawable.q5;
+                        break;
+                    }case "Alfa Romeo Giulietta o similare": {
+                        resId = R.drawable.alfaromeogiulietta;
+                        break;
+                    }case "Fiat Ducato Panorama o similare": {
+                        resId = R.drawable.fiatducatopanorama;
+                        break;
+                    }case "Volkswagen Passat o similare": {
+                        resId = R.drawable.passat;
+                        break;
+                    }case "Audi A3 o similare": {
+                        resId = R.drawable.audia3;
+                        break;
+                    }case "Peugeot 308 SW o similare": {
+                        resId = R.drawable.peugstationwagon;
+                        break;
+                    }case "Renault Clio o similare": {
+                        resId = R.drawable.clio;
+                        break;
+                    }case "Volkswagen Golf o similare": {
+                        resId = R.drawable.golf;
+                        break;
+                    }case "Renault Kadjar o similare": {
+                        resId = R.drawable.kadjar;
+                        break;
+                    }case "Fiat Panda o similare": {
+                        resId = R.drawable.panda;
+                        break;
+                    }
                     default:{
                         resId=R.drawable.panda;
                     }
                 }
 
-
+                //creiamo un nuovo oggetto carItem con tutti i valori che abbiamo ottenuto
                 CarItem c=new CarItem(resId,model,classCar,priceGg,carShift,numberPassengers);
                 carData.add(c);
             } catch (JSONException e) {
@@ -133,6 +177,7 @@ public class CarChoosing extends AppCompatActivity
 
     private JSONObject convert2JSON(String json_data){
         JSONObject obj = null;
+        //stessa cosa di FindStationActivity
         try {
             obj = new JSONObject(json_data);
             Log.d("My App", obj.toString());

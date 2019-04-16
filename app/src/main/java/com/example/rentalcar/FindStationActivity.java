@@ -49,14 +49,15 @@ public class FindStationActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //serve per darci il permesso di stabilire la connessione
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
 
         stationSearch=findViewById(R.id.searchStation);//search view stazioni ritiro
-        listRetire=findViewById(R.id.listviewStation);
+        listRetire=findViewById(R.id.listviewStation);//list view che conterrà la lista delle stazioni
 
-
+        //chiamiamo il metodo che andrà a leggere la lista delle stazioni sul server
         read_station();
 
         //qui semplicemente stiamo settando il listener della searchview in attesa di azioni dell'utente
@@ -90,12 +91,18 @@ public class FindStationActivity extends AppCompatActivity
     private void read_station(){
         HttpURLConnection client = null;
         try {
+            //creiamo un nuovo oggetto URL che fa riferimento al nostro sito con il file php per leggere le stazioni
             URL url = new URL("http://rentalcar.altervista.org/leggi_stazioni.php");
+            //apriamo la connessione e settiamo il metodo come Post(facoltativo)
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("POST");
+            //prendiamo lo stream in ingresso
             InputStream in = client.getInputStream();
+            //creiamo una nuova stringa e la mettiamo in una certa forma (vedi readresponse)
             String json_string = ReadResponse.readStream(in);
+            //convertiamo la stringa in un Json object
             JSONObject json_data = convert2JSON(json_string);
+            //popoliamo la lista
             fill_listview(json_data);
         } catch (IOException e) {
             e.printStackTrace();
@@ -108,25 +115,34 @@ public class FindStationActivity extends AppCompatActivity
     }
 
     private void fill_listview(JSONObject json_data){
+        //il metodo keys() ci ritorna un iteratore di una collezione di oggetti
         Iterator<String> iter = json_data.keys();
+        //metodo hasNext() ritorna true se ci sono ancora elementi
         while (iter.hasNext()) {
+            //metodo next() ritorna il prossimo elemento nell'iteratore (la chiave)
             String key = iter.next();
             try {
+                //ritorna il valore corrispondente alla chiave key
                 JSONObject value = json_data.getJSONObject(key);
+                //creiamo un nuovo oggetto stazione e gli assegniamo il valore che abbiamo preso (mappato dal nome Stazione)
                 StationNames s=new StationNames(value.getString("Stazione"));
+                //lo aggiungiamo nell Arraylist
                 StationArray.add(s);
             } catch (JSONException e) {
                 Toast.makeText(this,"ERRORE",Toast.LENGTH_LONG).show();
                 // Something went wrong!
             }
         }
+        //utilizziamo un adapter di una classe fatta da noi
         listAdapter = new ListViewAdapter(this,StationArray );
+        //settiamo la listview all'adapter
         listRetire.setAdapter(listAdapter);
     }
 
     private JSONObject convert2JSON(String json_data){
         JSONObject obj = null;
         try {
+            //converte la stringa in un Json object
             obj = new JSONObject(json_data);
             Log.d("My App", obj.toString());
         } catch (Throwable t) {

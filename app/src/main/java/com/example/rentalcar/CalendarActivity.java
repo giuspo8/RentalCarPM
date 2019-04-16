@@ -19,7 +19,6 @@ public class CalendarActivity extends AppCompatActivity {
             //una volta cliccato su una data esegue queste azioni
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                String date=dayOfMonth+"/"+(month+1)+"/"+year;//salva su una stringa il risultato(al mese va sommato 1)
                 Intent intent=new Intent(CalendarActivity.this,MainActivity.class);
                 Bundle b=new Bundle();
                 b.putInt("anno",year);
