@@ -4,7 +4,7 @@
 
 
     <SearchView
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:queryHint="Inserisci località"
         android:id="@+id/searchStation"
         android:layout_width="fill_parent"
@@ -14,6 +14,7 @@
     </SearchView>
 
     <ListView
+        android:layout_marginTop="5dp"
         android:id="@+id/listviewStation"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
