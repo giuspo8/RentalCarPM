@@ -8,75 +8,116 @@
     tools:context=".EditReservation"
     tools:showIn="@layout/app_bar_recap_reservation">
 
-    <TextView
-        android:id="@+id/idpre"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ID Prenotazione"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="20dp"/>
-    <TextView
-        android:id="@+id/stazione_ritiro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Stazione Ritiro"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="40dp"/>
-    <TextView
-        android:id="@+id/data_ritiro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="..............."
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="60dp"/>
-    <TextView
-        android:id="@+id/stazione_riconsegna"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Stazione Riconsegna"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="80dp"/>
-    <TextView
-        android:id="@+id/data_riconsegna"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="..............."
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="100dp"/>
+        android:layout_height="100dp"
+        android:layout_marginTop="20sp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/idpre"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID Prenotazione"
+            app:layout_constraintVertical_bias="0.15"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+        <TextView
+            android:id="@+id/stazione_ritiro"
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="Stazione Ritiro"
+            app:layout_constraintVertical_bias="0.55"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/data_ritiro"
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="..............."
+            app:layout_constraintVertical_bias="0.85"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/stazione_riconsegna"
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="Stazione Riconsegna"
+            app:layout_constraintVertical_bias="0.55"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/data_riconsegna"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="..............."
+            android:textColor="@color/black"
+            app:layout_constraintVertical_bias="0.85"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+
     <Button
         android:id="@+id/pagas"
+        android:layout_centerHorizontal="true"
         style="@android:style/Widget.Button"
         android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="300dp"
-        android:text="paga alla stazione"
-        android:textSize="16sp"
-        android:textStyle="normal|bold" />
+        android:layout_marginTop="370dp"
+        android:text="paga alla stazione "
+        android:background="@color/colorPrimaryDark"
+        android:textSize="14sp" />
     <Button
         android:id="@+id/pagao"
         style="@android:style/Widget.Button"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="350dp"
-        android:text="paga ora"
-        android:textSize="16sp"
-        android:textStyle="normal|bold" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:text="paga ora "
+        android:textSize="14sp" />
 
 
     <ListView
         android:id="@+id/recap_car_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="140dp"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"/>
 
 
 </RelativeLayout>
