@@ -13,51 +13,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 import android.widget.Button;
-import android.widget.TextView;
-import java.util.ArrayList;
+import android.widget.Toast;
 
-public class RecapReservation extends AppCompatActivity
+public class ConfirmationReservation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ArrayList<CarItem> carData=new ArrayList<>();//arraylist che conterrà la lista delle auto
-    private ListView listViewCar;//oggetto listview
-    private CustomAdapter adapter;//adapter fatto da noi
-    Button paga_ora;
-    Button paga_in_stazione;
+    Button conferma;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recap_reservation);
+        setContentView(R.layout.activity_confirmation_reservation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        listViewCar=findViewById(R.id.recap_car_list);//oggetto list view
-        adapter=new CustomAdapter(this,R.layout.car_item_row,carData);
-        int res_image=getIntent().getIntExtra("image",R.drawable.alfaromeogiulietta);
-        String model=getIntent().getStringExtra("model");
-        String Class_car=getIntent().getStringExtra("class");
-        double prezzo=getIntent().getDoubleExtra("prezzo",0.0);
-        String shift=getIntent().getStringExtra("shift");
-        int num_pass=getIntent().getIntExtra("numP",0);
-        carData.add(new CarItem(res_image,model,Class_car,prezzo,shift,num_pass));
-        listViewCar.setAdapter(adapter);
-        //inserire il prezzo nel bottone
-        String prezzo_convertito = Double.toString(prezzo);
-        StringBuilder sb=new StringBuilder("Paga ora(");
-        sb.append(prezzo_convertito);
-        sb.append(")");
-        StringBuilder sb1=new StringBuilder("Paga alla stazione(");
-        sb1.append(prezzo_convertito);
-        sb1.append(" + 5€)");
-        Button buttonPO = (Button) findViewById(R.id.pagao);
-        buttonPO.setText(sb.toString());
-        Button buttonPS = (Button) findViewById(R.id.pagas);
-        buttonPS.setText(sb1.toString());
-        String data_ritiro="data ritiro";
-        TextView dr = (TextView) findViewById(R.id.data_ritiro);
-        dr.setText(data_ritiro);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -66,26 +44,14 @@ public class RecapReservation extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        paga_ora = (Button) findViewById(R.id.pagao);
+        conferma = (Button) findViewById(R.id.confpre);
 
-        paga_ora.setOnClickListener(new View.OnClickListener() {
+        conferma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent h1=new Intent(RecapReservation.this,ConfirmationReservation.class);
-                startActivity(h1);
+                Toast.makeText(getApplicationContext(), "prenotazione effettuata", Toast.LENGTH_LONG).show();
             }
         });
-        paga_in_stazione = (Button) findViewById(R.id.pagas);
-
-        paga_in_stazione.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent h1=new Intent(RecapReservation.this,ConfirmationReservation.class);
-                startActivity(h1);
-            }
-        });
-
-
     }
 
     @Override
@@ -101,7 +67,7 @@ public class RecapReservation extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.recap_reservation, menu);
+        getMenuInflater().inflate(R.menu.confirmation_reservation, menu);
         return true;
     }
 
@@ -127,17 +93,21 @@ public class RecapReservation extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent h=new Intent(ConfirmationReservation.this,EditReservation.class);
+            startActivity(h);
         } else if (id == R.id.nav_gallery) {
-
+            Intent h=new Intent(ConfirmationReservation.this,Contacts.class);
+            startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-
+            Intent h=new Intent(ConfirmationReservation.this,Problems.class);
+            startActivity(h);
         } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            Intent h=new Intent(ConfirmationReservation.this,faq.class);
+            startActivity(h);
+        }
+        else if (id == R.id.ReturnHome) {
+            Intent h1=new Intent(ConfirmationReservation.this,MainActivity.class);
+            startActivity(h1);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

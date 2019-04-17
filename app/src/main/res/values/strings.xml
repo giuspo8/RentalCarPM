@@ -22,4 +22,5 @@
     <string name="title_activity_problems">Problems</string>
     <string name="title_activity_edit_reservation">EditReservation</string>
     <string name="title_activity_recap_reservation">RecapReservation</string>
+    <string name="title_activity_confirmation_reservation">ConfirmationReservation</string>
 </resources>

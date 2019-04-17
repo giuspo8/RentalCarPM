@@ -14,22 +14,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
-
+import android.widget.Button;
+import android.widget.Toast;
 import java.util.ArrayList;
 
 public class EditReservation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    Button home;
+    Button edit;
+    Button delete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_reservation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -39,6 +39,37 @@ public class EditReservation extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //torna alla home
+        home = (Button) findViewById(R.id.indietro);
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent h1=new Intent(EditReservation.this,MainActivity.class);
+                startActivity(h1);
+            }
+        });
+        //modifica prenotazione
+        edit = (Button) findViewById(R.id.modifica);
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //codice del boss
+                Toast.makeText(getApplicationContext(), "modifica prenotazione", Toast.LENGTH_LONG).show();
+            }
+        });
+        //elimina prenotazione
+        delete = (Button) findViewById(R.id.elimina);
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //condice del boss
+                Toast.makeText(getApplicationContext(), "elimina prenotazione", Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
     @Override
