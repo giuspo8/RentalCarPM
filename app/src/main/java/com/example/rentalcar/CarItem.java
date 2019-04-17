@@ -9,6 +9,10 @@ public class CarItem {
     private String carShift;//cambio
     private int numberOfPassengers;//numero di posti
 
+    public CarItem(String carName){
+
+    }
+
     public CarItem(int resIdImage, String carName, String classCar, double priceGg, String carShift, int numberOfPassengers) {
         this.resIdImage = resIdImage;
         this.carName = carName;

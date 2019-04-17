@@ -60,7 +60,7 @@ public class CustomAdapter extends ArrayAdapter {
         else {
             holder=(DataHolder)convertView.getTag();
         }
-        //una volta presa a posizione nella list mettiamo ogni attributo nella corrispondente textview,image etc
+        //una volta presa la posizione nella list mettiamo ogni attributo nella corrispondente textview,image etc
         CarItem carItem=data.get(position);
         holder.tvCarName.setText(carItem.getCarName());
         holder.ivImage.setImageResource(carItem.getResIdImage());
