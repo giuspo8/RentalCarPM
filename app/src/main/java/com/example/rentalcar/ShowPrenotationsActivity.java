@@ -32,6 +32,7 @@ public class ShowPrenotationsActivity extends AppCompatActivity
 
 
     private ListView listReservation;
+    //ArrayList di oggetti Reservation
     ArrayList<Reservation> pArrayList=new ArrayList<>();
     private ReservationAdapter adapter;//usiamo un Adapter di una classe che abbiamo creato noi
 
@@ -48,6 +49,7 @@ public class ShowPrenotationsActivity extends AppCompatActivity
 
         listReservation=findViewById(R.id.prenotation_listview);
 
+        //chiamiamo il metodo read_reservation
         read_reservation();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -63,7 +65,7 @@ public class ShowPrenotationsActivity extends AppCompatActivity
     private void read_reservation(){
         HttpURLConnection client = null;
         try {
-            //creiamo un nuovo oggetto URL che fa riferimento al nostro sito con il file php per leggere le stazioni
+            //creiamo un nuovo oggetto URL che fa riferimento al nostro sito con il file php per leggere le prenotazioni
             URL url = new URL("http://rentalcar.altervista.org/leggi_prenotazioni.php");
             //apriamo la connessione e settiamo il metodo come Post(facoltativo)
             client = (HttpURLConnection) url.openConnection();
@@ -97,6 +99,7 @@ public class ShowPrenotationsActivity extends AppCompatActivity
                 //ritorna il valore corrispondente alla chiave key
                 JSONObject value = json_data.getJSONObject(key);
                 int id=value.getInt("ID");
+                //leggiamo tutti gli elementi tramite le loro etichette
                 String RetStation=value.getString("StazioneRit");
                 StationNames sRet=new StationNames(RetStation);
                 String RestStation=value.getString("StazioneRic");
@@ -116,6 +119,7 @@ public class ShowPrenotationsActivity extends AppCompatActivity
                 CarItem c=new CarItem(car);
                 int payment=value.getInt("Pagamento");
 
+                //creiamo un nuovo oggetto Reservation e lo istanziamo con tutti i valori ottenuti
                 Reservation r=new Reservation(id,sRet,sRec,c,email,yearRet,monthRet,dayRet,hourRet,minRet,yearRic,monthRic,
                         dayRec,hourRec,minRec,payment);
                 //lo aggiungiamo nell Arraylist

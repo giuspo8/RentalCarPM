@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class ReservationAdapter extends ArrayAdapter {
@@ -62,18 +63,21 @@ public class ReservationAdapter extends ArrayAdapter {
         else {
             holder=(DataHolder)convertView.getTag();
         }
-        //una volta presa la posizione nella list mettiamo ogni attributo nella corrispondente textview,image etc
+        //una volta presa la posizione nella list mettiamo ogni attributo nella corrispondente textview
         Reservation reservationItem=data.get(position);
         holder.tvRetireStation.setText(reservationItem.getRetStation().getStationName());
         holder.tvRestitutionStation.setText(reservationItem.getRecStation().getStationName());
+        //servono per far scrivere l'ora e i minuti a 2 cifre
+        String minRit=new DecimalFormat("00").format(reservationItem.getMinRet());
+        String hourRit=new DecimalFormat("00").format(reservationItem.getHourRet());
         String RetireDateAndHour=reservationItem.getDayRet()+"/"+reservationItem.getMonthRet()+"/"
-                +reservationItem.getYearRet()+"  "+reservationItem.getHourRet()+":"+reservationItem.getMinRet();
+                +reservationItem.getYearRet()+"  "+hourRit+":"+minRit;
         holder.tvRetireDateandHour.setText(RetireDateAndHour);
-
+        String minRic=new DecimalFormat("00").format(reservationItem.getMinRic());
+        String hourRic=new DecimalFormat("00").format(reservationItem.getHourRic());
         String RestitutionDateAndHour=reservationItem.getDayRic()+"/"+reservationItem.getMonthRic()+"/"
-                +reservationItem.getYearRic()+"  "+reservationItem.getHourRic()+":"+reservationItem.getMinRic();
+                +reservationItem.getYearRic()+"  "+hourRic+":"+minRic;
         holder.tvRestitutionDateandHour.setText(RestitutionDateAndHour);
-
         holder.tvCar.setText(reservationItem.getCar().getCarName());
         holder.tvEmail.setText(reservationItem.getEmail());
         if (reservationItem.getPayment()==1){

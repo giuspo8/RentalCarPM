@@ -82,7 +82,7 @@ public class AdminActivity extends AppCompatActivity
         HttpURLConnection client = null;
         URL url;
         try {
-            // se la richiesta è GET
+            // se la richiesta è GET gli passiamo email e password letti sulle edittext
             url = new URL("http://rentalcar.altervista.org/leggiAdmin.php?email=" + this.email
                     + "&password=" + this.password);
             //apriamo la connessione e settiamo il metodo come GET(facoltativo)
@@ -97,6 +97,7 @@ public class AdminActivity extends AppCompatActivity
             if (json_string.equals("[]")) {
                 Toast.makeText(this,"I dati inseriti sono errati! Prego Riprovare",Toast.LENGTH_LONG).show();
             }
+            //se invece abbiamo trovato qualcosa allora possiamo garantire l'ingresso alla successiva activity
             else {
                 Intent i=new Intent(AdminActivity.this,ShowPrenotationsActivity.class);
                 startActivity(i);

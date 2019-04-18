@@ -9,8 +9,10 @@ public class CarItem {
     private String carShift;//cambio
     private int numberOfPassengers;//numero di posti
 
+    //costruttore aggiunto perchè ci serve in reservation in quanto abbiamo nella tabella online solo nome auto e per
+    //non dovere fare join creiamo un oggetto di tipo CarItem con un unico attributo
     public CarItem(String carName){
-
+        this.carName=carName;
     }
 
     public CarItem(int resIdImage, String carName, String classCar, double priceGg, String carShift, int numberOfPassengers) {
