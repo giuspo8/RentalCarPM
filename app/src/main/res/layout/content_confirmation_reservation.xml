@@ -7,36 +7,35 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ConfirmationReservation"
     tools:showIn="@layout/app_bar_confirmation_reservation">
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/dettagli"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dettagli del guidatore"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginTop="10dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/campo"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="*campo obbligatorio"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="70dp"
+            android:layout_alignTop="@id/codicesicurezza"
+            android:textSize="12dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="50dp"/>
 
         <EditText
             android:id="@+id/Nome"
-            android:layout_width="283dp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="90dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
             android:ems="10"
             android:hint="Nome *"
             android:inputType="textPersonName"
@@ -44,83 +43,90 @@
 
         <EditText
             android:id="@+id/Cognome"
-            android:layout_width="292dp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/prenot"
-            android:layout_alignStart="@+id/prenot"
-            android:layout_alignLeft="@+id/prenot"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_alignTop="@id/Nome"
             android:ems="10"
             android:hint="Cognome *" />
 
         <EditText
             android:id="@+id/email"
-            android:layout_width="294dp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/prenot"
-            android:layout_alignStart="@+id/prenot"
-            android:layout_alignLeft="@+id/prenot"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="20dp"
             android:ems="10"
+            android:layout_alignTop="@id/Cognome"
             android:hint="Email *" />
+
         <EditText
             android:id="@+id/telefono"
-            android:layout_width="294dp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/prenot"
-            android:layout_alignStart="@+id/prenot"
-            android:layout_alignLeft="@+id/prenot"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="250dp"
+            android:layout_alignTop="@id/email"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
             android:ems="10"
             android:hint="Telefono *" />
+
         <EditText
             android:id="@+id/numerocarta"
-            android:layout_width="294dp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/prenot"
-            android:layout_alignStart="@+id/prenot"
-            android:layout_alignLeft="@+id/prenot"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="300dp"
+            android:layout_alignTop="@id/telefono"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:ems="10"
-            android:hint="numero carta di credito" />
+            android:hint="Numero carta di credito" />
+
         <EditText
             android:id="@+id/datascadenza"
-            android:layout_width="294dp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/prenot"
-            android:layout_alignStart="@+id/prenot"
-            android:layout_alignLeft="@+id/prenot"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="350dp"
+            android:layout_alignTop="@id/numerocarta"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:ems="10"
-            android:hint="data di scadenza" />
+            android:hint="Data di scadenza" />
+
         <EditText
             android:id="@+id/codicesicurezza"
-            android:layout_width="294dp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/prenot"
-            android:layout_alignStart="@+id/prenot"
-            android:layout_alignLeft="@+id/prenot"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="400dp"
+            android:layout_alignTop="@id/datascadenza"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:ems="10"
-            android:hint="codice di sicurezza" />
+            android:hint="Codice di sicurezza" />
 
         <Button
             android:id="@+id/confpre"
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="450dp"
-            android:background="#03B424"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="20dp"
+            android:layout_alignTop="@id/codicesicurezza"
+            android:background="@color/colorPrimaryDark"
             android:text="conferma prenotazione"
-            android:textColor="#ffffff"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
-
     </RelativeLayout>
+</ScrollView>
+
 </android.support.constraint.ConstraintLayout>
