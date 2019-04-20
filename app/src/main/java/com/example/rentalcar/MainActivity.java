@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity
                 }
                 else {
                     Intent i = new Intent(MainActivity.this, CarChoosing.class);
-                    i.putExtra("search data", search);//metto i dati della prenotazione del bundle nell'intent
+                    i.putExtra("search",search);//metto i dati della prenotazione del bundle nell'intent
                     startActivity(i);
                 }
             }
@@ -165,15 +165,15 @@ public class MainActivity extends AppCompatActivity
             String hour=new DecimalFormat("00").format(hourOfDay);//serve per far si che 00 non lo scriva come 0
             String min=new DecimalFormat("00").format(minute);
             textHourRetire.setText(hour+":"+min);
-            search.putInt("ora ritiro",hourOfDay);//metto l'int dell'ora e dei minuti nel bundle search che manderò all activity CarChoosing
-            search.putInt("minuto ritiro",minute);
+            search.putInt("ora_ritiro",hourOfDay);//metto l'int dell'ora e dei minuti nel bundle search che manderò all activity CarChoosing
+            search.putInt("minuto_ritiro",minute);
         }
-        else{
+        else {
             String hour=new DecimalFormat("00").format(hourOfDay);//serve per far si che 00 non lo scriva come 0
             String min=new DecimalFormat("00").format(minute);
             textHourRestitution.setText(hour+":"+min);
-            search.putInt("ora restituzione",hourOfDay);//metto l'int dell'ora e dei minuti nel bundle search che manderò all activity CarChoosing
-            search.putInt("minuto restituzione",minute);
+            search.putInt("ora_restituzione",hourOfDay);//metto l'int dell'ora e dei minuti nel bundle search che manderò all activity CarChoosing
+            search.putInt("minuto_restituzione",minute);
         }
     }
 
@@ -187,9 +187,9 @@ public class MainActivity extends AppCompatActivity
             int monthRetire=retire.getInt("mese");
             int dayRetire=retire.getInt("giorno");
             textCalendarRetire.setText(String.valueOf(dayRetire)+"/"+String.valueOf(monthRetire)+"/"+String.valueOf(yearRetire));//li metto nella textview e quindi devo trasformarli in stringa
-            search.putInt("anno ritiro",yearRetire);//mando i tre valori nel bundle search che poi verrà mandato in CarChoosing
-            search.putInt("mese ritiro",monthRetire);
-            search.putInt("giorno ritiro",dayRetire);
+            search.putInt("anno_ritiro",yearRetire);//mando i tre valori nel bundle search che poi verrà mandato in CarChoosing
+            search.putInt("mese_ritiro",monthRetire);
+            search.putInt("giorno_ritiro",dayRetire);
         }
         else if ((requestCode==REQUEST_CODE_CALENDAR2)&&(resultCode== Activity.RESULT_OK)) {
             Bundle restitution=data.getBundleExtra("Date");//creo un Bundle in cui mettere i dati provenienti dal calendario
@@ -197,21 +197,21 @@ public class MainActivity extends AppCompatActivity
             int monthRestitution=restitution.getInt("mese");
             int dayRestitution=restitution.getInt("giorno");
             textCalendarRestitution.setText(String.valueOf(dayRestitution)+"/"+String.valueOf(monthRestitution)+"/"+String.valueOf(yearRestitution));//li metto nella textview e quindi devo trasformarli in stringa
-            search.putInt("anno restituzione",yearRestitution);//mando i tre valori nel bundle search che poi verrà mandato in CarChoosing
-            search.putInt("mese restituzione",monthRestitution);
-            search.putInt("giorno restituzione",dayRestitution);
+            search.putInt("anno_restituzione",yearRestitution);//mando i tre valori nel bundle search che poi verrà mandato in CarChoosing
+            search.putInt("mese_restituzione",monthRestitution);
+            search.putInt("giorno_restituzione",dayRestitution);
         }
         else if ((requestCode==REQUEST_CODE_STATIONRET)&&(resultCode== Activity.RESULT_OK)){
             //prendo il nome della stazione che mi arriva da FindStationActivity e lo metto nella edittext
             editTextRetireStation.setText(data.getStringExtra("station"));
             //metto il nome della stazione nel Bundle che invierò alla CarChoosing con il search
-            search.putString("Stazione ritiro", String.valueOf(editTextRetireStation.getHint()));
+            search.putString("Stazione_ritiro", data.getStringExtra("station"));
         }
         else if ((requestCode==REQUEST_CODE_STATIONRES)&&(resultCode== Activity.RESULT_OK)) {
             //prendo il nome della stazione che mi arriva da FindStationActivity e lo metto nella edittext
             editTextRestitutionStation.setText(data.getStringExtra("station"));
             //metto il nome della stazione nel Bundle che invierò alla CarChoosing con il search
-            search.putString("Stazione restituzione", String.valueOf(editTextRestitutionStation.getHint()));
+            search.putString("Stazione_restituzione", data.getStringExtra("station"));
         }
     }
 

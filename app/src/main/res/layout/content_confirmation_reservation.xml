@@ -26,7 +26,7 @@
             android:textSize="12dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="210dp"/>
 
         <EditText
             android:id="@+id/Nome"
@@ -77,48 +77,14 @@
             android:ems="10"
             android:hint="Telefono *" />
 
-        <EditText
-            android:id="@+id/numerocarta"
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/telefono"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:hint="Numero carta di credito" />
 
-        <EditText
-            android:id="@+id/datascadenza"
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/numerocarta"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:hint="Data di scadenza" />
-
-        <EditText
-            android:id="@+id/codicesicurezza"
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/datascadenza"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:hint="Codice di sicurezza" />
 
         <Button
             android:id="@+id/confpre"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="250dp"
             android:layout_marginBottom="20dp"
             android:layout_alignTop="@id/codicesicurezza"
             android:background="@color/colorPrimaryDark"

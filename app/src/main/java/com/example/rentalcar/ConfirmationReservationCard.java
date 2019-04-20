@@ -1,6 +1,5 @@
 package com.example.rentalcar;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,17 +15,24 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class ConfirmationReservation extends AppCompatActivity
+public class ConfirmationReservationCard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
     Button conferma;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_confirmation_reservation);
+        setContentView(R.layout.activity_confirmation_reservation_card);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -63,7 +69,7 @@ public class ConfirmationReservation extends AppCompatActivity
                 double prezzo=restitution.getDouble("prezo",0.0);
                 String shift=restitution.getString("shit");
                 int num_pass=restitution.getInt("nuP",0);
-                Toast.makeText(getApplicationContext(), "prenotazione effetuata paga in stazione", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "prenotazione effetuata paga ora", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -81,7 +87,7 @@ public class ConfirmationReservation extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.confirmation_reservation, menu);
+        getMenuInflater().inflate(R.menu.confirmation_reservation_card, menu);
         return true;
     }
 
@@ -107,21 +113,17 @@ public class ConfirmationReservation extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent h=new Intent(ConfirmationReservation.this,EditReservation.class);
-            startActivity(h);
+            // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-            Intent h=new Intent(ConfirmationReservation.this,Contacts.class);
-            startActivity(h);
+
         } else if (id == R.id.nav_slideshow) {
-            Intent h=new Intent(ConfirmationReservation.this,Problems.class);
-            startActivity(h);
+
         } else if (id == R.id.nav_manage) {
-            Intent h=new Intent(ConfirmationReservation.this,faq.class);
-            startActivity(h);
-        }
-        else if (id == R.id.ReturnHome) {
-            Intent h1=new Intent(ConfirmationReservation.this,MainActivity.class);
-            startActivity(h1);
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

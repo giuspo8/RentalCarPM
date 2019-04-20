@@ -12,9 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ConfirmationReservationCard"
+            android:label="@string/title_activity_confirmation_reservation_card"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".ShowPrenotationsActivity"
             android:label="@string/title_activity_show_prenotations"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AdminActivity"
             android:label="@string/title_activity_admin"

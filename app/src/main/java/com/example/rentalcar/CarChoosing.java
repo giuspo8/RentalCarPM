@@ -58,6 +58,7 @@ public class CarChoosing extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //qui passiamo l'oggetto cliccato all activity finale
+                Bundle restitution=getIntent().getBundleExtra("search");
                 Intent i=new Intent(CarChoosing.this,RecapReservation.class);
                 i.putExtra("model",carData.get(position).getCarName());
                 i.putExtra("image",carData.get(position).getResIdImage());
@@ -65,6 +66,19 @@ public class CarChoosing extends AppCompatActivity
                 i.putExtra("prezzo",carData.get(position).getPriceGg());
                 i.putExtra("shift",carData.get(position).getCarShift());
                 i.putExtra("numP",carData.get(position).getNumberOfPassengers());
+                //lettura dei dati dall' activity precedente
+                i.putExtra("st_ri",restitution.getString("Stazione_ritiro"));
+                i.putExtra("st_ric",restitution.getString("Stazione_restituzione"));
+                i.putExtra("a_ri",restitution.getInt("anno_ritiro"));
+                i.putExtra("m_ri",restitution.getInt("mese_ritiro"));
+                i.putExtra("g_ri",restitution.getInt("giorno_ritiro"));
+                i.putExtra("a_r",restitution.getInt("anno_restituzione"));
+                i.putExtra("m_r",restitution.getInt("mese_restituzione"));
+                i.putExtra("g_r",restitution.getInt("giorno_restituzione"));
+                i.putExtra("o_ri",restitution.getInt("ora_ritiro"));
+                i.putExtra("m_ri",restitution.getInt("minuto_ritiro"));
+                i.putExtra("o_rr",restitution.getInt("ora_restituzione"));
+                i.putExtra("m_rr",restitution.getInt("minuto_restituzione"));
                 startActivity(i);
             }
         });
@@ -78,6 +92,7 @@ public class CarChoosing extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
 
 
     }
