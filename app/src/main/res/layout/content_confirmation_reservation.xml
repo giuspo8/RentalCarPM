@@ -18,15 +18,15 @@
 
         <TextView
             android:id="@+id/campo"
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="*campo obbligatorio"
             android:layout_alignTop="@id/codicesicurezza"
-            android:textSize="12dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="210dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="210dp"/>
+            android:text="*campo obbligatorio"
+            android:textColor="@color/black"
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/Nome"
@@ -78,15 +78,14 @@
             android:hint="Telefono *" />
 
 
-
         <Button
             android:id="@+id/confpre"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@id/codicesicurezza"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="250dp"
             android:layout_marginBottom="20dp"
-            android:layout_alignTop="@id/codicesicurezza"
             android:background="@color/colorPrimaryDark"
             android:text="conferma prenotazione"
             android:textColor="@color/black"

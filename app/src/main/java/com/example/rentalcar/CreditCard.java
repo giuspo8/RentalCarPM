@@ -1,19 +1,23 @@
 package com.example.rentalcar;
 
 public class CreditCard {
-    private int number;//numero carta di credito
+    private String number;//numero carta di credito
     private String expireDate;//data di scadenza
     private int secureCode;//codice di sicurezza
     private double credit;//saldo
 
-    public CreditCard(int number, String expireDate, int secureCode, double credit) {
+    public CreditCard() {
+
+    }
+
+    public CreditCard(String number, String expireDate, int secureCode, double credit) {
         this.number = number;
         this.expireDate = expireDate;
         this.secureCode = secureCode;
         this.credit = credit;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
@@ -29,6 +33,13 @@ public class CreditCard {
         return credit;
     }
 
+    public Object getCreditCard(String number){
+        if (this.number==number) {
+            return this;
+        }
+        else return null;
+    }
+
 
     public void recharge(double money) {
         credit+=money;
@@ -39,4 +50,5 @@ public class CreditCard {
         else credit-=price;
         return true;
     }
+
 }
