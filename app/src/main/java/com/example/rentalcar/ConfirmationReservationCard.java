@@ -152,6 +152,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
                                 insert_reservation();
                                 insert_user();
                                 //andiamo all activity finale
+                                //qui inserire metodo per mandare email
                                 Intent i=new Intent(ConfirmationReservationCard.this,EmailFinalActivity.class);
                                 startActivity(i);
                             }
@@ -161,6 +162,10 @@ public class ConfirmationReservationCard extends AppCompatActivity
                         //inseriamo nel database prenotazione e utente
                         insert_reservation();
                         insert_user();
+                        //andiamo all activity finale
+                        //qui inserire metodo per mandare email
+                        Intent i=new Intent(ConfirmationReservationCard.this,EmailFinalActivity.class);
+                        startActivity(i);
                     }
                 }
             }
