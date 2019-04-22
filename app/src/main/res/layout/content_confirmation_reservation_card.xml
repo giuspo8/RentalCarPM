@@ -54,63 +54,71 @@
 
             <EditText
                 android:id="@+id/email"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignTop="@id/Cognome"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginRight="20dp"
                 android:ems="10"
-                android:layout_alignTop="@id/Cognome"
-                android:hint="Email *" />
+                android:hint="Email *"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/telefono"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/email"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
                 android:ems="10"
-                android:hint="Telefono *" />
+                android:hint="Telefono *"
+                android:inputType="phone"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/numerocarta"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/telefono"
-                android:layout_marginTop="40dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginRight="20dp"
                 android:ems="10"
-                android:hint="Numero carta di credito" />
+                android:hint="Numero carta di credito"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:visibility="invisible" />
 
             <EditText
                 android:id="@+id/datascadenza"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/numerocarta"
-                android:layout_marginTop="40dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginRight="20dp"
                 android:ems="10"
-                android:hint="Data di scadenza" />
+                android:hint="Data di scadenza"
+                android:inputType="date"
+                android:textColor="@color/black"
+                android:visibility="invisible" />
 
             <EditText
                 android:id="@+id/codicesicurezza"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/datascadenza"
-                android:layout_marginTop="40dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginRight="20dp"
                 android:ems="10"
-                android:hint="Codice di sicurezza" />
+                android:hint="Codice di sicurezza"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/confpre"

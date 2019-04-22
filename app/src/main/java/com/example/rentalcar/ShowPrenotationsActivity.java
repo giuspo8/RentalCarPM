@@ -104,24 +104,16 @@ public class ShowPrenotationsActivity extends AppCompatActivity
                 StationNames sRet=new StationNames(RetStation);
                 String RestStation=value.getString("StazioneRic");
                 StationNames sRec=new StationNames(RestStation);
-                int yearRet=value.getInt("AnnoRit");
-                int yearRic=value.getInt("AnnoRic");
-                int monthRet=value.getInt("MeseRit");
-                int monthRic=value.getInt("MeseRic");
-                int dayRet=value.getInt("GiornoRit");
-                int dayRec=value.getInt("GiornoRic");
-                int hourRet=value.getInt("OraRit");
-                int hourRec=value.getInt("OraRic");
-                int minRet=value.getInt("MinutoRit");
-                int minRec=value.getInt("MinutoRic");
+                String dataRitiro=value.getString("DataRitiro");
+                String dataRiconsegna=value.getString("DataRestituzione");
                 String email=value.getString("Email");
                 String car=value.getString("Macchina");
                 CarItem c=new CarItem(car);
                 int payment=value.getInt("Pagamento");
+                double price=value.getDouble("Prezzo");
 
                 //creiamo un nuovo oggetto Reservation e lo istanziamo con tutti i valori ottenuti
-                Reservation r=new Reservation(id,sRet,sRec,c,email,yearRet,monthRet,dayRet,hourRet,minRet,yearRic,monthRic,
-                        dayRec,hourRec,minRec,payment);
+                Reservation r=new Reservation(id,sRet,sRec,c,email,dataRitiro,dataRiconsegna,payment,price);
                 //lo aggiungiamo nell Arraylist
                 pArrayList.add(r);
             } catch (JSONException e) {

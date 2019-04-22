@@ -1,6 +1,8 @@
 package com.example.rentalcar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -20,29 +22,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static android.widget.Toast.LENGTH_LONG;
 
 public class ConfirmationReservationCard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     String stazione_ritiro;
     String stazione_resti;
-    int anno_ritiro;
-    int mese_ritiro;
-    int giorno_ritiro;
-    int anno_restituzione;
-    int mese_restituzione;
-    int giorno_restituzione;
-    int ora_ritiro;
-    int minuto_ritiro;
-    int ora_restituzione;
-    int minuto_restituzione;
-    int res_image;
+
     String model;
-    String Class_car;
-    double prezzo;
-    String shift;
-    int num_pass;
-    int payment=0;
+    int payment=0;//vale 0 se pago in stazione, 1 se pago ora
     String email;
     String name;
     String surname;
@@ -58,18 +50,24 @@ public class ConfirmationReservationCard extends AppCompatActivity
     TextView secureCodetv;
 
     String creditCardNumber;
+    String creditCardExpireDate;
+    int creditCardSecureCode;
+    double creditCardLeft=500;//soldi che metto sulla carta di credito fittizia
 
-    CreditCard cd1=new CreditCard("8949851289498512","05/22",555,500);
-    CreditCard cd2=new CreditCard("7818809589498512","05/21",555,200);
-    CreditCard cd3=new CreditCard("1879160389498512","04/22",555,100);
-    CreditCard cd4=new CreditCard("2150643189498512","12/19",555,50);
-    CreditCard cd5=new CreditCard("7778992389498512","12/21",555,5000);
-    CreditCard cd6=new CreditCard("1212105889498512","10/20",555,1000);
+    double totalPrice;
+
+
+    String ritiro;
+    String restituzione;
+
+    boolean payNow;
+
+
 
 
     Button conferma;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation_reservation_card);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -94,41 +92,77 @@ public class ConfirmationReservationCard extends AppCompatActivity
         expireDatetv=findViewById(R.id.datascadenza);
         secureCodetv=findViewById(R.id.codicesicurezza);
 
+        payNow=getIntent().getBooleanExtra("now",false);
+
+        if (payNow){
+            //se il cliente paga ora rendiamo visibili le textview delle carte di credito
+            cardNumbertv.setVisibility(View.VISIBLE);
+            expireDatetv.setVisibility(View.VISIBLE);
+            secureCodetv.setVisibility(View.VISIBLE);
+        }
+
+        //prendiamo i dati dall'activity precedente
+        Bundle restitution=getIntent().getBundleExtra("dati_pre");
+        stazione_ritiro=restitution.getString("stazione_ritir");
+        stazione_resti=restitution.getString("stazione_ric");
+
+        totalPrice=restitution.getDouble("prezo",0.0);
+        model=restitution.getString("modl");
+
+        ritiro=restitution.getString("ritiro");
+        restituzione=restitution.getString("restituzione");
+
+
         conferma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 //lettura di tutti i dati
                 email= emailtv.getText().toString();
                 name= nametv.getText().toString();
                 surname= surnametv.getText().toString();
                 telephone= telephonetv.getText().toString();
-                Bundle restitution=getIntent().getBundleExtra("dati_pre");
-                stazione_ritiro=restitution.getString("stazione_ritir");
-                Toast.makeText(getApplicationContext(), stazione_ritiro, Toast.LENGTH_LONG).show();
-                stazione_resti=restitution.getString("stazione_ric");
-                Toast.makeText(getApplicationContext(), stazione_resti, Toast.LENGTH_LONG).show();
-                anno_ritiro=restitution.getInt("anno_ritiro");
-                mese_ritiro=restitution.getInt("mese_ritiro");
-                giorno_ritiro=restitution.getInt("giorno_ritiro");
-                anno_restituzione=restitution.getInt("anno_ric");
-                mese_restituzione=restitution.getInt("mese_ric");
-                giorno_restituzione=restitution.getInt("giorno_ric");
-                ora_ritiro=restitution.getInt("ora_ritiro");
-                minuto_ritiro=restitution.getInt("minuto_ritiro");
-                ora_restituzione=restitution.getInt("ora_ric");
-                minuto_restituzione=restitution.getInt("minuto_ric");
-                res_image=restitution.getInt("res_image",R.drawable.alfaromeogiulietta);
-                model=restitution.getString("modl");
-                Class_car=restitution.getString("clas");
-                prezzo=restitution.getDouble("prezo",0.0);
-                shift=restitution.getString("shit");
-                num_pass=restitution.getInt("nuP",0);
-                Toast.makeText(getApplicationContext(), "prenotazione effetuata paga ora", Toast.LENGTH_LONG).show();
 
-                creditCardNumber=cardNumbertv.getText().toString();
-                //confirm_credit_card();
-                insert_reservation();
-                insert_user();
+                //se non sono stati riempiti i campi relativi all'anagrafica da errore
+                if (emailtv.getText().toString().equals("")||nametv.getText().toString().equals("")||
+                        surnametv.getText().toString().equals("")||telephonetv.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(),"Per favore inserisci tutti i dati obbligatori!!",LENGTH_LONG).show();
+                }
+                else {
+                    //se pago ora leggo i dati della carta di credito e controllo che abbia credito sufficiente
+                    if (payNow) {
+                        //se non sono stati riempiti i campi relativi alla carta di credito da messaggio di errore
+                        if (cardNumbertv.getText().toString().equals("")||expireDatetv.getText().toString().equals("")||
+                                secureCodetv.getText().toString().equals("")) {
+                            Toast.makeText(getApplicationContext(),"Per favore inserisci tutti i dati obbligatori!!",LENGTH_LONG).show();
+                        }
+                        else{
+                            payment=1;//setto payment a 1
+                            creditCardNumber = cardNumbertv.getText().toString();
+                            creditCardExpireDate = expireDatetv.getText().toString();
+                            creditCardSecureCode = Integer.parseInt(secureCodetv.getText().toString());
+                            //creo un nuovo oggetto carta di credito con i dati ottenuti
+                            CreditCard cd1 = new CreditCard(creditCardNumber, creditCardExpireDate, creditCardSecureCode, creditCardLeft);
+                            //chiama un metodo che controlla se il credito è sufficiente
+                            if (!confirm_credit_card(cd1, totalPrice)) {
+                                Toast.makeText(getApplicationContext(), "il credito disponibile sulla carta non è sufficiente", LENGTH_LONG).show();
+                            } else {
+                                //paghiamo e inseriamo nel database prenotazione e utente
+                                cd1.getPayment(totalPrice);
+                                insert_reservation();
+                                insert_user();
+                                //andiamo all activity finale
+                                Intent i=new Intent(ConfirmationReservationCard.this,EmailFinalActivity.class);
+                                startActivity(i);
+                            }
+                        }
+                    }
+                    else {
+                        //inseriamo nel database prenotazione e utente
+                        insert_reservation();
+                        insert_user();
+                    }
+                }
             }
         });
     }
@@ -139,12 +173,10 @@ public class ConfirmationReservationCard extends AppCompatActivity
         try {
             url = new URL("http://rentalcar.altervista.org/inserisci_prenotazione.php?StazioneRit=" + this.stazione_ritiro
                     + "&StazioneRic=" + this.stazione_resti + "&Macchina=" + this.model
-                    + "&Email=" + this.email+ "&AnnoRit=" + this.anno_ritiro
-                    + "&AnnoRic=" + this.anno_restituzione+ "&MeseRit=" + this.mese_ritiro
-                    + "&MeseRic=" + this.mese_restituzione+ "&GiornoRit=" + this.giorno_ritiro
-                    + "&GiornoRic=" + this.giorno_restituzione+ "&OraRit=" + this.ora_ritiro
-                    + "&OraRic=" + this.ora_restituzione+ "&MinutoRit=" + this.minuto_ritiro
-                    + "&MinutoRic=" + this.minuto_restituzione+ "&Pagamento=" + this.payment);
+                    + "&Email=" + this.email+ "&Pagamento=" + this.payment
+                    + "&DataRitiro="+this.ritiro+"&DataRestituzione="+this.restituzione
+                    +"&Prezzo="+this.totalPrice
+            );
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
             client.setDoInput(true);
@@ -152,9 +184,9 @@ public class ConfirmationReservationCard extends AppCompatActivity
             String json_string = ReadResponse.readStream(in).trim();
 
             if (json_string.equals("1")) {
-                Toast.makeText(this, "Inserimento effettuato", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Inserimento effettuato", LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "Errore nell'inserimento", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Errore nell'inserimento", LENGTH_LONG).show();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -169,6 +201,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
         HttpURLConnection client = null;
         URL url;
         try {
+            //metodo get quindi scriviamo i dati da inviare direttamente nell'Url
             url = new URL("http://rentalcar.altervista.org/inserisci_utenti.php?Nome=" + this.name
                     + "&Cognome=" + this.surname + "&Telefono=" + this.telephone
                     + "&Email=" + this.email);
@@ -179,9 +212,9 @@ public class ConfirmationReservationCard extends AppCompatActivity
             String json_string = ReadResponse.readStream(in).trim();
 
             if (json_string.equals("1")) {
-                Toast.makeText(this, "Inserimento effettuato", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "Inserimento effettuato", LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "Errore nell'inserimento", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Errore nell'inserimento", LENGTH_LONG).show();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -192,8 +225,10 @@ public class ConfirmationReservationCard extends AppCompatActivity
         }
     }
 
-    private void confirm_credit_card(){
-
+    private boolean confirm_credit_card(CreditCard cd,double price){
+        if (cd.getPayment(price))
+        return true;
+        else return false;
     }
 
     @Override

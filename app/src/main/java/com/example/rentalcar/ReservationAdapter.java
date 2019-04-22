@@ -34,6 +34,7 @@ public class ReservationAdapter extends ArrayAdapter {
         TextView tvPayment;
         TextView tvRetireDateandHour;
         TextView tvRestitutionDateandHour;
+        TextView tvPrice;
 
     }
     @NonNull
@@ -55,6 +56,7 @@ public class ReservationAdapter extends ArrayAdapter {
             holder.tvCar=convertView.findViewById(R.id.RES_car);
             holder.tvEmail=convertView.findViewById(R.id.RES_emailTextView);
             holder.tvPayment=convertView.findViewById(R.id.RES_paymentTextView);
+            holder.tvPrice=convertView.findViewById(R.id.TvPrice);
             // Setta il tag associato con questa vista prendendo un oggetto che conterrà come attributi gli identificativi
             convertView.setTag(holder);
 
@@ -67,19 +69,16 @@ public class ReservationAdapter extends ArrayAdapter {
         Reservation reservationItem=data.get(position);
         holder.tvRetireStation.setText(reservationItem.getRetStation().getStationName());
         holder.tvRestitutionStation.setText(reservationItem.getRecStation().getStationName());
-        //servono per far scrivere l'ora e i minuti a 2 cifre
-        String minRit=new DecimalFormat("00").format(reservationItem.getMinRet());
-        String hourRit=new DecimalFormat("00").format(reservationItem.getHourRet());
-        String RetireDateAndHour=reservationItem.getDayRet()+"/"+reservationItem.getMonthRet()+"/"
-                +reservationItem.getYearRet()+"  "+hourRit+":"+minRit;
+
+        String RetireDateAndHour=reservationItem.getDateRetire();
         holder.tvRetireDateandHour.setText(RetireDateAndHour);
-        String minRic=new DecimalFormat("00").format(reservationItem.getMinRic());
-        String hourRic=new DecimalFormat("00").format(reservationItem.getHourRic());
-        String RestitutionDateAndHour=reservationItem.getDayRic()+"/"+reservationItem.getMonthRic()+"/"
-                +reservationItem.getYearRic()+"  "+hourRic+":"+minRic;
+
+        String RestitutionDateAndHour=reservationItem.getDateRestitution();
         holder.tvRestitutionDateandHour.setText(RestitutionDateAndHour);
+
         holder.tvCar.setText(reservationItem.getCar().getCarName());
         holder.tvEmail.setText(reservationItem.getEmail());
+        holder.tvPrice.setText(String.valueOf(reservationItem.getPrice()));
         if (reservationItem.getPayment()==1){
             holder.tvPayment.setText("Pagamento effettuato online");
         }

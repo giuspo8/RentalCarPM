@@ -16,9 +16,14 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.*;
+import java.util.concurrent.TimeUnit;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class RecapReservation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,7 +33,18 @@ public class RecapReservation extends AppCompatActivity
     private CustomAdapter adapter;//adapter fatto da noi
     Button paga_ora;
     Button paga_in_stazione;
+    //Bundle da inviare alla successiva activity
     Bundle dati_pre=new Bundle();
+    Date dateRetire;
+    Date dateRestitution;
+    double totalPrice;
+
+    boolean payNow=false;//variabile che ci serve per indicare se il cliente paga ora o in stazione
+
+    String ritiro;
+    String restituzione;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,65 +55,83 @@ public class RecapReservation extends AppCompatActivity
         listViewCar=findViewById(R.id.recap_car_list);//oggetto list view
         adapter=new CustomAdapter(this,R.layout.car_item_row,carData);
         int res_image=getIntent().getIntExtra("image",R.drawable.alfaromeogiulietta);
-        dati_pre.putInt("res_image",res_image);
+
         String model=getIntent().getStringExtra("model");
         dati_pre.putString("modl",model);
         String Class_car=getIntent().getStringExtra("class");
-        dati_pre.putString("clas",Class_car);
+
         double prezzo=getIntent().getDoubleExtra("prezzo",0.0);
-        dati_pre.putDouble("prezo",prezzo);
+
         String shift=getIntent().getStringExtra("shift");
-        dati_pre.putString("shit",shift);
+
         int num_pass=getIntent().getIntExtra("numP",0);
-        dati_pre.putInt("nuP",num_pass);
+
         carData.add(new CarItem(res_image,model,Class_car,prezzo,shift,num_pass));
         listViewCar.setAdapter(adapter);
+
+
         //inserire il prezzo nel bottone
-        String prezzo_convertito = Double.toString(prezzo);
         StringBuilder sb=new StringBuilder("Paga ora(");
-        sb.append(prezzo_convertito);
-        sb.append(")");
+
         StringBuilder sb1=new StringBuilder("Paga alla stazione(");
-        sb1.append(prezzo_convertito);
-        sb1.append(" + 5€)");
+
+
+        //lettura e visualizzazione della data e stazione e inserimento nel bundle
+        String stazione_ritiro=getIntent().getStringExtra("st_ri");
+        dati_pre.putString("stazione_ritir",stazione_ritiro);
+
+        TextView dr = (TextView) findViewById(R.id.stazione_ritiro);
+        dr.setText(stazione_ritiro);
+
+        String stazione_ric=getIntent().getStringExtra("st_ric");
+        dati_pre.putString("stazione_ric",stazione_ric);
+
+        TextView dr1 = (TextView) findViewById(R.id.stazione_riconsegna);
+        dr1.setText(stazione_ric);
+
+        TextView dr2 = findViewById(R.id.data_ritiro);
+        TextView dr3 = findViewById(R.id.data_riconsegna);
+
+        ritiro=getIntent().getStringExtra("ritiro");
+        restituzione=getIntent().getStringExtra("restituzione");
+
+        dati_pre.putString("ritiro",ritiro);
+        dati_pre.putString("restituzione",restituzione);
+
+
+        //formattiamo le stringhe delle date di ritiro e restituzione in modo da avere due variabili di tipo data
+        try {
+            dateRetire = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(ritiro);
+            dateRestitution = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(restituzione);
+        }
+        catch (Exception e){
+
+        }
+
+        //con le due variabili di tipo data mi vado a calcolare il prezzo totale andando a moltiplicare il prezzo giornaliero per il numero di giorni
+        long millisDiff =dateRestitution.getTime()- dateRetire.getTime() ;
+        long days = TimeUnit.DAYS.convert(millisDiff, TimeUnit.MILLISECONDS);
+        totalPrice=prezzo*days;
+
+        //metto il prezzo nel Bundle da inviare alla successiva activity
+        dati_pre.putDouble("prezo",totalPrice);
+
+
+        dr2.setText(String.valueOf(dateRetire));
+        dr3.setText(String.valueOf(dateRestitution));
+
+        sb.append(Double.toString(totalPrice));
+        sb.append(")");
+
+        sb1.append(Double.toString(totalPrice+25));//maggiorazione di prezzo dovuta al pagamento in stazione
+        sb1.append(")");
+
+
         Button buttonPO = (Button) findViewById(R.id.pagao);
         buttonPO.setText(sb.toString());
         Button buttonPS = (Button) findViewById(R.id.pagas);
         buttonPS.setText(sb1.toString());
-        //lettura e visualizzazione della data e stazione e inserimento nel bundle
-        String stazione_ritiro=getIntent().getStringExtra("st_ri");
-        dati_pre.putString("stazione_ritir",stazione_ritiro);
-        TextView dr = (TextView) findViewById(R.id.stazione_ritiro);
-        dr.setText(stazione_ritiro);
-        String stazione_ric=getIntent().getStringExtra("st_ric");
-        dati_pre.putString("stazione_ric",stazione_ric);
-        TextView dr1 = (TextView) findViewById(R.id.stazione_riconsegna);
-        dr1.setText(stazione_ric);
 
-        int anno_ritiro=getIntent().getIntExtra("a_ri",0);
-        dati_pre.putInt("anno_ritiro",anno_ritiro);
-        int mese_ritiro=getIntent().getIntExtra("m_ri",0);
-        dati_pre.putInt("mese_ritiro",mese_ritiro);
-        int giorno_ritiro=getIntent().getIntExtra("g_ri",0);
-        dati_pre.putInt("giorno_ritiro",giorno_ritiro);
-        int ora_ritiro=getIntent().getIntExtra("o_ri",0);
-        dati_pre.putInt("ora_ritiro",ora_ritiro);
-        int minuto_ritiro=getIntent().getIntExtra("m_ri",0);
-        dati_pre.putInt("minuto_ritiro",minuto_ritiro);
-        TextView dr2 = (TextView) findViewById(R.id.data_ritiro);
-        dr2.setText(String.valueOf(giorno_ritiro)+"/"+String.valueOf(mese_ritiro)+"/"+String.valueOf(anno_ritiro)+" - "+String.valueOf(ora_ritiro)+":"+String.valueOf(minuto_ritiro));
-        int anno_ric=getIntent().getIntExtra("a_r",0);
-        dati_pre.putInt("anno_ric",anno_ric);
-        int mese_ric=getIntent().getIntExtra("m_r",0);
-        dati_pre.putInt("mese_ric",mese_ric);
-        int giorno_ric=getIntent().getIntExtra("g_r",0);
-        dati_pre.putInt("giorno_ric",giorno_ric);
-        int ora_ric=getIntent().getIntExtra("o_rr",0);
-        dati_pre.putInt("ora_ric",ora_ric);
-        int minuto_ric=getIntent().getIntExtra("m_rr",0);
-        dati_pre.putInt("minuto_ric",minuto_ric);
-        TextView dr3 = (TextView) findViewById(R.id.data_riconsegna);
-        dr3.setText(String.valueOf(giorno_ric)+"/"+String.valueOf(mese_ric)+"/"+String.valueOf(anno_ric)+" - "+String.valueOf(ora_ric)+":"+String.valueOf(minuto_ric));
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -112,8 +146,11 @@ public class RecapReservation extends AppCompatActivity
         paga_ora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //settiamo la variabile booleana payNow a true (quindi paghiamo ora) e la mettiamo nell'intent
+                boolean payNow=true;
                 Intent h1=new Intent(RecapReservation.this,ConfirmationReservationCard.class);
                 h1.putExtra("dati_pre",dati_pre);
+                h1.putExtra("now",payNow);
                 startActivity(h1);
             }
         });
@@ -121,8 +158,10 @@ public class RecapReservation extends AppCompatActivity
         paga_in_stazione.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent h1=new Intent(RecapReservation.this,ConfirmationReservation.class);
+                //la variabile payNow resta settata a false
+                Intent h1=new Intent(RecapReservation.this,ConfirmationReservationCard.class);
                 h1.putExtra("dati_pre",dati_pre);
+                h1.putExtra("now",payNow);
                 startActivity(h1);
             }
         });

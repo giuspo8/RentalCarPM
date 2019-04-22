@@ -9,7 +9,7 @@
     tools:openDrawer="start">
 
     <include
-        layout="@layout/app_bar_confirmation_reservation"
+        layout="@layout/app_bar_email_final"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_confirmation_reservation"
-        app:menu="@menu/activity_confirmation_reservation_drawer" />
+        app:headerLayout="@layout/nav_header_email_final"
+        app:menu="@menu/activity_email_final_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

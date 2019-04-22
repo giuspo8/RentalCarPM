@@ -26,7 +26,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -39,6 +41,9 @@ public class CarChoosing extends AppCompatActivity
     private ListView listViewCar;//oggetto listview
     private CustomAdapter adapter;//adapter fatto da noi
 
+    String ritiro;
+    String restituzione;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,8 @@ public class CarChoosing extends AppCompatActivity
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+
+
         listViewCar=findViewById(R.id.ListViewCar);//oggetto list view
 
         //chiamiamo il metodo che ci legge le auto dal server
@@ -57,8 +64,8 @@ public class CarChoosing extends AppCompatActivity
         listViewCar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //qui passiamo l'oggetto cliccato all activity finale
-                Bundle restitution=getIntent().getBundleExtra("search");
+
+                //passiamo i dati alla successiva activity
                 Intent i=new Intent(CarChoosing.this,RecapReservation.class);
                 i.putExtra("model",carData.get(position).getCarName());
                 i.putExtra("image",carData.get(position).getResIdImage());
@@ -66,19 +73,16 @@ public class CarChoosing extends AppCompatActivity
                 i.putExtra("prezzo",carData.get(position).getPriceGg());
                 i.putExtra("shift",carData.get(position).getCarShift());
                 i.putExtra("numP",carData.get(position).getNumberOfPassengers());
-                //lettura dei dati dall' activity precedente
+                Bundle restitution=getIntent().getBundleExtra("search");
                 i.putExtra("st_ri",restitution.getString("Stazione_ritiro"));
                 i.putExtra("st_ric",restitution.getString("Stazione_restituzione"));
-                i.putExtra("a_ri",restitution.getInt("anno_ritiro"));
-                i.putExtra("m_ri",restitution.getInt("mese_ritiro"));
-                i.putExtra("g_ri",restitution.getInt("giorno_ritiro"));
-                i.putExtra("a_r",restitution.getInt("anno_restituzione"));
-                i.putExtra("m_r",restitution.getInt("mese_restituzione"));
-                i.putExtra("g_r",restitution.getInt("giorno_restituzione"));
-                i.putExtra("o_ri",restitution.getInt("ora_ritiro"));
-                i.putExtra("m_ri",restitution.getInt("minuto_ritiro"));
-                i.putExtra("o_rr",restitution.getInt("ora_restituzione"));
-                i.putExtra("m_rr",restitution.getInt("minuto_restituzione"));
+
+                //lettura dei dati dall' activity precedente
+                ritiro=restitution.getString("data ritiro");
+                restituzione=restitution.getString("data restituzione");
+
+                i.putExtra("ritiro",ritiro);
+                i.putExtra("restituzione",restituzione);
                 startActivity(i);
             }
         });
@@ -208,9 +212,6 @@ public class CarChoosing extends AppCompatActivity
             Log.e("My App", "Could not parse malformed JSON: \"" + json_data + "\"");
         }
         return obj;
-    }
-    public void show(String message){
-        Toast.makeText(this,message,Toast.LENGTH_LONG).show();//metodo per fare i toast
     }
 
     @Override

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".EmailFinalActivity"
+    tools:showIn="@layout/app_bar_email_final">
+
+    <TextView
+        android:id="@+id/finaltv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="La tua prenotazione è stata registrata!  La ringraziamo per averci scelto riceverà a breve una email di conferma"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+</android.support.constraint.ConstraintLayout>

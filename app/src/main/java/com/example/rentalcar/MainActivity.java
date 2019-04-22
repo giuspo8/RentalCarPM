@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import java.sql.Time;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -53,8 +54,23 @@ public class MainActivity extends AppCompatActivity
     private Button searchBtn;
     private EditText editTextRetireStation;
     private EditText editTextRestitutionStation;
+
+
+    private int yearRetire;
+    private int monthRetire;
+    private int dayRetire;
+
+
+    private int yearRestitution;
+    private int monthRestitution;
+    private int dayRestitution;
+
+
     Bundle search=new Bundle();
     boolean flagTime;//variabile che mi serve per controllare se ho chiamato il primo o il secondo bottone per l'ora
+
+    Date dateRetire;
+    Date dateRestitution;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,8 +149,31 @@ public class MainActivity extends AppCompatActivity
                 }
                 else {
                     Intent i = new Intent(MainActivity.this, CarChoosing.class);
-                    i.putExtra("search",search);//metto i dati della prenotazione del bundle nell'intent
-                    startActivity(i);
+                    //costruiamo una stringa in modo da formattare la data e l'orario di ritiro e restituzione
+                    String retire = textCalendarRetire.getText().toString()+
+                            " "+textHourRetire.getText().toString()+":00";
+                    String restitutionday = textCalendarRestitution.getText().toString()+
+                            " "+textHourRestitution.getText().toString()+":00";
+                    //e li mettiamo entrambi nel bundle
+                    search.putString("data ritiro",retire);
+                    search.putString("data restituzione",restitutionday);
+                    //li formattiamo in modo da avere due elementi di tipo Date
+                    try {
+                        dateRetire = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(retire);
+                        dateRestitution = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(restitutionday);
+                    }
+                    catch (Exception e){
+                        show("Errore nel parsing");
+                    }
+                    //se la data di ritiro è posteriore a quella si riconsegna manda un toast e non va avanti
+                    if (dateRetire.after(dateRestitution)){
+                        show("la data di ritiro deve essere antecedente a quella di riconsegna!!!!");
+                    }
+                    //altrimenti va all'activity successiva
+                    else{
+                        i.putExtra("search",search);//metto i dati della prenotazione del bundle nell'intent
+                        startActivity(i);
+                    }
                 }
             }
         });
@@ -162,18 +201,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         if (flagTime==true){//fatto il controllo, se flagTime==true vuol dire che abbiamo schiacciato sul bottone del ritiro
-            String hour=new DecimalFormat("00").format(hourOfDay);//serve per far si che 00 non lo scriva come 0
-            String min=new DecimalFormat("00").format(minute);
-            textHourRetire.setText(hour+":"+min);
-            search.putInt("ora_ritiro",hourOfDay);//metto l'int dell'ora e dei minuti nel bundle search che manderò all activity CarChoosing
-            search.putInt("minuto_ritiro",minute);
+            String hour1=new DecimalFormat("00").format(hourOfDay);//serve per far si che 00 non lo scriva come 0
+            String min1=new DecimalFormat("00").format(minute);
+            textHourRetire.setText(hour1+":"+min1);
         }
         else {
-            String hour=new DecimalFormat("00").format(hourOfDay);//serve per far si che 00 non lo scriva come 0
-            String min=new DecimalFormat("00").format(minute);
-            textHourRestitution.setText(hour+":"+min);
-            search.putInt("ora_restituzione",hourOfDay);//metto l'int dell'ora e dei minuti nel bundle search che manderò all activity CarChoosing
-            search.putInt("minuto_restituzione",minute);
+            String hour2=new DecimalFormat("00").format(hourOfDay);//serve per far si che 00 non lo scriva come 0
+            String min2=new DecimalFormat("00").format(minute);
+            textHourRestitution.setText(hour2+":"+min2);
         }
     }
 
@@ -183,23 +218,17 @@ public class MainActivity extends AppCompatActivity
         //controlliamo quale delle due richieste sono state mandate indietro e agiamo di conseguenza
         if ((requestCode==REQUEST_CODE_CALENDAR)&&(resultCode== Activity.RESULT_OK)) {
             Bundle retire=data.getBundleExtra("Date");//creo un Bundle in cui mettere i dati provenienti dal calendario
-            int yearRetire=retire.getInt("anno");//assegno a tre interi i valori rispettivamente di anno mese e giorno
-            int monthRetire=retire.getInt("mese");
-            int dayRetire=retire.getInt("giorno");
+            yearRetire=retire.getInt("anno");//assegno a tre interi i valori rispettivamente di anno mese e giorno
+            monthRetire=retire.getInt("mese");
+            dayRetire=retire.getInt("giorno");
             textCalendarRetire.setText(String.valueOf(dayRetire)+"/"+String.valueOf(monthRetire)+"/"+String.valueOf(yearRetire));//li metto nella textview e quindi devo trasformarli in stringa
-            search.putInt("anno_ritiro",yearRetire);//mando i tre valori nel bundle search che poi verrà mandato in CarChoosing
-            search.putInt("mese_ritiro",monthRetire);
-            search.putInt("giorno_ritiro",dayRetire);
         }
         else if ((requestCode==REQUEST_CODE_CALENDAR2)&&(resultCode== Activity.RESULT_OK)) {
             Bundle restitution=data.getBundleExtra("Date");//creo un Bundle in cui mettere i dati provenienti dal calendario
-            int yearRestitution=restitution.getInt("anno");//assegno a tre interi i valori rispettivamente di anno mese e giorno
-            int monthRestitution=restitution.getInt("mese");
-            int dayRestitution=restitution.getInt("giorno");
+            yearRestitution=restitution.getInt("anno");//assegno a tre interi i valori rispettivamente di anno mese e giorno
+            monthRestitution=restitution.getInt("mese");
+            dayRestitution=restitution.getInt("giorno");
             textCalendarRestitution.setText(String.valueOf(dayRestitution)+"/"+String.valueOf(monthRestitution)+"/"+String.valueOf(yearRestitution));//li metto nella textview e quindi devo trasformarli in stringa
-            search.putInt("anno_restituzione",yearRestitution);//mando i tre valori nel bundle search che poi verrà mandato in CarChoosing
-            search.putInt("mese_restituzione",monthRestitution);
-            search.putInt("giorno_restituzione",dayRestitution);
         }
         else if ((requestCode==REQUEST_CODE_STATIONRET)&&(resultCode== Activity.RESULT_OK)){
             //prendo il nome della stazione che mi arriva da FindStationActivity e lo metto nella edittext
