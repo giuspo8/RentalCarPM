@@ -25,7 +25,7 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="ID Prenotazione"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:selectAllOnFocus="true" />
 
     <EditText
@@ -37,27 +37,17 @@
         android:layout_alignLeft="@+id/prenot"
         android:layout_marginTop="19dp"
         android:ems="10"
-        android:hint="email" />
-
-    <EditText
-        android:id="@+id/Datipre"
-        android:layout_width="294dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/prenot"
-        android:layout_alignStart="@+id/prenot"
-        android:layout_alignLeft="@+id/prenot"
-        android:layout_marginTop="70dp"
-        android:ems="10"
-        android:hint="dati prenotazione" />
+        android:hint="email"
+        android:inputType="textEmailAddress" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonEditSearch"
         style="@android:style/Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/Email"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_marginTop="62dp"
         android:text="cerca"
         android:textSize="16sp"
@@ -74,33 +64,11 @@
         android:text="torna indietro"
         android:textSize="16sp"
         android:textStyle="normal|bold" />
-    <Button
-        android:id="@+id/modifica"
-        style="@android:style/Widget.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/Email"
-        android:layout_marginTop="182dp"
-        android:text="modifica"
-        android:textSize="16sp"
-        android:textStyle="normal|bold" />
 
-    <Button
-        android:id="@+id/elimina"
-        style="@android:style/Widget.Button"
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Email"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="243dp"
-        android:text="elimina"
-        android:textSize="16sp"
-        android:textStyle="normal|bold" />
+    <ListView
+        android:id="@+id/editReservationList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </RelativeLayout>

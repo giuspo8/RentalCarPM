@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,12 +19,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 
 import static android.widget.Toast.LENGTH_LONG;
 
@@ -59,6 +64,8 @@ public class ConfirmationReservationCard extends AppCompatActivity
 
     String ritiro;
     String restituzione;
+
+    int id;
 
     boolean payNow;
 
@@ -152,6 +159,8 @@ public class ConfirmationReservationCard extends AppCompatActivity
                                 insert_reservation();
                                 insert_user();
                                 //andiamo all activity finale
+                                //leggiamo l'id che inseriremo anche nella mail
+                                read_id();
                                 //qui inserire metodo per mandare email
                                 Intent i=new Intent(ConfirmationReservationCard.this,EmailFinalActivity.class);
                                 startActivity(i);
@@ -162,14 +171,57 @@ public class ConfirmationReservationCard extends AppCompatActivity
                         //inseriamo nel database prenotazione e utente
                         insert_reservation();
                         insert_user();
+                        //leggiamo l'id che inseriremo anche nella mail
+                        read_id();
+                        //qui inserire metodo per mandare mail
                         //andiamo all activity finale
-                        //qui inserire metodo per mandare email
                         Intent i=new Intent(ConfirmationReservationCard.this,EmailFinalActivity.class);
                         startActivity(i);
                     }
                 }
             }
         });
+    }
+
+    public void read_id() {
+        HttpURLConnection client = null;
+        try {
+            //stessa cosa di FindStationActivity
+            URL url = new URL("http://rentalcar.altervista.org/leggi_id.php?Email=" + this.email
+                    + "&DataRitiro=" + this.ritiro+"&DataRestituzione=" + this.restituzione);
+            client = (HttpURLConnection) url.openConnection();
+            client.setRequestMethod("GET");
+            client.setDoInput(true);
+            InputStream in = client.getInputStream();
+            String json_string = ReadResponse.readStream(in).trim();
+            if (json_string.equals("[]")) {
+                Toast.makeText(getApplicationContext(), "Nessuna prenotazione corrisponde ai dati inseriti", Toast.LENGTH_LONG).show();
+            } else {
+                JSONObject json_data = convert2JSON(json_string);
+                Iterator<String> iter = json_data.keys();
+                //metodo hasNext() ritorna true se ci sono ancora elementi
+                while (iter.hasNext()) {
+                    //metodo next() ritorna il prossimo elemento nell'iteratore (la chiave)
+                    String key = iter.next();
+                    try {
+                        //ritorna il valore corrispondente alla chiave key
+                        JSONObject value = json_data.getJSONObject(key);
+                        id = value.getInt("ID");
+
+                    } catch (JSONException e) {
+                        Toast.makeText(this, "ERRORE", Toast.LENGTH_LONG).show();
+                        // Something went wrong!
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally{
+            if (client != null) {
+                client.disconnect();
+            }
+        }
     }
 
     private void insert_reservation(){
@@ -228,6 +280,18 @@ public class ConfirmationReservationCard extends AppCompatActivity
                 client.disconnect();
             }
         }
+    }
+
+    private JSONObject convert2JSON(String json_data){
+        JSONObject obj = null;
+        //stessa cosa di FindStationActivity
+        try {
+            obj = new JSONObject(json_data);
+            Log.d("My App", obj.toString());
+        } catch (Throwable t) {
+            Log.e("My App", "Could not parse malformed JSON: \"" + json_data + "\"");
+        }
+        return obj;
     }
 
     private boolean confirm_credit_card(CreditCard cd,double price){
