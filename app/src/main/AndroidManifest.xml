@@ -12,9 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AddRemoveCarActivity"
+            android:label="@string/title_activity_add_remove_car"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".AddStationsActivity"
+            android:label="@string/title_activity_add_stations"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".EmailFinalActivity"
             android:label="@string/title_activity_email_final"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ConfirmationReservationCard"
             android:label="@string/title_activity_confirmation_reservation_card"

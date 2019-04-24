@@ -1,9 +1,11 @@
 package com.example.rentalcar;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -14,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,6 +30,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import static android.widget.Toast.LENGTH_LONG;
+
 public class ShowPrenotationsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -35,6 +40,9 @@ public class ShowPrenotationsActivity extends AppCompatActivity
     //ArrayList di oggetti Reservation
     ArrayList<Reservation> pArrayList=new ArrayList<>();
     private ReservationAdapter adapter;//usiamo un Adapter di una classe che abbiamo creato noi
+
+    String email2;
+    int id2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +68,72 @@ public class ShowPrenotationsActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //nel caso di click a lungo sulla prenotazione
+        listReservation.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                //prendiamo email e id dall arraylist
+                email2=pArrayList.get(position).getEmail();
+                id2=pArrayList.get(position).getId();
+                //e mostriamo una dialog chiamando il metodo showActionsDialog
+                showActionsDialog(position);
+                //ritorniamo true perchè callback consumed the long click
+                return true;
+            }
+        });
     }
+
+    private void showActionsDialog(final int position) {
+        //creiamo un vettore costituito da CharSequence (sequenze di char)
+        CharSequence choice[] = new CharSequence[]{"Torna indietro", "Elimina Prenotazione"};
+
+        //creiamo un nuovo alert dialog builder passandogli semplicemente il contesto
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //settiamo il titolo del dialog
+        builder.setTitle("Cosa vuoi fare?");
+        //settiamo un insieme di items da far visualizzare nel dialog
+        builder.setItems(choice, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == 0) {
+                    //non fa niente ergo torna indietro
+                } else {
+                    //chiama il metodo che cancella la prenotazione
+                    delete_Reservation();
+                }
+            }
+        });
+        //visualizza il dialog
+        builder.show();
+    }
+
+    public void delete_Reservation() {
+        HttpURLConnection client = null;
+        try {
+            //stessa cosa di FindStationActivity
+            URL url = new URL("http://rentalcar.altervista.org/elimina_prenotazioni.php?Email="+this.email2
+                    + "&ID=" + this.id2);
+            client = (HttpURLConnection) url.openConnection();
+            client.setRequestMethod("GET");
+            client.setDoInput(true);
+            InputStream in = client.getInputStream();
+            String json_string = ReadResponse.readStream(in).trim();
+
+            if (json_string.equals("1")) {
+                Toast.makeText(this, "La prenotazione è stata cancellata!", LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Errore nell'eliminazione", LENGTH_LONG).show();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (client != null) {
+                client.disconnect();
+            }
+        }
+    }
+
 
     private void read_reservation(){
         HttpURLConnection client = null;

@@ -37,16 +37,39 @@
         app:layout_constraintVertical_bias="0.2" />
 
     <Button
-        android:id="@+id/confermation_admin"
+        android:id="@+id/reservation_admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CONFERMA"
-        tools:layout_editor_absoluteY="233dp"
+        android:text="PRENOTAZIONI"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintHorizontal_bias="0.5"/>
+        app:layout_constraintVertical_bias="0.4" />
+
+    <Button
+        android:id="@+id/station_admin_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="STAZIONI"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <Button
+        android:id="@+id/car_Admin_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AUTO"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
 
 </android.support.constraint.ConstraintLayout>

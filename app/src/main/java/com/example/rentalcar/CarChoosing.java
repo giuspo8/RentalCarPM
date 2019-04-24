@@ -186,7 +186,7 @@ public class CarChoosing extends AppCompatActivity
                         break;
                     }
                     default:{
-                        resId=R.drawable.panda;
+                        resId=R.drawable.defaultcar;
                     }
                 }
 

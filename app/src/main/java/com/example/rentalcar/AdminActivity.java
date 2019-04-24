@@ -38,9 +38,14 @@ public class AdminActivity extends AppCompatActivity
 
     EditText editTextPassword;
     EditText editTextEmail;
-    Button buttonConfirm;
+    Button buttonReservationAdmin;
+    Button modifyStationButton;
+    Button modifyCarButton;
     String email;
     String password;
+
+    int flag;//vale 0 se clicchiamo sul bottone per visualizzare le prenotazioni, 1 se clicchiamo quello per le stazioni
+    //2 se clicchiamo quello per le auto
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +59,43 @@ public class AdminActivity extends AppCompatActivity
 
         editTextPassword=findViewById(R.id.password_adminedittext);
         editTextEmail=findViewById(R.id.email_adminedittext);
-        buttonConfirm=findViewById(R.id.confermation_admin);
+        buttonReservationAdmin=findViewById(R.id.reservation_admin);
+        modifyStationButton=findViewById(R.id.station_admin_button);
+        modifyCarButton=findViewById(R.id.car_Admin_button);
 
         //al click del bottone conferma prende ciò che è scritto sulle due edittext le salva in due stringhe e chiama il metodo check_authentication()
-        buttonConfirm.setOnClickListener(new View.OnClickListener() {
+        buttonReservationAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //a seconda del bottone che clicchiamo andiamo a modificare il valore della variabile flag
+                flag=0;
                 email = editTextEmail.getText().toString();
                 password = editTextPassword.getText().toString();
-                check_authentication();
+                check_authentication(flag);
             }
         });
+
+        modifyStationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flag=1;
+                email = editTextEmail.getText().toString();
+                password = editTextPassword.getText().toString();
+                check_authentication(flag);
+            }
+        });
+
+        modifyCarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flag=2;
+                email = editTextEmail.getText().toString();
+                password = editTextPassword.getText().toString();
+                check_authentication(flag);
+            }
+        });
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -78,7 +109,7 @@ public class AdminActivity extends AppCompatActivity
 
 
 
-    private void check_authentication() {
+    private void check_authentication(int flag) {
         HttpURLConnection client = null;
         URL url;
         try {
@@ -98,9 +129,20 @@ public class AdminActivity extends AppCompatActivity
                 Toast.makeText(this,"I dati inseriti sono errati! Prego Riprovare",Toast.LENGTH_LONG).show();
             }
             //se invece abbiamo trovato qualcosa allora possiamo garantire l'ingresso alla successiva activity
+            //in base al valore della variabile flag
             else {
-                Intent i=new Intent(AdminActivity.this,ShowPrenotationsActivity.class);
-                startActivity(i);
+                if (flag==0) {
+                    Intent i=new Intent(AdminActivity.this,ShowPrenotationsActivity.class);
+                    startActivity(i);
+                }
+                else if (flag==1) {
+                    Intent i=new Intent(AdminActivity.this,AddStationsActivity.class);
+                    startActivity(i);
+                }
+                else if(flag==2) {
+                    Intent i=new Intent(AdminActivity.this,AddRemoveCarActivity.class);
+                    startActivity(i);
+                }
             }
 
         } catch (IOException e) {

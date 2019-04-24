@@ -27,4 +27,6 @@
     <string name="title_activity_show_prenotations">ShowPrenotationsActivity</string>
     <string name="title_activity_confirmation_reservation_card">ConfirmationReservationCard</string>
     <string name="title_activity_email_final">EmailFinalActivity</string>
+    <string name="title_activity_add_stations">AddStationsActivity</string>
+    <string name="title_activity_add_remove_car">AddRemoveCarActivity</string>
 </resources>

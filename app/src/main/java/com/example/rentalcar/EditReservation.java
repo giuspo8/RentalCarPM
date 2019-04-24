@@ -157,8 +157,8 @@ public class EditReservation extends AppCompatActivity
         HttpURLConnection client = null;
         try {
             //stessa cosa di FindStationActivity
-            URL url = new URL("http://rentalcar.altervista.org/elimina_prenotazioni.php?Email="+this.email
-                    + "&ID=" + this.id);
+            URL url = new URL("http://rentalcar.altervista.org/elimina_prenotazioni.php?Email="+this.email2
+                    + "&ID=" + this.id2);
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
             client.setDoInput(true);
