@@ -111,7 +111,7 @@ public class RecapReservation extends AppCompatActivity
         //con le due variabili di tipo data mi vado a calcolare il prezzo totale andando a moltiplicare il prezzo giornaliero per il numero di giorni
         long millisDiff =dateRestitution.getTime()- dateRetire.getTime() ;
         long days = TimeUnit.DAYS.convert(millisDiff, TimeUnit.MILLISECONDS);
-        totalPrice=prezzo*days;
+        totalPrice=(prezzo*days)+prezzo;//l'approssimazione avviene per eccesso
 
         //metto il prezzo nel Bundle da inviare alla successiva activity
         dati_pre.putDouble("prezo",totalPrice);
