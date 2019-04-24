@@ -1,6 +1,7 @@
 package com.example.rentalcar;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,9 +14,50 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class Contacts extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
+
+    //in questi caso l'activity contacts ci funge da listener e quindi dobbiamo
+    //fare override del metodo onclick
+    @Override
+    public void onClick(View v) {
+        Uri uri;
+        Intent i;
+        //in base a cosa clicchiamo scateniamo un'azione
+        switch(v.getId()) {
+            case R.id.imageButtonFb:
+            case R.id.textViewFb2:
+                //ritorna un uri parsato sulla stringa che gli diamo
+                uri=Uri.parse("https://www.facebook.com");
+                //mostra l'uri all'utente. viene riconosciuto da android che si tratta di un indirizzo web
+                i=new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(i);
+                break;
+            case R.id.imageButtonInsta:
+            case R.id.textViewInsta2:
+                uri=Uri.parse("https://www.instagram.com/");
+                i=new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(i);
+                break;
+            case R.id.imageButtonPhone:
+            case R.id.textViewPhone2:
+                uri=Uri.parse("tel:07145765");
+                //compone il numero dell'uri
+                i=new Intent(Intent.ACTION_DIAL,uri);
+                startActivity(i);
+                break;
+            case R.id.imageButtonEmail:
+            case R.id.textViewEmail2:
+                uri=Uri.parse("mailto:rentalcar@esempio.it");
+                //manda un msg (in questo caso email) all'indirizzo dell'uri
+                i=new Intent(Intent.ACTION_SENDTO,uri);
+                startActivity(i);
+                break;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +66,15 @@ public class Contacts extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        findViewById(R.id.imageButtonFb).setOnClickListener(this);
+        findViewById(R.id.imageButtonInsta).setOnClickListener(this);
+        findViewById(R.id.imageButtonEmail).setOnClickListener(this);
+        findViewById(R.id.imageButtonPhone).setOnClickListener(this);
+        findViewById(R.id.textViewFb2).setOnClickListener(this);
+        findViewById(R.id.textViewInsta2).setOnClickListener(this);
+        findViewById(R.id.textViewPhone2).setOnClickListener(this);
+        findViewById(R.id.textViewEmail2).setOnClickListener(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
