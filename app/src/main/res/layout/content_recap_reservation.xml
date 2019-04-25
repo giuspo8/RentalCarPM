@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <android.support.constraint.ConstraintLayout
+            <RelativeLayout
                 android:id="@+id/constraintLayout4"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
@@ -37,63 +37,73 @@
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ID Prenotazione"
-                    app:layout_constraintVertical_bias="0.15"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="RIEPILOGO:"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
                     />
+
+                <TextView
+                    android:id="@+id/ritiro"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content"
+                    android:text="Ritiro:"
+                    android:layout_marginTop="45dp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="5dp"
+                   />
+
+                <TextView
+                    android:id="@+id/riconsegna"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content"
+                    android:text="Riconsegna:"
+                    android:layout_marginTop="70dp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="5dp"
+                    />
+
                 <TextView
                     android:id="@+id/stazione_ritiro"
                     android:layout_width="wrap_content"
                     android:textColor="@color/black"
                     android:layout_height="wrap_content"
-                    android:text="Stazione Ritiro"
-                    app:layout_constraintVertical_bias="0.55"
-                    app:layout_constraintHorizontal_bias="0.1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    android:text="Stazione ritiro"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="45dp"
+                    android:layout_toRightOf="@id/ritiro"/>
                 <TextView
                     android:id="@+id/data_ritiro"
                     android:layout_width="wrap_content"
                     android:textColor="@color/black"
                     android:layout_height="wrap_content"
-                    android:text="..............."
-                    app:layout_constraintVertical_bias="0.85"
-                    app:layout_constraintHorizontal_bias="0.1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    android:text="Data ritiro"
+                    android:layout_marginTop="45dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/stazione_ritiro"/>
+
                 <TextView
                     android:id="@+id/stazione_riconsegna"
                     android:layout_width="wrap_content"
                     android:textColor="@color/black"
                     android:layout_height="wrap_content"
-                    android:text="Stazione Riconsegna"
-                    app:layout_constraintVertical_bias="0.55"
-                    app:layout_constraintHorizontal_bias="0.9"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    android:text="Stazione Riconsegna: "
+                    android:layout_toRightOf="@id/riconsegna"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="70dp"/>
+
                 <TextView
                     android:id="@+id/data_riconsegna"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="..............."
+                    android:text="Data riconsegna"
                     android:textColor="@color/black"
-                    app:layout_constraintVertical_bias="0.85"
-                    app:layout_constraintHorizontal_bias="0.9"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_toRightOf="@id/stazione_riconsegna"/>
 
-            </android.support.constraint.ConstraintLayout>
+            </RelativeLayout>
 
 
             <Button
@@ -104,7 +114,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_height="wrap_content"
-                android:text="paga alla stazione "
+                android:text="paga alla stazione    "
                 android:background="@color/colorPrimaryDark"
                 android:layout_marginTop="400dp"
                 android:textSize="14sp" />
@@ -117,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="paga ora "
+                android:text="paga ora    "
                 android:layout_marginBottom="70dp"
                 android:layout_alignBottom="@id/pagas"
                 android:textSize="14sp" />
