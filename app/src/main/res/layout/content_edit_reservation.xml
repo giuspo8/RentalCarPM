@@ -12,7 +12,6 @@
     tools:context=".EditReservation"
     tools:showIn="@layout/app_bar_edit_reservation">
 
-
     <EditText
         android:id="@+id/prenot"
         android:layout_width="wrap_content"

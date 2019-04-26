@@ -15,179 +15,144 @@
 
     <!-- Per bottoni: ogni volta +0.18 al bias vertical-->
 
-    <ImageButton
-        android:id="@+id/imageButtonFb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:scaleX="0.6"
-        android:scaleY="0.6"
-        android:src="@drawable/fb1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/imageButtonInsta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:scaleX="0.6"
-        android:scaleY="0.6"
-        android:src="@drawable/insta1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.36" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textViewInsta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Instagram:"
-        android:textColor="@color/black"
-        android:textSize="14dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.31"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.37" />
+            <ImageButton
+                android:id="@+id/imageButtonFb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
+                android:src="@drawable/fb1"
+                android:layout_marginTop="120dp" />
 
-    <TextView
-        android:id="@+id/textViewInsta2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="nome insta"
-        android:textColor="@color/black"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.35"
-        app:layout_constraintLeft_toLeftOf="@id/textViewInsta"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.37" />
+            <ImageButton
+                android:id="@+id/imageButtonInsta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
+                android:src="@drawable/insta1"
+                android:layout_marginTop="180dp"/>
 
-    <TextView
-        android:id="@+id/textViewFb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Facebook:"
-        android:textColor="@color/black"
-        android:textSize="14dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.31"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53" />
+            <TextView
+                android:id="@+id/textViewInsta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instagram:"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:layout_toRightOf="@id/imageButtonInsta"
+                android:layout_marginTop="215dp"/>
 
-    <TextView
-        android:id="@+id/textViewFb2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="nome fb"
-        android:textColor="@color/black"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.35"
-        app:layout_constraintLeft_toLeftOf="@id/textViewFb"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53" />
+            <TextView
+                android:id="@+id/textViewInsta2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="nome insta"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:layout_toRightOf="@id/textViewInsta"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="215dp"/>
 
-    <TextView
-        android:id="@+id/textViewPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Telefono:"
-        android:textColor="@color/black"
-        android:textSize="14dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+            <TextView
+                android:id="@+id/textViewFb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Facebook:"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:layout_toRightOf="@id/imageButtonFb"
+                android:layout_marginTop="155dp"/>
 
-    <TextView
-        android:id="@+id/textViewPhone2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="071-45765"
-        android:textColor="@color/black"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.32"
-        app:layout_constraintLeft_toLeftOf="@id/textViewPhone"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+            <TextView
+                android:id="@+id/textViewFb2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="nome fb"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:layout_toRightOf="@id/textViewFb"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="155dp"/>
 
-    <ImageButton
-        android:id="@+id/imageButtonPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:scaleX="0.6"
-        android:scaleY="0.6"
-        android:src="@drawable/phone1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0"/>
+            <TextView
+                android:id="@+id/textViewPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Telefono:"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:layout_toRightOf="@id/imageButtonPhone"
+                android:layout_marginTop="35dp"/>
 
-    <ImageButton
-        android:id="@+id/imageButtonEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:scaleX="0.6"
-        android:scaleY="0.6"
-        android:src="@drawable/email"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.18" />
+            <TextView
+                android:id="@+id/textViewPhone2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="071-45765"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:layout_toRightOf="@id/textViewPhone"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="35dp"/>
 
-    <TextView
-        android:id="@+id/textViewEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="E-mail:"
-        android:textColor="@color/black"
-        android:textSize="14dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.29"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.21" />
+            <ImageButton
+                android:id="@+id/imageButtonPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
+                android:src="@drawable/phone1"/>
 
-    <TextView
-        android:id="@+id/textViewEmail2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="e-mail@gmail.com"
-        android:textColor="@color/black"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.31"
-        app:layout_constraintLeft_toLeftOf="@id/textViewEmail"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.21" />
+            <ImageButton
+                android:id="@+id/imageButtonEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
+                android:src="@drawable/email"
+                android:layout_marginTop="60dp"/>
+
+            <TextView
+                android:id="@+id/textViewEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="E-mail:"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:layout_toRightOf="@id/imageButtonEmail"
+                android:layout_marginTop="95dp"/>
+
+            <TextView
+                android:id="@+id/textViewEmail2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="e-mail@gmail.com"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:layout_toRightOf="@id/textViewEmail"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="95dp"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
 </android.support.constraint.ConstraintLayout>

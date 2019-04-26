@@ -13,10 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="16dp"
+        android:textSize="18dp"
         android:gravity="center"
-        android:text="RentalCar"
+        android:text="RCM - Rental Car Magnificent"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>
