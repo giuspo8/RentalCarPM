@@ -22,7 +22,7 @@
             android:title="Segnala Problemi" />
         <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/faqprov_icon"
+            android:icon="@drawable/lucchetto"
             android:title="FAQ" />
     </group>
 

@@ -26,7 +26,7 @@
             android:title="FAQ" />
         <item
             android:id="@+id/nav_admin"
-            android:icon="@drawable/faqprov_icon"
+            android:icon="@drawable/lucchetto"
             android:title="Area Amministratore" />
     </group>
 
