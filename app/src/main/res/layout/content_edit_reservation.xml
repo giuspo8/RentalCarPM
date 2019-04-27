@@ -12,61 +12,75 @@
     tools:context=".EditReservation"
     tools:showIn="@layout/app_bar_edit_reservation">
 
-    <EditText
-        android:id="@+id/prenot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="ID Prenotazione"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/Email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/prenot"
-        android:layout_alignStart="@+id/prenot"
-        android:layout_alignLeft="@+id/prenot"
-        android:layout_marginTop="19dp"
-        android:ems="10"
-        android:hint="email"
-        android:inputType="textEmailAddress" />
-
-    <Button
-        android:id="@+id/buttonEditSearch"
-        style="@android:style/Widget.Button"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Email"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="62dp"
-        android:text="cerca"
-        android:textSize="16sp"
-        android:textStyle="normal|bold" />
-    <Button
-        android:id="@+id/indietro"
-        style="@android:style/Widget.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/Email"
-        android:layout_marginTop="120dp"
-        android:text="torna indietro"
-        android:textSize="16sp"
-        android:textStyle="normal|bold" />
+        android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/editReservationList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/prenot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="60dp"
+                android:ems="10"
+                android:hint="ID Prenotazione"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/prenot"
+                android:layout_alignStart="@+id/prenot"
+                android:layout_alignLeft="@+id/prenot"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="60dp"
+                android:ems="10"
+                android:hint="e-mail"
+                android:inputType="textEmailAddress" />
+
+            <Button
+                android:id="@+id/buttonEditSearch"
+                style="@android:style/Widget.Button"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editReservationList"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:text="Cerca"
+                android:textStyle="bold"
+                android:background="@color/colorPrimaryDark"/>
+            <Button
+                android:id="@+id/indietro"
+                style="@android:style/Widget.Button"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/buttonEditSearch"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:text="Torna indietro"
+                android:textStyle="bold"
+                android:background="@color/colorPrimaryDark"/>
+
+            <ListView
+                android:id="@+id/editReservationList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/Email"
+                android:layout_marginTop="5dp"/>
+
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+
 
 
 </RelativeLayout>
