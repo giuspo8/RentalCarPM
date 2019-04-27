@@ -11,7 +11,7 @@
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/modify_icon"
-            android:title="Modifica Prenotazione" />
+            android:title="Visualizza Prenotazione" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/contacts_icon"

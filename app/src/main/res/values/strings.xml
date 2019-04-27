@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RentalCar</string>
+    <string name="app_name">RCM</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -9,24 +9,24 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_car_choosing">CarChoosing</string>
-    <string name="title_activity_contacts">Contacts</string>
-    <string name="title_activity_find_station">FindStationActivity</string>
-    <string name="title_activity_faq">faq</string>
+    <string name="title_activity_car_choosing">Scelta auto</string>
+    <string name="title_activity_contacts">Contatti</string>
+    <string name="title_activity_find_station">Seleziona stazione</string>
+    <string name="title_activity_faq">FAQ</string>
     <string-array name="l_o">
         <item>ciao</item>
     </string-array>
     <string-array name="l_i">
         <item>ciao2</item>
     </string-array>
-    <string name="title_activity_problems">Problems</string>
-    <string name="title_activity_edit_reservation">EditReservation</string>
-    <string name="title_activity_recap_reservation">RecapReservation</string>
-    <string name="title_activity_confirmation_reservation">ConfirmationReservation</string>
-    <string name="title_activity_admin">AdminActivity</string>
-    <string name="title_activity_show_prenotations">ShowPrenotationsActivity</string>
-    <string name="title_activity_confirmation_reservation_card">ConfirmationReservationCard</string>
-    <string name="title_activity_email_final">EmailFinalActivity</string>
-    <string name="title_activity_add_stations">AddStationsActivity</string>
-    <string name="title_activity_add_remove_car">AddRemoveCarActivity</string>
+    <string name="title_activity_problems">Problemi</string>
+    <string name="title_activity_edit_reservation">Visualizza</string>
+    <string name="title_activity_recap_reservation">Riepilogo</string>
+    <string name="title_activity_confirmation_reservation">Pagamento</string>
+    <string name="title_activity_admin">Admin</string>
+    <string name="title_activity_show_prenotations">Prenotazioni</string>
+    <string name="title_activity_confirmation_reservation_card">Pagamento</string>
+    <string name="title_activity_email_final">e-mail</string>
+    <string name="title_activity_add_stations">Stazioni</string>
+    <string name="title_activity_add_remove_car">Auto</string>
 </resources>
