@@ -8,11 +8,42 @@
     tools:context=".EmailFinalActivity"
     tools:showIn="@layout/app_bar_email_final">
 
-    <TextView
-        android:id="@+id/finaltv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="La tua prenotazione è stata registrata!  La ringraziamo per averci scelto riceverà a breve una email di conferma"
-        android:textSize="36sp"
-        android:textStyle="bold" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/finaltv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/black"
+                android:text="La tua prenotazione è stata registrata!"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/finaltv1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="80dp"
+                android:textColor="@color/black"
+                android:text="La ringraziamo per averci scelto.\nRiceverà a breve una e-mail di conferma."
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+
 </android.support.constraint.ConstraintLayout>
