@@ -163,12 +163,12 @@ public class ConfirmationReservationCard extends AppCompatActivity
                                 //leggiamo l'id che inseriremo anche nella mail
                                 read_id();
                                 //qui inserire metodo per mandare email
-                                message="Caro "+name+"/n"+"la ringraziamo per averci scelto:/n"
+                                message="Caro "+name+" /n "+"la ringraziamo per averci scelto: /n "
                                         +"questo è il riepilogo della sua prenotazione le auguriamo buon viaggio:"
-                                        +"stazione ritiro : "+stazione_ritiro+"/n"+"stazione restituzione : "+stazione_resti
-                                        +"/n"+model+"/n"+totalPrice+"€";
-                                SendMail sm = new SendMail(getApplicationContext(), email, "conferma prenotazione", message);
-                                sm.execute();
+                                        +" /n Id Prenotazione: "+id+" /n "
+                                        +"stazione ritiro : "+stazione_ritiro+" /n "+"stazione restituzione : "+stazione_resti
+                                        +" /n "+model+" /n "+totalPrice+"€";
+                                send_mail();
                                 Intent i=new Intent(ConfirmationReservationCard.this,EmailFinalActivity.class);
                                 startActivity(i);
                             }
@@ -183,12 +183,12 @@ public class ConfirmationReservationCard extends AppCompatActivity
                         //qui inserire metodo per mandare mail
                         try
                         {
-                            message="Caro "+name+"/n"+"la ringraziamo per averci scelto:/n"
+                            message="Caro "+name+" /n "+"la ringraziamo per averci scelto: /n "
                                     +"questo è il riepilogo della sua prenotazione le auguriamo buon viaggio:"
-                                    +"stazione ritiro : "+stazione_ritiro+"/n"+"stazione restituzione : "+stazione_resti
-                                    +"/n"+model+"/n"+totalPrice+"€";
-                            SendMail sm = new SendMail(getApplicationContext(), email, "conferma prenotazione", message);
-                            sm.execute();
+                                    +" /n Id Prenotazione: "+id+" /n "
+                                    +"stazione ritiro : "+stazione_ritiro+" /n "+"stazione restituzione : "+stazione_resti
+                                    +" /n "+model+" /n "+totalPrice+"€";
+                            send_mail();
                         }catch(Exception e){
 
                         }
@@ -252,6 +252,33 @@ public class ConfirmationReservationCard extends AppCompatActivity
                     + "&Email=" + this.email+ "&Pagamento=" + this.payment
                     + "&DataRitiro="+this.ritiro+"&DataRestituzione="+this.restituzione
                     +"&Prezzo="+this.totalPrice
+            );
+            client = (HttpURLConnection) url.openConnection();
+            client.setRequestMethod("GET");
+            client.setDoInput(true);
+            InputStream in = client.getInputStream();
+            String json_string = ReadResponse.readStream(in).trim();
+
+            if (json_string.equals("1")) {
+                Toast.makeText(this, "Inserimento effettuato", LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Errore nell'inserimento", LENGTH_LONG).show();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (client != null) {
+                client.disconnect();
+            }
+        }
+    }
+
+    private void send_mail(){
+        HttpURLConnection client = null;
+        URL url;
+        try {
+            url = new URL("http://rentalcar.altervista.org/invio_email.php?Email=" + this.email
+                    + "&msg=" + this.message
             );
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
