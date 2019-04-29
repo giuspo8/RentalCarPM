@@ -44,6 +44,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
     String name;
     String surname;
     String telephone;
+    String message;
 
     TextView emailtv;
     TextView nametv;
@@ -162,6 +163,12 @@ public class ConfirmationReservationCard extends AppCompatActivity
                                 //leggiamo l'id che inseriremo anche nella mail
                                 read_id();
                                 //qui inserire metodo per mandare email
+                                message="Caro "+name+"/n"+"la ringraziamo per averci scelto:/n"
+                                        +"questo è il riepilogo della sua prenotazione le auguriamo buon viaggio:"
+                                        +"stazione ritiro : "+stazione_ritiro+"/n"+"stazione restituzione : "+stazione_resti
+                                        +"/n"+model+"/n"+totalPrice+"€";
+                                SendMail sm = new SendMail(getApplicationContext(), email, "conferma prenotazione", message);
+                                sm.execute();
                                 Intent i=new Intent(ConfirmationReservationCard.this,EmailFinalActivity.class);
                                 startActivity(i);
                             }
@@ -174,6 +181,18 @@ public class ConfirmationReservationCard extends AppCompatActivity
                         //leggiamo l'id che inseriremo anche nella mail
                         read_id();
                         //qui inserire metodo per mandare mail
+                        try
+                        {
+                            message="Caro "+name+"/n"+"la ringraziamo per averci scelto:/n"
+                                    +"questo è il riepilogo della sua prenotazione le auguriamo buon viaggio:"
+                                    +"stazione ritiro : "+stazione_ritiro+"/n"+"stazione restituzione : "+stazione_resti
+                                    +"/n"+model+"/n"+totalPrice+"€";
+                            SendMail sm = new SendMail(getApplicationContext(), email, "conferma prenotazione", message);
+                            sm.execute();
+                        }catch(Exception e){
+
+                        }
+
                         //andiamo all activity finale
                         Intent i=new Intent(ConfirmationReservationCard.this,EmailFinalActivity.class);
                         startActivity(i);
