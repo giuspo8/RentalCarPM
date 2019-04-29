@@ -163,11 +163,11 @@ public class ConfirmationReservationCard extends AppCompatActivity
                                 //leggiamo l'id che inseriremo anche nella mail
                                 read_id();
                                 //qui inserire metodo per mandare email
-                                message="Caro "+name+" /n "+"la ringraziamo per averci scelto: /n "
-                                        +"questo è il riepilogo della sua prenotazione le auguriamo buon viaggio:"
-                                        +" /n Id Prenotazione: "+id+" /n "
-                                        +"stazione ritiro : "+stazione_ritiro+" /n "+"stazione restituzione : "+stazione_resti
-                                        +" /n "+model+" /n "+totalPrice+"€";
+                                message="Caro "+name+" "+surname+" ,la ringraziamo per averci scelto: "
+                                        +"ecco il riepilogo della sua prenotazione le auguriamo buon viaggio:"
+                                        +" Id Prenotazione: "+id+" "
+                                        +"stazione ritiro: "+stazione_ritiro+" "+"stazione restituzione: "+stazione_resti
+                                        +"   "+model+"   "+totalPrice+" euro";
                                 send_mail();
                                 Intent i=new Intent(ConfirmationReservationCard.this,EmailFinalActivity.class);
                                 startActivity(i);
@@ -181,17 +181,12 @@ public class ConfirmationReservationCard extends AppCompatActivity
                         //leggiamo l'id che inseriremo anche nella mail
                         read_id();
                         //qui inserire metodo per mandare mail
-                        try
-                        {
-                            message="Caro "+name+" /n "+"la ringraziamo per averci scelto: /n "
-                                    +"questo è il riepilogo della sua prenotazione le auguriamo buon viaggio:"
-                                    +" /n Id Prenotazione: "+id+" /n "
-                                    +"stazione ritiro : "+stazione_ritiro+" /n "+"stazione restituzione : "+stazione_resti
-                                    +" /n "+model+" /n "+totalPrice+"€";
+                            message="Caro "+name+" "+surname+" ,la ringraziamo per averci scelto: "
+                                    +"ecco il riepilogo della sua prenotazione le auguriamo buon viaggio:"
+                                    +" Id Prenotazione:  "+id+" "
+                                    +"stazione ritiro: "+stazione_ritiro+" "+"stazione restituzione: "+stazione_resti
+                                    +"   "+model+"   "+totalPrice+" euro";
                             send_mail();
-                        }catch(Exception e){
-
-                        }
 
                         //andiamo all activity finale
                         Intent i=new Intent(ConfirmationReservationCard.this,EmailFinalActivity.class);
