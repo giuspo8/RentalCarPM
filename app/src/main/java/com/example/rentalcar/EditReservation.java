@@ -314,6 +314,10 @@ public class EditReservation extends AppCompatActivity
             Intent h1=new Intent(EditReservation.this,MainActivity.class);
             startActivity(h1);
         }
+        else if (id == R.id.nav_admin) {
+            Intent i=new Intent(EditReservation.this,AdminActivity.class);
+            startActivity(i);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

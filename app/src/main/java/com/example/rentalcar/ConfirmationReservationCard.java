@@ -385,13 +385,25 @@ public class ConfirmationReservationCard extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent h=new Intent(ConfirmationReservationCard.this,EditReservation.class);
+            startActivity(h);
         } else if (id == R.id.nav_gallery) {
-
+            Intent h=new Intent(ConfirmationReservationCard.this,Contacts.class);
+            startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-
+            Intent h=new Intent(ConfirmationReservationCard.this,Problems.class);
+            startActivity(h);
         } else if (id == R.id.nav_manage) {
-
+            Intent h=new Intent(ConfirmationReservationCard.this,faq.class);
+            startActivity(h);
+        }
+        else if (id == R.id.ReturnHome) {
+            Intent h1=new Intent(ConfirmationReservationCard.this,MainActivity.class);
+            startActivity(h1);
+        }
+        else if (id == R.id.nav_admin) {
+            Intent i=new Intent(ConfirmationReservationCard.this,AdminActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

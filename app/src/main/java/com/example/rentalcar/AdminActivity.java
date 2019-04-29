@@ -194,13 +194,25 @@ public class AdminActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent h=new Intent(AdminActivity.this,EditReservation.class);
+            startActivity(h);
         } else if (id == R.id.nav_gallery) {
-
+            Intent h=new Intent(AdminActivity.this,Contacts.class);
+            startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-
+            Intent h=new Intent(AdminActivity.this,Problems.class);
+            startActivity(h);
         } else if (id == R.id.nav_manage) {
-
+            Intent h=new Intent(AdminActivity.this,faq.class);
+            startActivity(h);
+        }
+        else if (id == R.id.ReturnHome) {
+            Intent h1=new Intent(AdminActivity.this,MainActivity.class);
+            startActivity(h1);
+        }
+        else if (id == R.id.nav_admin) {
+            Intent i=new Intent(AdminActivity.this,AdminActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -1,6 +1,7 @@
 package com.example.rentalcar;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
@@ -252,13 +253,24 @@ public class ShowPrenotationsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent h=new Intent(ShowPrenotationsActivity.this,EditReservation.class);
+            startActivity(h);
         } else if (id == R.id.nav_gallery) {
-
+            Intent h=new Intent(ShowPrenotationsActivity.this,Contacts.class);
+            startActivity(h);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
-
+            Intent h=new Intent(ShowPrenotationsActivity.this,faq.class);
+            startActivity(h);
+        }
+        else if (id == R.id.ReturnHome) {
+            Intent h1=new Intent(ShowPrenotationsActivity.this,MainActivity.class);
+            startActivity(h1);
+        }
+        else if (id == R.id.nav_admin) {
+            Intent i=new Intent(ShowPrenotationsActivity.this,AdminActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

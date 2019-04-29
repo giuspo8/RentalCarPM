@@ -14,10 +14,10 @@
     <string name="title_activity_find_station">Seleziona stazione</string>
     <string name="title_activity_faq">FAQ</string>
     <string-array name="l_o">
-        <item>ciao</item>
+        <item>no non si puo</item>
     </string-array>
     <string-array name="l_i">
-        <item>ciao2</item>
+        <item>ti chiamiamo</item>
     </string-array>
     <string name="title_activity_problems">Problemi</string>
     <string name="title_activity_edit_reservation">Visualizza</string>

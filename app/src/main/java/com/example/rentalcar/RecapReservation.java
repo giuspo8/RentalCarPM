@@ -208,13 +208,25 @@ public class RecapReservation extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent h=new Intent(RecapReservation.this,EditReservation.class);
+            startActivity(h);
         } else if (id == R.id.nav_gallery) {
-
+            Intent h=new Intent(RecapReservation.this,Contacts.class);
+            startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-
+            Intent h=new Intent(RecapReservation.this,Problems.class);
+            startActivity(h);
         } else if (id == R.id.nav_manage) {
-
+            Intent h=new Intent(RecapReservation.this,faq.class);
+            startActivity(h);
+        }
+        else if (id == R.id.ReturnHome) {
+            Intent h1=new Intent(RecapReservation.this,MainActivity.class);
+            startActivity(h1);
+        }
+        else if (id == R.id.nav_admin) {
+            Intent i=new Intent(RecapReservation.this,AdminActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -1,5 +1,6 @@
 package com.example.rentalcar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -174,13 +175,25 @@ public class AddStationsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent h=new Intent(AddStationsActivity.this,EditReservation.class);
+            startActivity(h);
         } else if (id == R.id.nav_gallery) {
-
+            Intent h=new Intent(AddStationsActivity.this,Contacts.class);
+            startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-
+            Intent h=new Intent(AddStationsActivity.this,Problems.class);
+            startActivity(h);
         } else if (id == R.id.nav_manage) {
-
+            Intent h=new Intent(AddStationsActivity.this,faq.class);
+            startActivity(h);
+        }
+        else if (id == R.id.ReturnHome) {
+            Intent h1=new Intent(AddStationsActivity.this,MainActivity.class);
+            startActivity(h1);
+        }
+        else if (id == R.id.nav_admin) {
+            Intent i=new Intent(AddStationsActivity.this,AdminActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
