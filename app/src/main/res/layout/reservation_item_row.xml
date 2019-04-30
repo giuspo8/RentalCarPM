@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Costo:"
-            android:layout_marginTop="85dp"
+            android:layout_marginTop="115dp"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="5dp"/>
 
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="85dp"
+            android:layout_marginTop="115dp"
             android:text="Costo"
             android:textColor="@color/black"
             android:layout_marginBottom="5dp"
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Macchina:"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="85dp"
             android:layout_marginLeft="10dp"/>
 
         <TextView
@@ -58,9 +58,19 @@
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ritiro:"
+            android:text="Stazione ritiro:"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="25dp"/>
+
+        <TextView
+            android:id="@+id/text_ritiro2"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data ritiro:"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"/>
 
         <TextView
             android:id="@+id/text_ricon"
@@ -68,9 +78,19 @@
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Riconsegna:"
+            android:text="Stazione riconsegna:"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="55dp"/>
+
+        <TextView
+            android:id="@+id/text_ricon2"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data riconsegna:"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="70dp"/>
 
         <TextView
         android:id="@+id/RES_retirestationTextView"
@@ -89,7 +109,7 @@
         android:layout_height="wrap_content"
         android:text="StazRic"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="55dp"
         android:layout_toRightOf="@id/text_ricon"/>
 
     <TextView
@@ -98,9 +118,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="OraRit"
-        android:layout_toRightOf="@+id/RES_retirestationTextView"
+        android:layout_toRightOf="@id/text_ritiro2"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="25dp"/>
+        android:layout_marginTop="40dp"/>
 
     <TextView
         android:id="@+id/DateHourRestitutionTextView"
@@ -108,9 +128,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="OraRic"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="70dp"
         android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@id/RES_restitutionStationTextView"/>
+        android:layout_toRightOf="@id/text_ricon2"/>
 
     <TextView
         android:id="@+id/RES_emailTextView"
@@ -131,7 +151,7 @@
         android:text="Pagamento"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="70dp"/>
+        android:layout_marginTop="100dp"/>
 
 
     <TextView
@@ -140,7 +160,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Car"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="85dp"
         android:layout_marginLeft="5dp"
         android:layout_toRightOf="@id/text_macchina"/>
 
