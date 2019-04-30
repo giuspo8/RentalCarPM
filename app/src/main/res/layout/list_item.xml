@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:paddingBottom="5dp"
         android:paddingTop="5dp"
+        android:textColor="@color/black"
         android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
-        android:textSize="16dip" android:id="@+id/lblListItem"/>
+        android:id="@+id/lblListItem"/>
 
 </LinearLayout>
