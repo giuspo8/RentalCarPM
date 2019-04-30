@@ -134,7 +134,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
                 //se non sono stati riempiti i campi relativi all'anagrafica da errore
                 if (emailtv.getText().toString().equals("")||nametv.getText().toString().equals("")||
                         surnametv.getText().toString().equals("")||telephonetv.getText().toString().equals("")) {
-                    Toast.makeText(getApplicationContext(),"Per favore inserisci tutti i dati obbligatori!!",LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Per favore inserisci tutti i dati obbligatori.",LENGTH_LONG).show();
                 }
                 else {
                     //se pago ora leggo i dati della carta di credito e controllo che abbia credito sufficiente
@@ -153,7 +153,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
                             CreditCard cd1 = new CreditCard(creditCardNumber, creditCardExpireDate, creditCardSecureCode, creditCardLeft);
                             //chiama un metodo che controlla se il credito è sufficiente
                             if (!confirm_credit_card(cd1, totalPrice)) {
-                                Toast.makeText(getApplicationContext(), "il credito disponibile sulla carta non è sufficiente", LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Il credito disponibile sulla carta non è sufficiente.", LENGTH_LONG).show();
                             } else {
                                 //paghiamo e inseriamo nel database prenotazione e utente
                                 cd1.getPayment(totalPrice);

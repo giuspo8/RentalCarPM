@@ -1,5 +1,6 @@
 package com.example.rentalcar;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -51,8 +52,8 @@ public class faq extends AppCompatActivity
         //conversione da vettore a lista
         List<String> domanda1 = Arrays.asList(risp1);
         //aggiungo elementi alla lista
-        listDataHeader.add("dopo aver prenotato posso cambiare la macchina ?");
-        listDataHeader.add("che cosa mi succede se non consegno la macchina in tempo ?");
+        listDataHeader.add("Dopo aver prenotato, è possibile cambiare la macchina ?");
+        listDataHeader.add("Cosa succede se non si riconsegna la macchina in tempo ?");
         //prendo le risposte e le metto in un vettore
         String risp2[] = getResources().getStringArray(R.array.l_i);
         //conversione da vettore a lista

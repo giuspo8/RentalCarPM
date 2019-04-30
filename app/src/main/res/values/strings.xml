@@ -14,13 +14,13 @@
     <string name="title_activity_find_station">Seleziona stazione</string>
     <string name="title_activity_faq">FAQ</string>
     <string-array name="l_o">
-        <item>no non si puo</item>
+        <item>No, non è possibile.</item>
     </string-array>
     <string-array name="l_i">
-        <item>ti chiamiamo</item>
+        <item>Il cliente verrà contattato.</item>
     </string-array>
     <string name="title_activity_problems">Problemi</string>
-    <string name="title_activity_edit_reservation">Visualizza</string>
+    <string name="title_activity_edit_reservation">Gestione</string>
     <string name="title_activity_recap_reservation">Riepilogo</string>
     <string name="title_activity_confirmation_reservation">Pagamento</string>
     <string name="title_activity_admin">Admin</string>

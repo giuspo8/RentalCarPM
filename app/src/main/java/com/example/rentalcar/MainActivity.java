@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity
                         textHourRestitution.getText().toString().equals("")||textHourRetire.getText().toString().equals("") ||
                         editTextRetireStation.getText().toString().equals("")||editTextRestitutionStation.getText().toString().equals(""))
                 {
-                    show("Per Favore Riempi Tutti i Campi!!!");//richiama il metodo creato da me che fa il toast
+                    show("E' necessario riempire tutti i campi.");//richiama il metodo creato da me che fa il toast
                 }
                 else {
                     Intent i = new Intent(MainActivity.this, CarChoosing.class);
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     //se la data di ritiro è posteriore a quella si riconsegna manda un toast e non va avanti
                     if (dateRetire.after(dateRestitution)){
-                        show("la data di ritiro deve essere antecedente a quella di riconsegna!!!!");
+                        show("Errore: inserire una data di ritiro antecedente alla data di riconsegna.");
                     }
                     //altrimenti va all'activity successiva
                     else{
