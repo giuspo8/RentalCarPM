@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="AGGIUNGI STAZIONE"
+                android:textStyle="bold"
                 android:background="@color/colorPrimaryDark"
                 android:layout_marginTop="140dp" />
 
@@ -32,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="Rimuovi Stazione"
+                android:textStyle="bold"
                 android:background="@color/colorPrimaryDark"
                 android:layout_marginTop="200dp" />
 

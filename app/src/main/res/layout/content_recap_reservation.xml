@@ -17,6 +17,48 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+        <RelativeLayout
+            android:id="@+id/constraintLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100sp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:id="@+id/riconsegna"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:text="Riconsegna:"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/stazione_riconsegna"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:text="Stazione Riconsegna: "
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="25dp"/>
+
+            <TextView
+                android:id="@+id/data_riconsegna"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data riconsegna"
+                android:textColor="@color/black"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="5dp"/>
+
+        </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/constraintLayout4"
                 android:layout_width="match_parent"
@@ -31,8 +73,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-
-
                 <TextView
                     android:id="@+id/ritiro"
                     android:layout_width="wrap_content"
@@ -42,20 +82,7 @@
                     android:text="Ritiro:"
                     android:layout_marginTop="5dp"
                     android:textStyle="bold"
-                    android:layout_marginLeft="5dp"
                    />
-
-                <TextView
-                    android:id="@+id/riconsegna"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/black"
-                    android:layout_height="wrap_content"
-                    android:text="Riconsegna:"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="60dp"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="5dp"
-                    />
 
                 <TextView
                     android:id="@+id/stazione_ritiro"
@@ -73,25 +100,7 @@
                     android:layout_height="wrap_content"
                     android:text="Data ritiro"
                     android:layout_marginTop="40dp"
-                    android:layout_marginLeft="5dp"/>
-
-                <TextView
-                    android:id="@+id/stazione_riconsegna"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/black"
-                    android:layout_height="wrap_content"
-                    android:text="Stazione Riconsegna: "
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="80dp"/>
-
-                <TextView
-                    android:id="@+id/data_riconsegna"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Data riconsegna"
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="95dp"
                     android:layout_marginBottom="5dp"/>
 
             </RelativeLayout>
@@ -101,33 +110,28 @@
                 android:id="@+id/pagas"
                 android:layout_centerHorizontal="true"
                 style="@android:style/Widget.Button"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:text="Paga in stazione"
                 android:background="@color/colorPrimaryDark"
-                android:layout_marginTop="400dp"
-                android:textSize="14sp" />
+                android:textStyle="bold"
+                android:layout_marginTop="380dp"/>
             <Button
                 android:id="@+id/pagao"
                 style="@android:style/Widget.Button"
                 android:background="@color/colorPrimaryDark"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="Paga ora"
-                android:layout_marginBottom="70dp"
-                android:layout_alignBottom="@id/pagas"
-                android:textSize="14sp" />
+                android:textStyle="bold"
+                android:layout_marginTop="320dp" />
 
             <ListView
                 android:id="@+id/recap_car_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="140dp"/>
+                android:layout_marginTop="165dp"/>
 
 
         </RelativeLayout>

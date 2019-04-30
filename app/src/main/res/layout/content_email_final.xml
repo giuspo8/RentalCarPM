@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="50dp"
                 android:textColor="@color/black"
                 android:text="La tua prenotazione è stata registrata!"
                 android:layout_centerHorizontal="true"
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="120dp"
                 android:textColor="@color/black"
                 android:text="La ringraziamo per averci scelto.\nRiceverà a breve una e-mail di conferma."
                 android:textSize="16sp" />
