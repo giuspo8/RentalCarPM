@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -242,12 +243,9 @@ public class ConfirmationReservationCard extends AppCompatActivity
         HttpURLConnection client = null;
         URL url;
         try {
-            url = new URL("http://rentalcar.altervista.org/inserisci_prenotazione.php?StazioneRit=" + this.stazione_ritiro
-                    + "&StazioneRic=" + this.stazione_resti + "&Macchina=" + this.model
-                    + "&Email=" + this.email+ "&Pagamento=" + this.payment
-                    + "&DataRitiro="+this.ritiro+"&DataRestituzione="+this.restituzione
-                    +"&Prezzo="+this.totalPrice
-            );
+            String encodedURL=encode_url();
+            Log.d ("TEST",encodedURL);
+            url = new URL(encodedURL);
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
             client.setDoInput(true);
@@ -273,7 +271,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
         URL url;
         try {
             url = new URL("http://rentalcar.altervista.org/invio_email.php?Email=" + this.email
-                    + "&msg=" + this.message
+                    + "&msg=" + URLEncoder.encode(this.message,"UTF-8")
             );
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
@@ -322,6 +320,25 @@ public class ConfirmationReservationCard extends AppCompatActivity
             }
         }
     }
+
+    String encode_url(){
+        String encoded_url;
+        try{
+            encoded_url="http://rentalcar.altervista.org/inserisci_prenotazione.php?StazioneRit="+
+                    URLEncoder.encode(this.stazione_ritiro,"UTF-8");
+            encoded_url+="&StazioneRic=" +URLEncoder.encode(this.stazione_resti,"UTF-8");
+            encoded_url+= "&Macchina=" + URLEncoder.encode(this.model,"UTF-8");
+            encoded_url+= "&Email=" + this.email+ "&Pagamento=" + this.payment;
+            encoded_url+= "&DataRitiro="+URLEncoder.encode(this.ritiro,"UTF-8");
+            encoded_url+="&DataRestituzione="+URLEncoder.encode(this.restituzione,"UTF-8")+
+                    "&Prezzo="+this.totalPrice;
+            return encoded_url;
+        }
+        catch (Exception e){
+        }
+        return "";
+    }
+
 
     private JSONObject convert2JSON(String json_data){
         JSONObject obj = null;
