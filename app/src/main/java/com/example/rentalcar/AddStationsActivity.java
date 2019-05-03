@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import static android.widget.Toast.LENGTH_LONG;
 
@@ -89,7 +90,7 @@ public class AddStationsActivity extends AppCompatActivity
         URL url;
         try {
             //sempre solita cosa
-            url = new URL("http://rentalcar.altervista.org/aggiungi_stazioni.php?NomeStazione=" + this.stationName);
+            url = new URL("http://rentalcar.altervista.org/aggiungi_stazioni.php?NomeStazione=" + URLEncoder.encode(this.stationName,"UTF-8"));
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
             client.setDoInput(true);

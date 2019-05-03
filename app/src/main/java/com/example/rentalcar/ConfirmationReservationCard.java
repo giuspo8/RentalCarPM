@@ -45,7 +45,8 @@ public class ConfirmationReservationCard extends AppCompatActivity
     String name;
     String surname;
     String telephone;
-    String message;
+    //stringhe di righe per email
+    String message1,message2,message3,message4,message5,message6,message7,message8;
 
     TextView emailtv;
     TextView nametv;
@@ -163,12 +164,15 @@ public class ConfirmationReservationCard extends AppCompatActivity
                                 //andiamo all activity finale
                                 //leggiamo l'id che inseriremo anche nella mail
                                 read_id();
-                                //qui inserire metodo per mandare email
-                                message="Caro "+name+" "+surname+" ,la ringraziamo per averci scelto: "
-                                        +"ecco il riepilogo della sua prenotazione le auguriamo buon viaggio:"
-                                        +" Id Prenotazione: "+id+" "
-                                        +"stazione ritiro: "+stazione_ritiro+" "+"stazione restituzione: "+stazione_resti
-                                        +"   "+model+"   "+totalPrice+" euro";
+                                message1="Caro "+name+" "+surname;
+                                message2="La ringraziamo per averci scelto,";
+                                message3="ecco il riepilogo della sua prenotazione:";
+                                message4=" Id Prenotazione: "+id;
+                                message5="stazione ritiro: "+stazione_ritiro;
+                                message6="stazione restituzione: "+stazione_resti;
+                                message7=model+"   "+totalPrice+" euro";
+                                message8="Le auguriamo buon viaggio";
+                                //metodo per mandare email
                                 send_mail();
                                 Intent i=new Intent(ConfirmationReservationCard.this,EmailFinalActivity.class);
                                 startActivity(i);
@@ -181,12 +185,15 @@ public class ConfirmationReservationCard extends AppCompatActivity
                         insert_user();
                         //leggiamo l'id che inseriremo anche nella mail
                         read_id();
-                        //qui inserire metodo per mandare mail
-                            message="Caro "+name+" "+surname+" ,la ringraziamo per averci scelto: "
-                                    +"ecco il riepilogo della sua prenotazione le auguriamo buon viaggio:"
-                                    +" Id Prenotazione:  "+id+" "
-                                    +"stazione ritiro: "+stazione_ritiro+" "+"stazione restituzione: "+stazione_resti
-                                    +"   "+model+"   "+totalPrice+" euro";
+                        message1="Caro "+name+" "+surname;
+                        message2="La ringraziamo per averci scelto,";
+                        message3="ecco il riepilogo della sua prenotazione:";
+                        message4=" Id Prenotazione: "+id;
+                        message5="stazione ritiro: "+stazione_ritiro;
+                        message6="stazione restituzione: "+stazione_resti;
+                        message7=model+"   "+totalPrice+" euro";
+                        message8="Le auguriamo buon viaggio";
+                            //metodo per mandare email
                             send_mail();
 
                         //andiamo all activity finale
@@ -203,7 +210,8 @@ public class ConfirmationReservationCard extends AppCompatActivity
         try {
             //stessa cosa di FindStationActivity
             URL url = new URL("http://rentalcar.altervista.org/leggi_id.php?Email=" + this.email
-                    + "&DataRitiro=" + this.ritiro+"&DataRestituzione=" + this.restituzione);
+                    + "&DataRitiro=" + URLEncoder.encode(this.ritiro,"UTF-8")+
+                    "&DataRestituzione=" + URLEncoder.encode(this.restituzione,"UTF-8") );
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
             client.setDoInput(true);
@@ -243,8 +251,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
         HttpURLConnection client = null;
         URL url;
         try {
-            String encodedURL=encode_url();
-            Log.d ("TEST",encodedURL);
+            String encodedURL=encode_url();//assegno alla stringa il risultato del metodo per fare l'encode dell'url(per gli spazi)
             url = new URL(encodedURL);
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
@@ -253,9 +260,9 @@ public class ConfirmationReservationCard extends AppCompatActivity
             String json_string = ReadResponse.readStream(in).trim();
 
             if (json_string.equals("1")) {
-                Toast.makeText(this, "Inserimento effettuato", LENGTH_LONG).show();
+                //Toast.makeText(this, "Inserimento effettuato", LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "Errore nell'inserimento", LENGTH_LONG).show();
+                //Toast.makeText(this, "Errore nell'inserimento", LENGTH_LONG).show();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -270,8 +277,15 @@ public class ConfirmationReservationCard extends AppCompatActivity
         HttpURLConnection client = null;
         URL url;
         try {
-            url = new URL("http://rentalcar.altervista.org/invio_email.php?Email=" + this.email
-                    + "&msg=" + URLEncoder.encode(this.message,"UTF-8")
+            url = new URL("http://rentalcar.altervista.org/invio_email.php?Email=" + this.email +
+                    "&msg1=" + URLEncoder.encode(this.message1,"UTF-8")+
+                    "&msg2=" +URLEncoder.encode(this.message2,"UTF-8")+
+                    "&msg3=" +URLEncoder.encode(this.message3,"UTF-8")+
+                    "&msg4=" +URLEncoder.encode(this.message4,"UTF-8")+
+                    "&msg5=" +URLEncoder.encode(this.message5,"UTF-8")+
+                    "&msg6=" +URLEncoder.encode(this.message6,"UTF-8")+
+                    "&msg7=" +URLEncoder.encode(this.message7,"UTF-8")+
+                    "&msg8=" +URLEncoder.encode(this.message8,"UTF-8")
             );
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
@@ -279,10 +293,10 @@ public class ConfirmationReservationCard extends AppCompatActivity
             InputStream in = client.getInputStream();
             String json_string = ReadResponse.readStream(in).trim();
 
-            if (json_string.equals("1")) {
-                Toast.makeText(this, "Inserimento effettuato", LENGTH_LONG).show();
+            if (json_string.equals("")) {
+                //Toast.makeText(this, "invio effettuato", LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "Errore nell'inserimento", LENGTH_LONG).show();
+                //Toast.makeText(this, "Errore nell'invio", LENGTH_LONG).show();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -298,9 +312,11 @@ public class ConfirmationReservationCard extends AppCompatActivity
         URL url;
         try {
             //metodo get quindi scriviamo i dati da inviare direttamente nell'Url
-            url = new URL("http://rentalcar.altervista.org/inserisci_utenti.php?Nome=" + this.name
-                    + "&Cognome=" + this.surname + "&Telefono=" + this.telephone
-                    + "&Email=" + this.email);
+            url = new URL("http://rentalcar.altervista.org/inserisci_utenti.php?Nome=" +
+                    URLEncoder.encode(this.name,"UTF-8") +
+                    "&Cognome=" + URLEncoder.encode(this.surname,"UTF-8") +
+                    "&Telefono=" + this.telephone +
+                    "&Email=" + URLEncoder.encode(this.email,"UTF-8"));
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
             client.setDoInput(true);
@@ -310,7 +326,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
             if (json_string.equals("1")) {
                 //Toast.makeText(this, "Inserimento effettuato", LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "Errore nell'inserimento", LENGTH_LONG).show();
+                //Toast.makeText(this, "Errore nell'inserimento", LENGTH_LONG).show();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -324,6 +340,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
     String encode_url(){
         String encoded_url;
         try{
+            //concateno le stringhe con le parti che mi interessano codificate
             encoded_url="http://rentalcar.altervista.org/inserisci_prenotazione.php?StazioneRit="+
                     URLEncoder.encode(this.stazione_ritiro,"UTF-8");
             encoded_url+="&StazioneRic=" +URLEncoder.encode(this.stazione_resti,"UTF-8");

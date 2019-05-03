@@ -46,7 +46,7 @@ public class CreditCard {
     }
 
     public boolean getPayment(double price){
-        if (price>=credit) return false;
+        if (price>credit) return false;
         else credit-=price;
         return true;
     }

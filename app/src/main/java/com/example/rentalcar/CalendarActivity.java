@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CalendarView;
 
+import java.util.Calendar;
+
 public class CalendarActivity extends AppCompatActivity {
 
     CalendarView retireDate;//oggetto calendario
@@ -15,6 +17,8 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         retireDate=findViewById(R.id.calendarView);
+
+        retireDate.setMinDate(Calendar.getInstance().getTimeInMillis()+86400000);
         retireDate.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             //una volta cliccato su una data esegue queste azioni
             @Override

@@ -120,10 +120,10 @@ public class RecapReservation extends AppCompatActivity
         dr2.setText(String.valueOf(dateRetire));
         dr3.setText(String.valueOf(dateRestitution));
 
-        sb.append(Double.toString(totalPrice));
+        sb.append(Double.toString(totalPrice)+" €");
         sb.append(")");
 
-        sb1.append(Double.toString(totalPrice+25));//maggiorazione di prezzo dovuta al pagamento in stazione
+        sb1.append(Double.toString(totalPrice+25)+" €");//maggiorazione di prezzo dovuta al pagamento in stazione
         sb1.append(")");
 
 

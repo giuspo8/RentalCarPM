@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import static android.widget.Toast.LENGTH_LONG;
 
@@ -107,8 +108,10 @@ double price;
         URL url;
         try {
             //sempre solita cosa
-            url = new URL("http://rentalcar.altervista.org/aggiungi_auto.php?Modello=" + this.model+"&Classe="+this.classCar
-            +"&PrezzoGg="+this.price+"&Cambio="+this.shift+"&NrPasseggeri="+this.passengers);
+            url = new URL("http://rentalcar.altervista.org/aggiungi_auto.php?Modello=" +
+                    URLEncoder.encode(this.model,"UTF-8")+"&Classe="+
+                    URLEncoder.encode(this.classCar,"UTF-8") +"&PrezzoGg="+
+                    this.price+"&Cambio="+this.shift+"&NrPasseggeri="+this.passengers);
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
             client.setDoInput(true);
@@ -135,7 +138,7 @@ double price;
         HttpURLConnection client = null;
         try {
             //sempre solita cosa
-            URL url = new URL("http://rentalcar.altervista.org/elimina_auto.php?Modello="+this.model);
+            URL url = new URL("http://rentalcar.altervista.org/elimina_auto.php?Modello="+URLEncoder.encode(this.model,"UTF-8"));
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
             client.setDoInput(true);

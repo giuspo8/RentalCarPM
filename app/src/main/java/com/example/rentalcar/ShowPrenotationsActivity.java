@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -113,7 +114,7 @@ public class ShowPrenotationsActivity extends AppCompatActivity
         HttpURLConnection client = null;
         try {
             //stessa cosa di FindStationActivity
-            URL url = new URL("http://rentalcar.altervista.org/elimina_prenotazioni.php?Email="+this.email2
+            URL url = new URL("http://rentalcar.altervista.org/elimina_prenotazioni.php?Email="+ URLEncoder.encode(this.email2,"UTF-8")
                     + "&ID=" + this.id2);
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");

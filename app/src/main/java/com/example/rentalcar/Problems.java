@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import static android.widget.Toast.LENGTH_LONG;
 
@@ -67,7 +68,9 @@ public class Problems extends AppCompatActivity
         HttpURLConnection client = null;
         URL url;
         try {
-            url = new URL("http://rentalcar.altervista.org/inserisci_problemi.php?Problema=" + this.text);
+            url = new URL("http://rentalcar.altervista.org/inserisci_problemi.php?Problema=" +
+                    URLEncoder.encode(this.text,"UTF-8")
+            );
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
             client.setDoInput(true);

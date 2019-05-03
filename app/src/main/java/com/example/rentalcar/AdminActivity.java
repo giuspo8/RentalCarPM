@@ -114,8 +114,8 @@ public class AdminActivity extends AppCompatActivity
         URL url;
         try {
             // se la richiesta è GET gli passiamo email e password letti sulle edittext
-            url = new URL("http://rentalcar.altervista.org/leggiAdmin.php?email=" + this.email
-                    + "&password=" + this.password);
+            url = new URL("http://rentalcar.altervista.org/leggiAdmin.php?email=" + URLEncoder.encode(this.email,"UTF-8")+
+                     "&password=" + URLEncoder.encode(this.password,"UTF-8"));
             //apriamo la connessione e settiamo il metodo come GET(facoltativo)
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
