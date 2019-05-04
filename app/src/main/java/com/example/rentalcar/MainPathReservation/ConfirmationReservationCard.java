@@ -172,8 +172,8 @@ public class ConfirmationReservationCard extends AppCompatActivity
                                 message2="La ringraziamo per averci scelto,";
                                 message3="ecco il riepilogo della sua prenotazione:";
                                 message4=" Id Prenotazione: "+id;
-                                message5="stazione ritiro: "+stazione_ritiro;
-                                message6="stazione restituzione: "+stazione_resti;
+                                message5="Ritiro: "+stazione_ritiro+" "+ritiro;
+                                message6="Restituzione: "+stazione_resti+" "+restituzione;
                                 message7=model+"   "+totalPrice+" euro";
                                 message8="Le auguriamo buon viaggio";
                                 //metodo per mandare email
@@ -193,8 +193,8 @@ public class ConfirmationReservationCard extends AppCompatActivity
                         message2="La ringraziamo per averci scelto,";
                         message3="ecco il riepilogo della sua prenotazione:";
                         message4=" Id Prenotazione: "+id;
-                        message5="stazione ritiro: "+stazione_ritiro;
-                        message6="stazione restituzione: "+stazione_resti;
+                        message5="Ritiro: "+stazione_ritiro+" "+ritiro;
+                        message6="Restituzione: "+stazione_resti+" "+restituzione;
                         message7=model+"   "+totalPrice+" euro";
                         message8="Le auguriamo buon viaggio";
                             //metodo per mandare email
