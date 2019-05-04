@@ -29,7 +29,6 @@
 
             <EditText
                 android:id="@+id/Nome"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -38,19 +37,22 @@
                 android:ems="10"
                 android:hint="Nome *"
                 android:inputType="textPersonName"
-                android:selectAllOnFocus="true" />
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/Cognome"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="60dp"
-                android:layout_marginTop="40dp"
                 android:layout_alignTop="@id/Nome"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="60dp"
                 android:ems="10"
-                android:hint="Cognome *" />
+                android:hint="Cognome *"
+                android:singleLine="true"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/email"
@@ -63,6 +65,7 @@
                 android:ems="10"
                 android:hint="Email *"
                 android:inputType="textEmailAddress"
+                android:singleLine="true"
                 android:textColor="@color/black" />
 
             <EditText
@@ -87,8 +90,9 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginRight="60dp"
                 android:ems="10"
-                android:hint="Numero carta di credito"
+                android:hint="Numero carta di credito*"
                 android:inputType="number"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:visibility="invisible" />
 
@@ -101,8 +105,9 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginRight="60dp"
                 android:ems="10"
-                android:hint="Data di scadenza"
+                android:hint="Data di scadenza*"
                 android:inputType="date"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:visibility="invisible" />
 
@@ -115,8 +120,9 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginRight="60dp"
                 android:ems="10"
-                android:hint="Codice di sicurezza"
+                android:hint="Codice di sicurezza*"
                 android:inputType="number"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:visibility="invisible" />
 
