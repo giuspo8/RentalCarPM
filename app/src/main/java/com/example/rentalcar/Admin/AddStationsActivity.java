@@ -122,7 +122,7 @@ public class AddStationsActivity extends AppCompatActivity
         HttpURLConnection client = null;
         try {
             //passiamo soltanto il nome della stazione
-            URL url = new URL("http://rentalcar.altervista.org/elimina_stazioni.php?NomeStazione="+this.stationName);
+            URL url = new URL("http://rentalcar.altervista.org/elimina_stazioni.php?NomeStazione="+URLEncoder.encode(this.stationName,"UTF-8"));
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
             client.setDoInput(true);
