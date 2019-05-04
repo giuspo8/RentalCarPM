@@ -1,4 +1,4 @@
-package com.example.rentalcar;
+package com.example.rentalcar.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,10 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
+import com.example.rentalcar.LinkedReservationClasses.Reservation;
+import com.example.rentalcar.R;
+
 import java.util.List;
 
 public class ReservationAdapter extends ArrayAdapter {

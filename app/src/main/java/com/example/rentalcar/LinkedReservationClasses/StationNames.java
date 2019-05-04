@@ -1,4 +1,4 @@
-package com.example.rentalcar;
+package com.example.rentalcar.LinkedReservationClasses;
 
 public class StationNames {
     private String stationName;

@@ -1,4 +1,4 @@
-package com.example.rentalcar;
+package com.example.rentalcar.MainPathReservation;
 
 import android.app.Activity;
 import android.app.TimePickerDialog;
@@ -9,12 +9,8 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -25,20 +21,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.sql.Time;
+import com.example.rentalcar.Admin.AdminActivity;
+import com.example.rentalcar.LinkedReservationClasses.CalendarActivity;
+import com.example.rentalcar.LateralMenu.Contacts;
+import com.example.rentalcar.LateralMenu.EditReservation;
+import com.example.rentalcar.LateralMenu.Problems;
+import com.example.rentalcar.R;
+import com.example.rentalcar.LinkedReservationClasses.TimePickerFragment;
+import com.example.rentalcar.LateralMenu.faq;
+
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity
         editTextRetireStation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(MainActivity.this,FindStationActivity.class);
+                Intent i=new Intent(MainActivity.this, FindStationActivity.class);
                 startActivityForResult(i,REQUEST_CODE_STATIONRET);
             }
         });
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity
             //gestisce il click sull'icona del calendario del ritiro
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(MainActivity.this,CalendarActivity.class);//andiamo all'activity del calendario di ritiro
+                Intent i=new Intent(MainActivity.this, CalendarActivity.class);//andiamo all'activity del calendario di ritiro
                 startActivityForResult(i,REQUEST_CODE_CALENDAR);
             }
         });
@@ -308,16 +308,16 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent h=new Intent(MainActivity.this,EditReservation.class);
+            Intent h=new Intent(MainActivity.this, EditReservation.class);
             startActivity(h);
         } else if (id == R.id.nav_gallery) {
-            Intent h=new Intent(MainActivity.this,Contacts.class);
+            Intent h=new Intent(MainActivity.this, Contacts.class);
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-           Intent h=new Intent(MainActivity.this,Problems.class);
+           Intent h=new Intent(MainActivity.this, Problems.class);
             startActivity(h);
         } else if (id == R.id.nav_manage) {
-            Intent h=new Intent(MainActivity.this,faq.class);
+            Intent h=new Intent(MainActivity.this, faq.class);
             startActivity(h);
         }
         else if (id == R.id.ReturnHome) {
@@ -325,7 +325,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(MainActivity.this,AdminActivity.class);
+            Intent i=new Intent(MainActivity.this, AdminActivity.class);
             startActivity(i);
         }
 

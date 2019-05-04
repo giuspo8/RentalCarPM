@@ -1,4 +1,4 @@
-package com.example.rentalcar;
+package com.example.rentalcar.Adapters;
 
 import android.widget.BaseExpandableListAdapter;
 
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+
+import com.example.rentalcar.R;
 
 import java.util.HashMap;
 import java.util.List;
@@ -61,20 +63,25 @@ public class exlistview extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
+        //prende la domanda in posizione i
         String headerTitle = (String)getGroup(i);
+        //se la vista è nulla la facciamo noi facendo l'inflate
         if(view == null)
         {
             LayoutInflater inflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.list_group,null);
         }
+
         TextView lblListHeader = (TextView)view.findViewById(R.id.lblListHeader);
         lblListHeader.setTypeface(null, Typeface.BOLD);
+        //settiamo la domanda nella textview
         lblListHeader.setText(headerTitle);
         return view;
     }
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
+        //prende la risposta "il" corrispondente alla domanda i
         final String childText = (String)getChild(i,i1);
         if(view == null)
         {
@@ -83,6 +90,7 @@ public class exlistview extends BaseExpandableListAdapter {
         }
 
         TextView txtListChild = (TextView)view.findViewById(R.id.lblListItem);
+        //mettiamo la risposta nella textview, la textview è posta come espandibile (vedi layout)
         txtListChild.setText(childText);
         return view;
     }

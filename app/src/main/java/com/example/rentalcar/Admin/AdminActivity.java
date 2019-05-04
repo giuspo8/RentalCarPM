@@ -1,11 +1,8 @@
-package com.example.rentalcar;
+package com.example.rentalcar.Admin;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,19 +16,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.rentalcar.LateralMenu.Contacts;
+import com.example.rentalcar.LateralMenu.EditReservation;
+import com.example.rentalcar.LateralMenu.Problems;
+import com.example.rentalcar.LateralMenu.faq;
+import com.example.rentalcar.LinkedReservationClasses.ReadResponse;
+import com.example.rentalcar.MainPathReservation.MainActivity;
+import com.example.rentalcar.R;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.Iterator;
 
 public class AdminActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -132,15 +129,15 @@ public class AdminActivity extends AppCompatActivity
             //in base al valore della variabile flag
             else {
                 if (flag==0) {
-                    Intent i=new Intent(AdminActivity.this,ShowPrenotationsActivity.class);
+                    Intent i=new Intent(AdminActivity.this, ShowPrenotationsActivity.class);
                     startActivity(i);
                 }
                 else if (flag==1) {
-                    Intent i=new Intent(AdminActivity.this,AddStationsActivity.class);
+                    Intent i=new Intent(AdminActivity.this, AddStationsActivity.class);
                     startActivity(i);
                 }
                 else if(flag==2) {
-                    Intent i=new Intent(AdminActivity.this,AddRemoveCarActivity.class);
+                    Intent i=new Intent(AdminActivity.this, AddRemoveCarActivity.class);
                     startActivity(i);
                 }
             }
@@ -189,20 +186,20 @@ public class AdminActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent h=new Intent(AdminActivity.this,EditReservation.class);
+            Intent h=new Intent(AdminActivity.this, EditReservation.class);
             startActivity(h);
         } else if (id == R.id.nav_gallery) {
-            Intent h=new Intent(AdminActivity.this,Contacts.class);
+            Intent h=new Intent(AdminActivity.this, Contacts.class);
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-            Intent h=new Intent(AdminActivity.this,Problems.class);
+            Intent h=new Intent(AdminActivity.this, Problems.class);
             startActivity(h);
         } else if (id == R.id.nav_manage) {
-            Intent h=new Intent(AdminActivity.this,faq.class);
+            Intent h=new Intent(AdminActivity.this, faq.class);
             startActivity(h);
         }
         else if (id == R.id.ReturnHome) {
-            Intent h1=new Intent(AdminActivity.this,MainActivity.class);
+            Intent h1=new Intent(AdminActivity.this, MainActivity.class);
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {

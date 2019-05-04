@@ -1,10 +1,8 @@
-package com.example.rentalcar;
+package com.example.rentalcar.MainPathReservation;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -19,6 +17,16 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.rentalcar.Admin.AdminActivity;
+import com.example.rentalcar.LinkedReservationClasses.CarItem;
+import com.example.rentalcar.LateralMenu.Contacts;
+import com.example.rentalcar.Adapters.CustomAdapter;
+import com.example.rentalcar.LateralMenu.EditReservation;
+import com.example.rentalcar.LateralMenu.Problems;
+import com.example.rentalcar.R;
+import com.example.rentalcar.LinkedReservationClasses.ReadResponse;
+import com.example.rentalcar.LateralMenu.faq;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,13 +34,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
-import java.util.List;
-
-import static com.example.rentalcar.R.drawable.cinquecento;
 
 public class CarChoosing extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -66,7 +69,7 @@ public class CarChoosing extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 //passiamo i dati alla successiva activity
-                Intent i=new Intent(CarChoosing.this,RecapReservation.class);
+                Intent i=new Intent(CarChoosing.this, RecapReservation.class);
                 i.putExtra("model",carData.get(position).getCarName());
                 i.putExtra("image",carData.get(position).getResIdImage());
                 i.putExtra("class",carData.get(position).getClassCar());
@@ -248,24 +251,24 @@ public class CarChoosing extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent h=new Intent(CarChoosing.this,EditReservation.class);
+            Intent h=new Intent(CarChoosing.this, EditReservation.class);
             startActivity(h);
         } else if (id == R.id.nav_gallery) {
-            Intent h=new Intent(CarChoosing.this,Contacts.class);
+            Intent h=new Intent(CarChoosing.this, Contacts.class);
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-            Intent h=new Intent(CarChoosing.this,Problems.class);
+            Intent h=new Intent(CarChoosing.this, Problems.class);
             startActivity(h);
         } else if (id == R.id.nav_manage) {
-            Intent h=new Intent(CarChoosing.this,faq.class);
+            Intent h=new Intent(CarChoosing.this, faq.class);
             startActivity(h);
         }
         else if (id == R.id.ReturnHome) {
-            Intent h1=new Intent(CarChoosing.this,MainActivity.class);
+            Intent h1=new Intent(CarChoosing.this, MainActivity.class);
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(CarChoosing.this,AdminActivity.class);
+            Intent i=new Intent(CarChoosing.this, AdminActivity.class);
             startActivity(i);
         }
 

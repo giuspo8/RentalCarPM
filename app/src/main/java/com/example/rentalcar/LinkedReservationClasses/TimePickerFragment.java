@@ -1,4 +1,4 @@
-package com.example.rentalcar;
+package com.example.rentalcar.LinkedReservationClasses;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;

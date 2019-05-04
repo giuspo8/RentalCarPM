@@ -1,4 +1,4 @@
-package com.example.rentalcar;
+package com.example.rentalcar.LinkedReservationClasses;
 
 public class CreditCard {
     private String number;//numero carta di credito

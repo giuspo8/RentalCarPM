@@ -1,4 +1,4 @@
-package com.example.rentalcar;
+package com.example.rentalcar.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.rentalcar.LinkedReservationClasses.StationNames;
+import com.example.rentalcar.R;
 
 import java.util.ArrayList;
 import java.util.List;

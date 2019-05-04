@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ConfirmationReservationCard"
+    tools:context=".MainPathReservation.ConfirmationReservationCard"
     tools:showIn="@layout/app_bar_confirmation_reservation_card">
     <ScrollView
         android:layout_width="match_parent"

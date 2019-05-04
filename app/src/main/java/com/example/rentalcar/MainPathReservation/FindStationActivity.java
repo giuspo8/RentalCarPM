@@ -1,11 +1,9 @@
-package com.example.rentalcar;
+package com.example.rentalcar.MainPathReservation;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -21,14 +19,21 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.rentalcar.Admin.AdminActivity;
+import com.example.rentalcar.LateralMenu.Contacts;
+import com.example.rentalcar.LateralMenu.EditReservation;
+import com.example.rentalcar.Adapters.ListViewAdapter;
+import com.example.rentalcar.LateralMenu.Problems;
+import com.example.rentalcar.R;
+import com.example.rentalcar.LinkedReservationClasses.ReadResponse;
+import com.example.rentalcar.LinkedReservationClasses.StationNames;
+import com.example.rentalcar.LateralMenu.faq;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -69,7 +74,7 @@ public class FindStationActivity extends AppCompatActivity
                 //qui stiamo dicendo che quando clicchiamo su un oggetto della lista quello viene trascritto sulla searchview,
                 // con il metodo get ritorniamo l'elemento nella posizione position e con getStationName ritorniamo il valore dell'attributo
                 stationSearch.setQuery(StationArray.get(position).getStationName(),true);
-                Intent i=new Intent(FindStationActivity.this,MainActivity.class);
+                Intent i=new Intent(FindStationActivity.this, MainActivity.class);
                 String station= String.valueOf(stationSearch.getQuery());
                 i.putExtra("station",station);
                 setResult(Activity.RESULT_OK,i);
@@ -201,16 +206,16 @@ public class FindStationActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent h=new Intent(FindStationActivity.this,EditReservation.class);
+            Intent h=new Intent(FindStationActivity.this, EditReservation.class);
             startActivity(h);
         } else if (id == R.id.nav_gallery) {
-            Intent h=new Intent(FindStationActivity.this,Contacts.class);
+            Intent h=new Intent(FindStationActivity.this, Contacts.class);
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-            Intent h=new Intent(FindStationActivity.this,Problems.class);
+            Intent h=new Intent(FindStationActivity.this, Problems.class);
             startActivity(h);
         } else if (id == R.id.nav_manage) {
-            Intent h=new Intent(FindStationActivity.this,faq.class);
+            Intent h=new Intent(FindStationActivity.this, faq.class);
             startActivity(h);
         }
         else if (id == R.id.ReturnHome) {
@@ -218,7 +223,7 @@ public class FindStationActivity extends AppCompatActivity
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(FindStationActivity.this,AdminActivity.class);
+            Intent i=new Intent(FindStationActivity.this, AdminActivity.class);
             startActivity(i);
         }
 

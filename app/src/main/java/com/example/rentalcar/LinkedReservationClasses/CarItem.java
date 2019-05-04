@@ -1,4 +1,4 @@
-package com.example.rentalcar;
+package com.example.rentalcar.LinkedReservationClasses;
 
 //creiamo una classe CarItem con attributi caratteristici delle auto che vogliamo far visualizzare
 public class CarItem {

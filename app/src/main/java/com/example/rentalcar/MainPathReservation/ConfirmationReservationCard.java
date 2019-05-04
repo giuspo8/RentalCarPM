@@ -1,10 +1,7 @@
-package com.example.rentalcar;
+package com.example.rentalcar.MainPathReservation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -19,6 +16,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rentalcar.Admin.AdminActivity;
+import com.example.rentalcar.LateralMenu.Contacts;
+import com.example.rentalcar.LinkedReservationClasses.CreditCard;
+import com.example.rentalcar.LateralMenu.EditReservation;
+import com.example.rentalcar.LateralMenu.Problems;
+import com.example.rentalcar.R;
+import com.example.rentalcar.LinkedReservationClasses.ReadResponse;
+import com.example.rentalcar.LateralMenu.faq;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,8 +33,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Iterator;
 
 import static android.widget.Toast.LENGTH_LONG;
@@ -174,7 +178,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
                                 message8="Le auguriamo buon viaggio";
                                 //metodo per mandare email
                                 send_mail();
-                                Intent i=new Intent(ConfirmationReservationCard.this,EmailFinalActivity.class);
+                                Intent i=new Intent(ConfirmationReservationCard.this, EmailFinalActivity.class);
                                 startActivity(i);
                             }
                         }
@@ -409,24 +413,24 @@ public class ConfirmationReservationCard extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent h=new Intent(ConfirmationReservationCard.this,EditReservation.class);
+            Intent h=new Intent(ConfirmationReservationCard.this, EditReservation.class);
             startActivity(h);
         } else if (id == R.id.nav_gallery) {
-            Intent h=new Intent(ConfirmationReservationCard.this,Contacts.class);
+            Intent h=new Intent(ConfirmationReservationCard.this, Contacts.class);
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-            Intent h=new Intent(ConfirmationReservationCard.this,Problems.class);
+            Intent h=new Intent(ConfirmationReservationCard.this, Problems.class);
             startActivity(h);
         } else if (id == R.id.nav_manage) {
-            Intent h=new Intent(ConfirmationReservationCard.this,faq.class);
+            Intent h=new Intent(ConfirmationReservationCard.this, faq.class);
             startActivity(h);
         }
         else if (id == R.id.ReturnHome) {
-            Intent h1=new Intent(ConfirmationReservationCard.this,MainActivity.class);
+            Intent h1=new Intent(ConfirmationReservationCard.this, MainActivity.class);
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(ConfirmationReservationCard.this,AdminActivity.class);
+            Intent i=new Intent(ConfirmationReservationCard.this, AdminActivity.class);
             startActivity(i);
         }
 

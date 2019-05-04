@@ -1,9 +1,7 @@
-package com.example.rentalcar;
+package com.example.rentalcar.Admin;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,8 +12,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.rentalcar.LateralMenu.Contacts;
+import com.example.rentalcar.LateralMenu.EditReservation;
+import com.example.rentalcar.LateralMenu.Problems;
+import com.example.rentalcar.LateralMenu.faq;
+import com.example.rentalcar.LinkedReservationClasses.ReadResponse;
+import com.example.rentalcar.MainPathReservation.MainActivity;
+import com.example.rentalcar.R;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,73 +31,24 @@ import java.net.URLEncoder;
 
 import static android.widget.Toast.LENGTH_LONG;
 
-public class AddRemoveCarActivity extends AppCompatActivity
+public class AddStationsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-Button addCarButton;
-Button removeCarButton;
-EditText modelEt;
-EditText classEt;
-EditText shiftEt;
-EditText passengersEt;
-EditText priceEt;
-
-String model;
-String classCar;
-String shift;
-int passengers;
-double price;
+    Button addStation;
+    Button removeStation;
+    TextView stationEt;
+    String stationName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_remove_car);
+        setContentView(R.layout.activity_add_stations);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        addCarButton=findViewById(R.id.add_car_button);
-        removeCarButton=findViewById(R.id.remove_car_button);
-        modelEt=findViewById(R.id.add_model_car_et);
-        classEt=findViewById(R.id.add_class_car_et);
-        shiftEt=findViewById(R.id.add_shift_car_et);
-        passengersEt=findViewById(R.id.add_passengers_car_et);
-        priceEt=findViewById(R.id.add_price_car_et);
-
-        addCarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //se nessun campo è vuoto va avanti altrimenti parte un toast
-                if (modelEt.getText().toString().equals("")||classEt.getText().toString().equals("")||
-                        shiftEt.getText().toString().equals("")||passengersEt.getText().toString().equals("") ||
-                        priceEt.getText().toString().equals("")) {
-                    Toast.makeText(getApplicationContext(),"Per favore riempi tutti i campi!!",Toast.LENGTH_LONG).show();
-                }
-                else {
-                    //prende i valori e chiama il metodo add_car()
-                    model=modelEt.getText().toString();
-                    classCar=classEt.getText().toString();
-                    shift=shiftEt.getText().toString();
-                    passengers=Integer.parseInt(passengersEt.getText().toString());
-                    price=Double.parseDouble(priceEt.getText().toString());
-                    add_car();
-                }
-            }
-        });
-
-        removeCarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (modelEt.getText().toString().equals("")) {
-                    Toast.makeText(getApplicationContext(),"Per favore inserisci il nome del modello da cancellare!!",Toast.LENGTH_LONG).show();
-                }
-                else {
-                    //prende il valore del modello da cancellare e chiama il metodo remove_car()
-                    model=modelEt.getText().toString();
-                    remove_car();
-                }
-            }
-        });
-
+        addStation=findViewById(R.id.add_station_button);
+        removeStation=findViewById(R.id.remove_station_button);
+        stationEt=findViewById(R.id.add_station_et);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -101,17 +58,45 @@ double price;
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        addStation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //se il campo è vuoto parte un toast
+                if (stationEt.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(),"Per favore inserisci il nome della stazione da aggiungere",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    //altrimenti prende il nome della stazione e chiama il metodo add_station
+                    stationName=stationEt.getText().toString();
+                    add_station();
+                }
+            }
+        });
+
+        removeStation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //se il campo è vuoto parte un toast
+                if (stationEt.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(),"Per favore inserisci il nome della stazione da rimuovere",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    //altrimenti prende il nome della stazione e chiama il metodo remove_station
+                    stationName=stationEt.getText().toString();
+                    remove_station();
+                }
+
+            }
+        });
     }
 
-    private void add_car(){
+    public void add_station(){
         HttpURLConnection client = null;
         URL url;
         try {
             //sempre solita cosa
-            url = new URL("http://rentalcar.altervista.org/aggiungi_auto.php?Modello=" +
-                    URLEncoder.encode(this.model,"UTF-8")+"&Classe="+
-                    URLEncoder.encode(this.classCar,"UTF-8") +"&PrezzoGg="+
-                    this.price+"&Cambio="+this.shift+"&NrPasseggeri="+this.passengers);
+            url = new URL("http://rentalcar.altervista.org/aggiungi_stazioni.php?NomeStazione=" + URLEncoder.encode(this.stationName,"UTF-8"));
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
             client.setDoInput(true);
@@ -131,14 +116,13 @@ double price;
             }
         }
 
-
     }
 
-    private void remove_car(){
+    public void remove_station(){
         HttpURLConnection client = null;
         try {
-            //sempre solita cosa
-            URL url = new URL("http://rentalcar.altervista.org/elimina_auto.php?Modello="+URLEncoder.encode(this.model,"UTF-8"));
+            //passiamo soltanto il nome della stazione
+            URL url = new URL("http://rentalcar.altervista.org/elimina_stazioni.php?NomeStazione="+this.stationName);
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("GET");
             client.setDoInput(true);
@@ -146,7 +130,7 @@ double price;
             String json_string = ReadResponse.readStream(in).trim();
 
             if (json_string.equals("1")) {
-                Toast.makeText(this, "L'auto è stata eliminata!", LENGTH_LONG).show();
+                Toast.makeText(this, "La stazione è stata cancellata!", LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, "Errore nell'eliminazione", LENGTH_LONG).show();
             }
@@ -157,7 +141,6 @@ double price;
                 client.disconnect();
             }
         }
-
     }
 
     @Override
@@ -173,7 +156,7 @@ double price;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.add_remove_car, menu);
+        getMenuInflater().inflate(R.menu.add_stations, menu);
         return true;
     }
 
@@ -194,24 +177,24 @@ double price;
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent h=new Intent(AddRemoveCarActivity.this,EditReservation.class);
+            Intent h=new Intent(AddStationsActivity.this, EditReservation.class);
             startActivity(h);
         } else if (id == R.id.nav_gallery) {
-            Intent h=new Intent(AddRemoveCarActivity.this,Contacts.class);
+            Intent h=new Intent(AddStationsActivity.this, Contacts.class);
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-            Intent h=new Intent(AddRemoveCarActivity.this,Problems.class);
+            Intent h=new Intent(AddStationsActivity.this, Problems.class);
             startActivity(h);
         } else if (id == R.id.nav_manage) {
-            Intent h=new Intent(AddRemoveCarActivity.this,faq.class);
+            Intent h=new Intent(AddStationsActivity.this, faq.class);
             startActivity(h);
         }
         else if (id == R.id.ReturnHome) {
-            Intent h1=new Intent(AddRemoveCarActivity.this,MainActivity.class);
+            Intent h1=new Intent(AddStationsActivity.this, MainActivity.class);
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(AddRemoveCarActivity.this,AdminActivity.class);
+            Intent i=new Intent(AddStationsActivity.this, AdminActivity.class);
             startActivity(i);
         }
 

@@ -1,9 +1,7 @@
-package com.example.rentalcar;
+package com.example.rentalcar.MainPathReservation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,14 +14,20 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.rentalcar.Admin.AdminActivity;
+import com.example.rentalcar.LinkedReservationClasses.CarItem;
+import com.example.rentalcar.LateralMenu.Contacts;
+import com.example.rentalcar.Adapters.CustomAdapter;
+import com.example.rentalcar.LateralMenu.EditReservation;
+import com.example.rentalcar.LateralMenu.Problems;
+import com.example.rentalcar.R;
+import com.example.rentalcar.LateralMenu.faq;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.*;
 import java.util.concurrent.TimeUnit;
-
-import static java.time.temporal.ChronoUnit.DAYS;
 
 public class RecapReservation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -148,7 +152,7 @@ public class RecapReservation extends AppCompatActivity
             public void onClick(View view) {
                 //settiamo la variabile booleana payNow a true (quindi paghiamo ora) e la mettiamo nell'intent
                 boolean payNow=true;
-                Intent h1=new Intent(RecapReservation.this,ConfirmationReservationCard.class);
+                Intent h1=new Intent(RecapReservation.this, ConfirmationReservationCard.class);
                 h1.putExtra("dati_pre",dati_pre);
                 h1.putExtra("now",payNow);
                 startActivity(h1);
@@ -204,24 +208,24 @@ public class RecapReservation extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent h=new Intent(RecapReservation.this,EditReservation.class);
+            Intent h=new Intent(RecapReservation.this, EditReservation.class);
             startActivity(h);
         } else if (id == R.id.nav_gallery) {
-            Intent h=new Intent(RecapReservation.this,Contacts.class);
+            Intent h=new Intent(RecapReservation.this, Contacts.class);
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-            Intent h=new Intent(RecapReservation.this,Problems.class);
+            Intent h=new Intent(RecapReservation.this, Problems.class);
             startActivity(h);
         } else if (id == R.id.nav_manage) {
-            Intent h=new Intent(RecapReservation.this,faq.class);
+            Intent h=new Intent(RecapReservation.this, faq.class);
             startActivity(h);
         }
         else if (id == R.id.ReturnHome) {
-            Intent h1=new Intent(RecapReservation.this,MainActivity.class);
+            Intent h1=new Intent(RecapReservation.this, MainActivity.class);
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(RecapReservation.this,AdminActivity.class);
+            Intent i=new Intent(RecapReservation.this, AdminActivity.class);
             startActivity(i);
         }
 

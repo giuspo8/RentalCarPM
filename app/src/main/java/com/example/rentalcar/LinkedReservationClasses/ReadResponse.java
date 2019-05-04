@@ -1,4 +1,4 @@
-package com.example.rentalcar;
+package com.example.rentalcar.LinkedReservationClasses;
 
 import java.io.BufferedReader;
 import java.io.IOException;

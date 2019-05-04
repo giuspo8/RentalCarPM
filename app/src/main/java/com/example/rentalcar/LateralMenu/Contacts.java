@@ -1,10 +1,8 @@
-package com.example.rentalcar;
+package com.example.rentalcar.LateralMenu;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,8 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageButton;
-import android.widget.TextView;
+
+import com.example.rentalcar.MainPathReservation.MainActivity;
+import com.example.rentalcar.R;
 
 public class Contacts extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
@@ -120,20 +119,20 @@ public class Contacts extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent h=new Intent(Contacts.this,EditReservation.class);
+            Intent h=new Intent(Contacts.this, EditReservation.class);
             startActivity(h);
         } else if (id == R.id.nav_gallery) {
             Intent h=new Intent(Contacts.this,Contacts.class);
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-            Intent h=new Intent(Contacts.this,Problems.class);
+            Intent h=new Intent(Contacts.this, Problems.class);
             startActivity(h);
         } else if (id == R.id.nav_manage) {
-            Intent h=new Intent(Contacts.this,faq.class);
+            Intent h=new Intent(Contacts.this, faq.class);
             startActivity(h);
         }
         else if (id == R.id.ReturnHome) {
-            Intent h1=new Intent(Contacts.this,MainActivity.class);
+            Intent h1=new Intent(Contacts.this, MainActivity.class);
             startActivity(h1);
         }
 

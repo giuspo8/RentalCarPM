@@ -1,15 +1,11 @@
-package com.example.rentalcar;
+package com.example.rentalcar.LateralMenu;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -23,8 +19,16 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.rentalcar.Admin.AdminActivity;
+import com.example.rentalcar.LinkedReservationClasses.CarItem;
+import com.example.rentalcar.LinkedReservationClasses.ReadResponse;
+import com.example.rentalcar.LinkedReservationClasses.StationNames;
+import com.example.rentalcar.MainPathReservation.MainActivity;
+import com.example.rentalcar.R;
+import com.example.rentalcar.LinkedReservationClasses.Reservation;
+import com.example.rentalcar.Adapters.ReservationAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -86,7 +90,7 @@ public class EditReservation extends AppCompatActivity
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent h1=new Intent(EditReservation.this,MainActivity.class);
+                Intent h1=new Intent(EditReservation.this, MainActivity.class);
                 startActivity(h1);
             }
         });
@@ -296,13 +300,13 @@ public class EditReservation extends AppCompatActivity
             Intent h=new Intent(EditReservation.this,EditReservation.class);
             startActivity(h);
         } else if (id == R.id.nav_gallery) {
-            Intent h=new Intent(EditReservation.this,Contacts.class);
+            Intent h=new Intent(EditReservation.this, Contacts.class);
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-            Intent h=new Intent(EditReservation.this,Problems.class);
+            Intent h=new Intent(EditReservation.this, Problems.class);
             startActivity(h);
         } else if (id == R.id.nav_manage) {
-            Intent h=new Intent(EditReservation.this,faq.class);
+            Intent h=new Intent(EditReservation.this, faq.class);
             startActivity(h);
         }
         else if (id == R.id.ReturnHome) {
@@ -310,7 +314,7 @@ public class EditReservation extends AppCompatActivity
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(EditReservation.this,AdminActivity.class);
+            Intent i=new Intent(EditReservation.this, AdminActivity.class);
             startActivity(i);
         }
 

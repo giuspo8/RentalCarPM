@@ -1,9 +1,8 @@
-package com.example.rentalcar;
+package com.example.rentalcar.LateralMenu;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.os.StrictMode;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,27 +12,38 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Intent;
-import android.widget.ExpandableListView;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
-public class faq extends AppCompatActivity
+import com.example.rentalcar.Admin.AdminActivity;
+import com.example.rentalcar.LinkedReservationClasses.ReadResponse;
+import com.example.rentalcar.MainPathReservation.MainActivity;
+import com.example.rentalcar.R;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+
+import static android.widget.Toast.LENGTH_LONG;
+
+public class Problems extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private ExpandableListView listView;
-    private exlistview listAdapter;
-    private List<String> listDataHeader;
-    private HashMap<String,List<String>> listHash;
+
+    String text;
+    EditText editText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_faq);
+        setContentView(R.layout.activity_problems);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -43,28 +53,46 @@ public class faq extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        listView = (ExpandableListView)findViewById(R.id.lvEx);
-        //dichiarazione
-        listDataHeader = new ArrayList<>();
-        listHash = new HashMap<>();
-        //prendo le risposte e le metto in un vettore
-        String risp1[] = getResources().getStringArray(R.array.l_o);
-        //conversione da vettore a lista
-        List<String> domanda1 = Arrays.asList(risp1);
-        //aggiungo elementi alla lista
-        listDataHeader.add("Dopo aver prenotato, è possibile cambiare la macchina ?");
-        listDataHeader.add("Cosa succede se non si riconsegna la macchina in tempo ?");
-        //prendo le risposte e le metto in un vettore
-        String risp2[] = getResources().getStringArray(R.array.l_i);
-        //conversione da vettore a lista
-        List<String> domanda2 = Arrays.asList(risp2);
-        //metto tutto dentro la lista
-        listHash.put(listDataHeader.get(0),domanda1);
-        listHash.put(listDataHeader.get(1),domanda2);
-        listAdapter = new exlistview(this,listDataHeader,listHash);
-        //inserisco tutto dentro la listview
-        listView.setAdapter(listAdapter);
+
+        Button button= (Button)findViewById(R.id.button1);
+        editText=findViewById(R.id.editTextProblems);
+
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                text=editText.getText().toString();
+                insert_problem();
+            }
+        });
     }
+
+    public void insert_problem(){
+        HttpURLConnection client = null;
+        URL url;
+        try {
+            url = new URL("http://rentalcar.altervista.org/inserisci_problemi.php?Problema=" +
+                    URLEncoder.encode(this.text,"UTF-8")
+            );
+            client = (HttpURLConnection) url.openConnection();
+            client.setRequestMethod("GET");
+            client.setDoInput(true);
+            InputStream in = client.getInputStream();
+            String json_string = ReadResponse.readStream(in).trim();
+
+            if (json_string.equals("1")) {
+                Toast.makeText(this, "segnalazione inviata", LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Errore nell'inserimento", LENGTH_LONG).show();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (client != null) {
+                client.disconnect();
+            }
+        }
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -79,7 +107,7 @@ public class faq extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.faq, menu);
+        getMenuInflater().inflate(R.menu.problems, menu);
         return true;
     }
 
@@ -100,26 +128,26 @@ public class faq extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent h=new Intent(faq.this,EditReservation.class);
+            Intent h=new Intent(Problems.this, EditReservation.class);
             startActivity(h);
         } else if (id == R.id.nav_gallery) {
-            Intent h=new Intent(faq.this,Contacts.class);
+            Intent h=new Intent(Problems.this, Contacts.class);
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-
+            Intent h=new Intent(Problems.this,Problems.class);
+             startActivity(h);
         } else if (id == R.id.nav_manage) {
-            Intent h=new Intent(faq.this,faq.class);
+            Intent h=new Intent(Problems.this, faq.class);
             startActivity(h);
         }
         else if (id == R.id.ReturnHome) {
-            Intent h1=new Intent(faq.this,MainActivity.class);
+            Intent h1=new Intent(Problems.this, MainActivity.class);
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(faq.this,AdminActivity.class);
+            Intent i=new Intent(Problems.this, AdminActivity.class);
             startActivity(i);
         }
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -1,10 +1,6 @@
-package com.example.rentalcar;
+package com.example.rentalcar.LateralMenu;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,17 +9,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.Intent;
+import android.widget.ExpandableListView;
+import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-public class EmailFinalActivity extends AppCompatActivity
+import com.example.rentalcar.Admin.AdminActivity;
+import com.example.rentalcar.MainPathReservation.MainActivity;
+import com.example.rentalcar.R;
+import com.example.rentalcar.Adapters.exlistview;
+
+public class faq extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private ExpandableListView listView;
+    private exlistview listAdapter;
+    private List<String> listDataHeader;
+    private HashMap<String,List<String>> listHash;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_email_final);
+        setContentView(R.layout.activity_faq);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -33,6 +42,27 @@ public class EmailFinalActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        listView = (ExpandableListView)findViewById(R.id.lvEx);
+        //dichiarazione
+        listDataHeader = new ArrayList<>();
+        listHash = new HashMap<>();
+        //prendo le risposte e le metto in un vettore
+        String risp1[] = getResources().getStringArray(R.array.l_o);
+        //conversione da vettore a lista
+        List<String> domanda1 = Arrays.asList(risp1);
+        //aggiungo elementi alla lista
+        listDataHeader.add("Dopo aver prenotato, è possibile cambiare la macchina ?");
+        listDataHeader.add("Cosa succede se non si riconsegna la macchina in tempo ?");
+        //prendo le risposte e le metto in un vettore
+        String risp2[] = getResources().getStringArray(R.array.l_i);
+        //conversione da vettore a lista
+        List<String> domanda2 = Arrays.asList(risp2);
+        //metto tutto dentro la lista
+        listHash.put(listDataHeader.get(0),domanda1);
+        listHash.put(listDataHeader.get(1),domanda2);
+        listAdapter = new exlistview(this,listDataHeader,listHash);
+        //inserisco tutto dentro la listview
+        listView.setAdapter(listAdapter);
     }
 
     @Override
@@ -48,7 +78,7 @@ public class EmailFinalActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.email_final, menu);
+        getMenuInflater().inflate(R.menu.faq, menu);
         return true;
     }
 
@@ -69,26 +99,26 @@ public class EmailFinalActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent h=new Intent(EmailFinalActivity.this,EditReservation.class);
+            Intent h=new Intent(faq.this, EditReservation.class);
             startActivity(h);
         } else if (id == R.id.nav_gallery) {
-            Intent h=new Intent(EmailFinalActivity.this,Contacts.class);
+            Intent h=new Intent(faq.this, Contacts.class);
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-            Intent h=new Intent(EmailFinalActivity.this,Problems.class);
-            startActivity(h);
+
         } else if (id == R.id.nav_manage) {
-            Intent h=new Intent(EmailFinalActivity.this,faq.class);
+            Intent h=new Intent(faq.this,faq.class);
             startActivity(h);
         }
         else if (id == R.id.ReturnHome) {
-            Intent h1=new Intent(EmailFinalActivity.this,MainActivity.class);
+            Intent h1=new Intent(faq.this, MainActivity.class);
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(EmailFinalActivity.this,AdminActivity.class);
+            Intent i=new Intent(faq.this, AdminActivity.class);
             startActivity(i);
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

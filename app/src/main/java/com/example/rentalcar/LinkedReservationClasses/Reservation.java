@@ -1,4 +1,7 @@
-package com.example.rentalcar;
+package com.example.rentalcar.LinkedReservationClasses;
+
+import com.example.rentalcar.LinkedReservationClasses.CarItem;
+import com.example.rentalcar.LinkedReservationClasses.StationNames;
 
 public class Reservation {
     private int id;

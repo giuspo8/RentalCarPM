@@ -1,11 +1,9 @@
-package com.example.rentalcar;
+package com.example.rentalcar.Admin;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +18,17 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.rentalcar.Adapters.ReservationAdapter;
+import com.example.rentalcar.LateralMenu.Contacts;
+import com.example.rentalcar.LateralMenu.EditReservation;
+import com.example.rentalcar.LateralMenu.faq;
+import com.example.rentalcar.LinkedReservationClasses.CarItem;
+import com.example.rentalcar.LinkedReservationClasses.ReadResponse;
+import com.example.rentalcar.LinkedReservationClasses.Reservation;
+import com.example.rentalcar.LinkedReservationClasses.StationNames;
+import com.example.rentalcar.MainPathReservation.MainActivity;
+import com.example.rentalcar.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -249,23 +258,23 @@ public class ShowPrenotationsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent h=new Intent(ShowPrenotationsActivity.this,EditReservation.class);
+            Intent h=new Intent(ShowPrenotationsActivity.this, EditReservation.class);
             startActivity(h);
         } else if (id == R.id.nav_gallery) {
-            Intent h=new Intent(ShowPrenotationsActivity.this,Contacts.class);
+            Intent h=new Intent(ShowPrenotationsActivity.this, Contacts.class);
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
-            Intent h=new Intent(ShowPrenotationsActivity.this,faq.class);
+            Intent h=new Intent(ShowPrenotationsActivity.this, faq.class);
             startActivity(h);
         }
         else if (id == R.id.ReturnHome) {
-            Intent h1=new Intent(ShowPrenotationsActivity.this,MainActivity.class);
+            Intent h1=new Intent(ShowPrenotationsActivity.this, MainActivity.class);
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(ShowPrenotationsActivity.this,AdminActivity.class);
+            Intent i=new Intent(ShowPrenotationsActivity.this, AdminActivity.class);
             startActivity(i);
         }
 

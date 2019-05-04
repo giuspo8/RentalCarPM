@@ -1,9 +1,12 @@
-package com.example.rentalcar;
+package com.example.rentalcar.MainPathReservation;
 
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.rentalcar.MainPathReservation.MainActivity;
+import com.example.rentalcar.R;
 
 public class SplashActivity extends AppCompatActivity {
 

@@ -12,67 +12,67 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity" android:theme="@style/SplashTheme">
+        <activity android:name=".MainPathReservation.SplashActivity" android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddRemoveCarActivity"
+            android:name=".Admin.AddRemoveCarActivity"
             android:label="@string/title_activity_add_remove_car"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddStationsActivity"
+            android:name=".Admin.AddStationsActivity"
             android:label="@string/title_activity_add_stations"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".EmailFinalActivity"
+            android:name=".MainPathReservation.EmailFinalActivity"
             android:label="@string/title_activity_email_final"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ConfirmationReservationCard"
+            android:name=".MainPathReservation.ConfirmationReservationCard"
             android:label="@string/title_activity_confirmation_reservation_card"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ShowPrenotationsActivity"
+            android:name=".Admin.ShowPrenotationsActivity"
             android:label="@string/title_activity_show_prenotations"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AdminActivity"
+            android:name=".Admin.AdminActivity"
             android:label="@string/title_activity_admin"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".RecapReservation"
+            android:name=".MainPathReservation.RecapReservation"
             android:label="@string/title_activity_recap_reservation"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".EditReservation"
+            android:name=".LateralMenu.EditReservation"
             android:label="@string/title_activity_edit_reservation"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Problems"
+            android:name=".LateralMenu.Problems"
             android:label="@string/title_activity_problems"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".faq"
+            android:name=".LateralMenu.faq"
             android:label="@string/title_activity_faq"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".FindStationActivity"
+            android:name=".MainPathReservation.FindStationActivity"
             android:label="@string/title_activity_find_station"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Contacts"
+            android:name=".LateralMenu.Contacts"
             android:label="@string/title_activity_contacts"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CarChoosing"
+            android:name=".MainPathReservation.CarChoosing"
             android:label="@string/title_activity_car_choosing"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CalendarActivity" />
+        <activity android:name=".LinkedReservationClasses.CalendarActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".MainPathReservation.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
