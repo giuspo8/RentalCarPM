@@ -53,13 +53,37 @@ public class faq extends AppCompatActivity
         //aggiungo elementi alla lista
         listDataHeader.add("Dopo aver prenotato, è possibile cambiare la macchina ?");
         listDataHeader.add("Cosa succede se non si riconsegna la macchina in tempo ?");
+        listDataHeader.add("Di cosa ho bisogno per noleggiare un' auto ?");
+        listDataHeader.add("Cosa faccio se mi si rompe la macchina ?");
+        listDataHeader.add("Posso prenotare un' auto per conto di qualcun altro ?");
+        listDataHeader.add("E' tutto incluso nel prezzo del noleggio ?");
         //prendo le risposte e le metto in un vettore
         String risp2[] = getResources().getStringArray(R.array.l_i);
         //conversione da vettore a lista
         List<String> domanda2 = Arrays.asList(risp2);
+        //prendo le risposte e le metto in un vettore
+        String risp3[] = getResources().getStringArray(R.array.l_iop);
+        //conversione da vettore a lista
+        List<String> domanda3 = Arrays.asList(risp3);
+        //prendo le risposte e le metto in un vettore
+        String risp4[] = getResources().getStringArray(R.array.l_iok);
+        //conversione da vettore a lista
+        List<String> domanda4 = Arrays.asList(risp4);
+        //prendo le risposte e le metto in un vettore
+        String risp5[] = getResources().getStringArray(R.array.l_iopl);
+        //conversione da vettore a lista
+        List<String> domanda5 = Arrays.asList(risp5);
+        //prendo le risposte e le metto in un vettore
+        String risp6[] = getResources().getStringArray(R.array.l_ioplp);
+        //conversione da vettore a lista
+        List<String> domanda6 = Arrays.asList(risp6);
         //metto tutto dentro la lista
         listHash.put(listDataHeader.get(0),domanda1);
         listHash.put(listDataHeader.get(1),domanda2);
+        listHash.put(listDataHeader.get(2),domanda3);
+        listHash.put(listDataHeader.get(3),domanda4);
+        listHash.put(listDataHeader.get(4),domanda5);
+        listHash.put(listDataHeader.get(5),domanda6);
         listAdapter = new exlistview(this,listDataHeader,listHash);
         //inserisco tutto dentro la listview
         listView.setAdapter(listAdapter);

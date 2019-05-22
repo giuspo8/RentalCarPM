@@ -19,6 +19,18 @@
     <string-array name="l_i">
         <item>Il cliente verrà contattato.</item>
     </string-array>
+    <string-array name="l_iop">
+        <item>Per prenotare un auto, serve una carta di credito</item>
+    </string-array>
+    <string-array name="l_iok">
+        <item>Devi chiamarci e noi ti veniamo a prendere</item>
+    </string-array>
+    <string-array name="l_iopl">
+        <item>No non è possibile</item>
+    </string-array>
+    <string-array name="l_ioplp">
+        <item>sì è tutto incluso</item>
+    </string-array>
     <string name="title_activity_problems">Problemi</string>
     <string name="title_activity_edit_reservation">Gestione</string>
     <string name="title_activity_recap_reservation">Riepilogo</string>
