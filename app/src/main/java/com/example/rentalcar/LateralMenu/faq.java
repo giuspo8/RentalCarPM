@@ -52,7 +52,7 @@ public class faq extends AppCompatActivity
         List<String> domanda1 = Arrays.asList(risp1);
         //aggiungo elementi alla lista
         listDataHeader.add("Dopo aver prenotato, è possibile cambiare la macchina ?");
-        listDataHeader.add("Cosa succede se non si riconsegna la macchina in tempo ?");
+        listDataHeader.add("Cosa succede se non si riconsegna la macchina ?");
         listDataHeader.add("Di cosa ho bisogno per noleggiare un' auto ?");
         listDataHeader.add("Cosa faccio se mi si rompe la macchina ?");
         listDataHeader.add("Posso prenotare un' auto per conto di qualcun altro ?");
