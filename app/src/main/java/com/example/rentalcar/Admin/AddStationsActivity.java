@@ -194,7 +194,7 @@ public class AddStationsActivity extends AppCompatActivity
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(AddStationsActivity.this, AdminActivity.class);
+            Intent i=new Intent(AddStationsActivity.this, Admin_log.class);
             startActivity(i);
         }
 

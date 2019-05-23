@@ -17,7 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.rentalcar.Admin.AdminActivity;
+import com.example.rentalcar.Admin.Admin_log;
 import com.example.rentalcar.LinkedReservationClasses.CarItem;
 import com.example.rentalcar.LateralMenu.Contacts;
 import com.example.rentalcar.Adapters.CustomAdapter;
@@ -268,7 +268,7 @@ public class CarChoosing extends AppCompatActivity
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(CarChoosing.this, AdminActivity.class);
+            Intent i=new Intent(CarChoosing.this, Admin_log.class);
             startActivity(i);
         }
 

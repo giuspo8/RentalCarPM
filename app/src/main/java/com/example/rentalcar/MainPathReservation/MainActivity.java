@@ -28,7 +28,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.rentalcar.Admin.AdminActivity;
+import com.example.rentalcar.Admin.Admin_log;
 import com.example.rentalcar.LinkedReservationClasses.CalendarActivity;
 import com.example.rentalcar.LateralMenu.Contacts;
 import com.example.rentalcar.LateralMenu.EditReservation;
@@ -325,7 +325,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(MainActivity.this, AdminActivity.class);
+            Intent i=new Intent(MainActivity.this, Admin_log.class);
             startActivity(i);
         }
 

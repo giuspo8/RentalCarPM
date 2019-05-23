@@ -13,11 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Admin_button"
+            android:name=".Admin.Admin_button"
             android:label="@string/title_activity_admin_button"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".Admin_log"
+            android:name=".Admin.Admin_log"
             android:label="@string/title_activity_admin_log"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -48,10 +48,6 @@
         <activity
             android:name=".Admin.ShowPrenotationsActivity"
             android:label="@string/title_activity_show_prenotations"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Admin.AdminActivity"
-            android:label="@string/title_activity_admin"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainPathReservation.RecapReservation"

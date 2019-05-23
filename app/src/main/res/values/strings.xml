@@ -17,13 +17,13 @@
         <item>No, non è possibile.</item>
     </string-array>
     <string-array name="l_i">
-        <item>Il cliente verrà contattato.</item>
+        <item>Verrà contattato.</item>
     </string-array>
     <string-array name="l_iop">
         <item>Per prenotare un auto, serve una carta di credito</item>
     </string-array>
     <string-array name="l_iok">
-        <item>Devi chiamarci e noi ti veniamo a prendere</item>
+        <item>Deve chiamarci e noi La veniamo a prendere</item>
     </string-array>
     <string-array name="l_iopl">
         <item>No non è possibile</item>
@@ -35,13 +35,13 @@
     <string name="title_activity_edit_reservation">Gestione</string>
     <string name="title_activity_recap_reservation">Riepilogo</string>
     <string name="title_activity_confirmation_reservation">Pagamento</string>
-    <string name="title_activity_admin">Admin</string>
+    <string name="title_activity_admin_log">Area Amministratore</string>
     <string name="title_activity_show_prenotations">Prenotazioni</string>
     <string name="title_activity_confirmation_reservation_card">Pagamento</string>
     <string name="title_activity_email_final">e-mail</string>
     <string name="title_activity_add_stations">Stazioni</string>
     <string name="title_activity_add_remove_car">Auto</string>
-    <string name="title_activity_admin_log">Admin_log</string>
+    <string name="title_activity_admin_button">Area Amministratore</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
@@ -49,5 +49,5 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
-    <string name="title_activity_admin_button">Admin_button</string>
+
 </resources>

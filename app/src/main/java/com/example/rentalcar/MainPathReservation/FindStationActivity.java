@@ -19,7 +19,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.example.rentalcar.Admin.AdminActivity;
+import com.example.rentalcar.Admin.Admin_log;
 import com.example.rentalcar.LateralMenu.Contacts;
 import com.example.rentalcar.LateralMenu.EditReservation;
 import com.example.rentalcar.Adapters.ListViewAdapter;
@@ -223,7 +223,7 @@ public class FindStationActivity extends AppCompatActivity
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(FindStationActivity.this, AdminActivity.class);
+            Intent i=new Intent(FindStationActivity.this, Admin_log.class);
             startActivity(i);
         }
 

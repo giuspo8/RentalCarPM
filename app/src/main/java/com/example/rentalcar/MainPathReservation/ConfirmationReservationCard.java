@@ -16,7 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.rentalcar.Admin.AdminActivity;
+import com.example.rentalcar.Admin.Admin_log;
 import com.example.rentalcar.LateralMenu.Contacts;
 import com.example.rentalcar.LinkedReservationClasses.CreditCard;
 import com.example.rentalcar.LateralMenu.EditReservation;
@@ -430,7 +430,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(ConfirmationReservationCard.this, AdminActivity.class);
+            Intent i=new Intent(ConfirmationReservationCard.this, Admin_log.class);
             startActivity(i);
         }
 

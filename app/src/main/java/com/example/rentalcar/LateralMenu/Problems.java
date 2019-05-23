@@ -16,7 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.rentalcar.Admin.AdminActivity;
+import com.example.rentalcar.Admin.Admin_log;
 import com.example.rentalcar.LinkedReservationClasses.ReadResponse;
 import com.example.rentalcar.MainPathReservation.MainActivity;
 import com.example.rentalcar.R;
@@ -145,7 +145,7 @@ public class Problems extends AppCompatActivity
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(Problems.this, AdminActivity.class);
+            Intent i=new Intent(Problems.this, Admin_log.class);
             startActivity(i);
         }
 

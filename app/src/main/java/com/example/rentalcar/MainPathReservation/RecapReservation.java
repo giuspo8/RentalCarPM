@@ -15,7 +15,7 @@ import android.widget.ListView;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.rentalcar.Admin.AdminActivity;
+import com.example.rentalcar.Admin.Admin_log;
 import com.example.rentalcar.LinkedReservationClasses.CarItem;
 import com.example.rentalcar.LateralMenu.Contacts;
 import com.example.rentalcar.Adapters.CustomAdapter;
@@ -225,7 +225,7 @@ public class RecapReservation extends AppCompatActivity
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(RecapReservation.this, AdminActivity.class);
+            Intent i=new Intent(RecapReservation.this, Admin_log.class);
             startActivity(i);
         }
 

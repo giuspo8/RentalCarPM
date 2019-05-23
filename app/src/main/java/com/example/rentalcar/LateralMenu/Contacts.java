@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.rentalcar.Admin.Admin_log;
 import com.example.rentalcar.MainPathReservation.MainActivity;
 import com.example.rentalcar.R;
 
@@ -134,6 +135,10 @@ public class Contacts extends AppCompatActivity
         else if (id == R.id.ReturnHome) {
             Intent h1=new Intent(Contacts.this, MainActivity.class);
             startActivity(h1);
+        }
+        else if (id == R.id.nav_admin) {
+            Intent i=new Intent(Contacts.this, Admin_log.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

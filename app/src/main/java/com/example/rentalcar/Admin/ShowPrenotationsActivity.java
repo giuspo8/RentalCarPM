@@ -274,7 +274,7 @@ public class ShowPrenotationsActivity extends AppCompatActivity
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(ShowPrenotationsActivity.this, AdminActivity.class);
+            Intent i=new Intent(ShowPrenotationsActivity.this, Admin_log.class);
             startActivity(i);
         }
 

@@ -11,7 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.rentalcar.Admin.AdminActivity;
+import com.example.rentalcar.Admin.Admin_log;
 import com.example.rentalcar.LateralMenu.Contacts;
 import com.example.rentalcar.LateralMenu.EditReservation;
 import com.example.rentalcar.LateralMenu.Problems;
@@ -90,7 +90,7 @@ public class EmailFinalActivity extends AppCompatActivity
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(EmailFinalActivity.this, AdminActivity.class);
+            Intent i=new Intent(EmailFinalActivity.this, Admin_log.class);
             startActivity(i);
         }
 

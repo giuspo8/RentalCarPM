@@ -21,7 +21,7 @@ import android.widget.ListView;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.rentalcar.Admin.AdminActivity;
+import com.example.rentalcar.Admin.Admin_log;
 import com.example.rentalcar.LinkedReservationClasses.CarItem;
 import com.example.rentalcar.LinkedReservationClasses.ReadResponse;
 import com.example.rentalcar.LinkedReservationClasses.StationNames;
@@ -314,7 +314,7 @@ public class EditReservation extends AppCompatActivity
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(EditReservation.this, AdminActivity.class);
+            Intent i=new Intent(EditReservation.this, Admin_log.class);
             startActivity(i);
         }
 

@@ -217,7 +217,7 @@ double price;
             startActivity(h1);
         }
         else if (id == R.id.nav_admin) {
-            Intent i=new Intent(AddRemoveCarActivity.this, AdminActivity.class);
+            Intent i=new Intent(AddRemoveCarActivity.this, Admin_log.class);
             startActivity(i);
         }
 
