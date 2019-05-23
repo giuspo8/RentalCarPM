@@ -133,7 +133,8 @@ public class faq extends AppCompatActivity
             Intent h=new Intent(faq.this, Contacts.class);
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-
+            Intent h=new Intent(faq.this, Problems.class);
+            startActivity(h);
         } else if (id == R.id.nav_manage) {
             Intent h=new Intent(faq.this,faq.class);
             startActivity(h);

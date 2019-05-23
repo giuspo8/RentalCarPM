@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class ReadResponse {
-//metodo che consente di prendere in ingresso lo stream di input e metterlo in una certa forma
+    //metodo che consente di prendere in ingresso lo stream di input e metterlo in una certa forma
     public static String readStream(InputStream in) throws IOException {
         BufferedReader r = new BufferedReader(new InputStreamReader(in));
         StringBuilder total = new StringBuilder();

@@ -197,8 +197,8 @@ public class ConfirmationReservationCard extends AppCompatActivity
                         message6="Restituzione: "+stazione_resti+" "+restituzione;
                         message7=model+"   "+totalPrice+" euro";
                         message8="Le auguriamo buon viaggio";
-                            //metodo per mandare email
-                            send_mail();
+                        //metodo per mandare email
+                        send_mail();
 
                         //andiamo all activity finale
                         Intent i=new Intent(ConfirmationReservationCard.this,EmailFinalActivity.class);
@@ -375,7 +375,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
 
     private boolean confirm_credit_card(CreditCard cd,double price){
         if (cd.getPayment(price))
-        return true;
+            return true;
         else return false;
     }
 

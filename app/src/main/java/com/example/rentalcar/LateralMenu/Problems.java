@@ -135,7 +135,7 @@ public class Problems extends AppCompatActivity
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
             Intent h=new Intent(Problems.this,Problems.class);
-             startActivity(h);
+            startActivity(h);
         } else if (id == R.id.nav_manage) {
             Intent h=new Intent(Problems.this, faq.class);
             startActivity(h);

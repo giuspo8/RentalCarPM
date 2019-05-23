@@ -215,35 +215,35 @@ public class EditReservation extends AppCompatActivity
         //il metodo keys() ci ritorna un iteratore di una collezione di oggetti
         Iterator<String> iter = json_data.keys();
         //metodo hasNext() ritorna true se ci sono ancora elementi
-            while (iter.hasNext()) {
-                //metodo next() ritorna il prossimo elemento nell'iteratore (la chiave)
-                String key = iter.next();
-                try {
-                    //ritorna il valore corrispondente alla chiave key
-                    JSONObject value = json_data.getJSONObject(key);
-                    int id2=value.getInt("ID");
-                    //leggiamo tutti gli elementi tramite le loro etichette
-                    String RetStation=value.getString("StazioneRit");
-                    StationNames sRet=new StationNames(RetStation);
-                    String RestStation=value.getString("StazioneRic");
-                    StationNames sRec=new StationNames(RestStation);
-                    String dataRitiro=value.getString("DataRitiro");
-                    String dataRiconsegna=value.getString("DataRestituzione");
-                    String email=value.getString("Email");
-                    String car=value.getString("Macchina");
-                    CarItem c=new CarItem(car);
-                    int payment=value.getInt("Pagamento");
-                    double price=value.getDouble("Prezzo");
+        while (iter.hasNext()) {
+            //metodo next() ritorna il prossimo elemento nell'iteratore (la chiave)
+            String key = iter.next();
+            try {
+                //ritorna il valore corrispondente alla chiave key
+                JSONObject value = json_data.getJSONObject(key);
+                int id2=value.getInt("ID");
+                //leggiamo tutti gli elementi tramite le loro etichette
+                String RetStation=value.getString("StazioneRit");
+                StationNames sRet=new StationNames(RetStation);
+                String RestStation=value.getString("StazioneRic");
+                StationNames sRec=new StationNames(RestStation);
+                String dataRitiro=value.getString("DataRitiro");
+                String dataRiconsegna=value.getString("DataRestituzione");
+                String email=value.getString("Email");
+                String car=value.getString("Macchina");
+                CarItem c=new CarItem(car);
+                int payment=value.getInt("Pagamento");
+                double price=value.getDouble("Prezzo");
 
-                    //creiamo un nuovo oggetto Reservation e lo istanziamo con tutti i valori ottenuti
-                    Reservation r=new Reservation(id2,sRet,sRec,c,email,dataRitiro,dataRiconsegna,payment,price);
-                    //lo aggiungiamo nell Arraylist
-                    pArrayList.add(r);
-                } catch (JSONException e) {
-                    Toast.makeText(this,"ERRORE",Toast.LENGTH_LONG).show();
-                    // Something went wrong!
-                }
+                //creiamo un nuovo oggetto Reservation e lo istanziamo con tutti i valori ottenuti
+                Reservation r=new Reservation(id2,sRet,sRec,c,email,dataRitiro,dataRiconsegna,payment,price);
+                //lo aggiungiamo nell Arraylist
+                pArrayList.add(r);
+            } catch (JSONException e) {
+                Toast.makeText(this,"ERRORE",Toast.LENGTH_LONG).show();
+                // Something went wrong!
             }
+        }
         //utilizziamo un adapter di una classe fatta da noi
         adapter=new ReservationAdapter(this,R.layout.reservation_item_row,pArrayList);
         //settiamo la listview all'adapter

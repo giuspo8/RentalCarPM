@@ -47,8 +47,8 @@ public class Admin_button extends AppCompatActivity
         buttonReservationAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent i=new Intent(Admin_button.this, ShowPrenotationsActivity.class);
-            startActivity(i);
+                Intent i=new Intent(Admin_button.this, ShowPrenotationsActivity.class);
+                startActivity(i);
             }
         });
 

@@ -75,18 +75,15 @@ public class MainActivity extends AppCompatActivity
 
     Date dateRetire;
     Date dateRestitution;
+    boolean isConnected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //questo oggetto connectivitymanager ci serve per valutare lo stato della connessione
-        ConnectivityManager cm = (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         //salviamo in una variabile booleana true se c'è connessione false altrimenti
-        boolean isConnected = (activeNetwork!= null) && (activeNetwork.isConnectedOrConnecting());
+        isConnected = check_connection();
         //se non siamo connessi mostriamo la snackbar
         if (!isConnected) {
             show_snackbar();
@@ -107,16 +104,30 @@ public class MainActivity extends AppCompatActivity
         editTextRetireStation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(MainActivity.this, FindStationActivity.class);
-                startActivityForResult(i,REQUEST_CODE_STATIONRET);
+                isConnected = check_connection();
+                //se non siamo connessi mostriamo la snackbar
+                if (!isConnected) {
+                    show_snackbar();
+                }
+                else {
+                    Intent i = new Intent(MainActivity.this, FindStationActivity.class);
+                    startActivityForResult(i, REQUEST_CODE_STATIONRET);
+                }
             }
         });
 
         editTextRestitutionStation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(MainActivity.this,FindStationActivity.class);
-                startActivityForResult(i,REQUEST_CODE_STATIONRES);
+                isConnected = check_connection();
+                //se non siamo connessi mostriamo la snackbar
+                if (!isConnected) {
+                    show_snackbar();
+                }
+                else {
+                    Intent i = new Intent(MainActivity.this, FindStationActivity.class);
+                    startActivityForResult(i, REQUEST_CODE_STATIONRES);
+                }
             }
         });
 
@@ -124,16 +135,29 @@ public class MainActivity extends AppCompatActivity
             //gestisce il click sull'icona del calendario del ritiro
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(MainActivity.this, CalendarActivity.class);//andiamo all'activity del calendario di ritiro
-                startActivityForResult(i,REQUEST_CODE_CALENDAR);
+                isConnected = check_connection();
+                //se non siamo connessi mostriamo la snackbar
+                if (!isConnected) {
+                    show_snackbar();
+                }
+                else {
+                    Intent i = new Intent(MainActivity.this, CalendarActivity.class);//andiamo all'activity del calendario di ritiro
+                    startActivityForResult(i, REQUEST_CODE_CALENDAR);
+                }
             }
         });
         btnCalendarRestitution.setOnClickListener(new View.OnClickListener() {
             //gestisce il click sull'icona del calendario della riconsegna
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(MainActivity.this,CalendarActivity.class);
-                startActivityForResult(i,REQUEST_CODE_CALENDAR2);//gli diamo un request code diverso per discriminarlo dall'altro
+                isConnected = check_connection();
+                //se non siamo connessi mostriamo la snackbar
+                if (!isConnected) {
+                    show_snackbar();
+                } else {
+                    Intent i = new Intent(MainActivity.this, CalendarActivity.class);
+                    startActivityForResult(i, REQUEST_CODE_CALENDAR2);//gli diamo un request code diverso per discriminarlo dall'altro
+                }
             }
         });
         btnTimeRetire.setOnClickListener(new View.OnClickListener() {
@@ -163,31 +187,36 @@ public class MainActivity extends AppCompatActivity
                     show("E' necessario riempire tutti i campi.");//richiama il metodo creato da me che fa il toast
                 }
                 else {
-                    Intent i = new Intent(MainActivity.this, CarChoosing.class);
-                    //costruiamo una stringa in modo da formattare la data e l'orario di ritiro e restituzione
-                    String retire = textCalendarRetire.getText().toString()+
-                            " "+textHourRetire.getText().toString()+":00";
-                    String restitutionday = textCalendarRestitution.getText().toString()+
-                            " "+textHourRestitution.getText().toString()+":00";
-                    //e li mettiamo entrambi nel bundle
-                    search.putString("data ritiro",retire);
-                    search.putString("data restituzione",restitutionday);
-                    //li formattiamo in modo da avere due elementi di tipo Date
-                    try {
-                        dateRetire = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(retire);
-                        dateRestitution = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(restitutionday);
-                    }
-                    catch (Exception e){
-                        show("Errore nel parsing");
-                    }
-                    //se la data di ritiro è posteriore a quella si riconsegna manda un toast e non va avanti
-                    if (dateRetire.after(dateRestitution)){
-                        show("Errore: inserire una data di ritiro antecedente alla data di riconsegna.");
-                    }
-                    //altrimenti va all'activity successiva
-                    else{
-                        i.putExtra("search",search);//metto i dati della prenotazione del bundle nell'intent
-                        startActivity(i);
+                    isConnected = check_connection();
+                    //se non siamo connessi mostriamo la snackbar
+                    if (!isConnected) {
+                        show_snackbar();
+                    } else {
+                        Intent i = new Intent(MainActivity.this, CarChoosing.class);
+                        //costruiamo una stringa in modo da formattare la data e l'orario di ritiro e restituzione
+                        String retire = textCalendarRetire.getText().toString() +
+                                " " + textHourRetire.getText().toString() + ":00";
+                        String restitutionday = textCalendarRestitution.getText().toString() +
+                                " " + textHourRestitution.getText().toString() + ":00";
+                        //e li mettiamo entrambi nel bundle
+                        search.putString("data ritiro", retire);
+                        search.putString("data restituzione", restitutionday);
+                        //li formattiamo in modo da avere due elementi di tipo Date
+                        try {
+                            dateRetire = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(retire);
+                            dateRestitution = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(restitutionday);
+                        } catch (Exception e) {
+                            show("Errore nel parsing");
+                        }
+                        //se la data di ritiro è posteriore a quella si riconsegna manda un toast e non va avanti
+                        if (dateRetire.after(dateRestitution)) {
+                            show("Errore: inserire una data di ritiro antecedente alla data di riconsegna.");
+                        }
+                        //altrimenti va all'activity successiva
+                        else {
+                            i.putExtra("search", search);//metto i dati della prenotazione del bundle nell'intent
+                            startActivity(i);
+                        }
                     }
                 }
             }
@@ -198,12 +227,19 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    public boolean check_connection(){
+        //questo oggetto connectivitymanager ci serve per valutare lo stato della connessione
+        ConnectivityManager cm = (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return (activeNetwork!= null) && (activeNetwork.isConnectedOrConnecting());
     }
 
     public void show(String message){
@@ -314,7 +350,7 @@ public class MainActivity extends AppCompatActivity
             Intent h=new Intent(MainActivity.this, Contacts.class);
             startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-           Intent h=new Intent(MainActivity.this, Problems.class);
+            Intent h=new Intent(MainActivity.this, Problems.class);
             startActivity(h);
         } else if (id == R.id.nav_manage) {
             Intent h=new Intent(MainActivity.this, faq.class);

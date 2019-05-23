@@ -34,19 +34,19 @@ import static android.widget.Toast.LENGTH_LONG;
 public class AddRemoveCarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-Button addCarButton;
-Button removeCarButton;
-EditText modelEt;
-EditText classEt;
-EditText shiftEt;
-EditText passengersEt;
-EditText priceEt;
+    Button addCarButton;
+    Button removeCarButton;
+    EditText modelEt;
+    EditText classEt;
+    EditText shiftEt;
+    EditText passengersEt;
+    EditText priceEt;
 
-String model;
-String classCar;
-String shift;
-int passengers;
-double price;
+    String model;
+    String classCar;
+    String shift;
+    int passengers;
+    double price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

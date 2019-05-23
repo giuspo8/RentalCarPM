@@ -27,7 +27,7 @@ public class CustomAdapter extends ArrayAdapter {
         this.context=context;
         this.data=objects;
     }
-//la classe dataHolder ha i seguenti attributi
+    //la classe dataHolder ha i seguenti attributi
     static class DataHolder{
         ImageView ivImage;
         TextView tvCarName;
