@@ -62,15 +62,7 @@ public class Admin_log extends AppCompatActivity
             public void onClick(View v) {
                 email = editTextEmail.getText().toString();
                 password = editTextPassword.getText().toString();
-                boolean b1 = Pattern.matches("@", email);
-                boolean b2 = Pattern.matches(".", email);
-                if (!b1 || !b2)
-                {
-                    Toast.makeText(getApplicationContext(),"E-mail non corretta.",LENGTH_LONG).show();
-                }
-                else {
-                    check_authentication();
-                }
+                check_authentication();
             }
         });
 
