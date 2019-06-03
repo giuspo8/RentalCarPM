@@ -225,12 +225,15 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //menu laterale
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
+        //sincronizza lo stato del drawer con il drawerlaout collegato
         toggle.syncState();
 
+        //posta all'interno del drawer
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
@@ -313,8 +316,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //se il menu laterale è aperto lo chiude
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+            //altrimenti usa il metodo della superclasse
         } else {
             super.onBackPressed();
         }
@@ -329,9 +334,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // non serve più in realtà in quanto abbiamo tolto l'action bar
         int id = item.getItemId();
 
         return super.onOptionsItemSelected(item);
@@ -340,7 +343,7 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+        // metodo chiamato quando viene selezionato un elemento dal menu
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
@@ -366,6 +369,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //quando clicchi su un elemento del menu ovviamente quest'ultimo si chiude
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

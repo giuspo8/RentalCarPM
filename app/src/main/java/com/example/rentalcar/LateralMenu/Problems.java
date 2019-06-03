@@ -62,6 +62,8 @@ public class Problems extends AppCompatActivity
             public void onClick(View view) {
                 text=editText.getText().toString();
                 insert_problem();
+                Intent i=new Intent(Problems.this,MainActivity.class);
+                startActivity(i);
             }
         });
     }

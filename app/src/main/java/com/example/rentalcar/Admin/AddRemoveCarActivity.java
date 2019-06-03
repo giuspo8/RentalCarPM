@@ -122,6 +122,7 @@ public class AddRemoveCarActivity extends AppCompatActivity
             client.setRequestMethod("GET");
             client.setDoInput(true);
             InputStream in = client.getInputStream();
+            //
             String json_string = ReadResponse.readStream(in).trim();
 
             if (json_string.equals("1")) {
