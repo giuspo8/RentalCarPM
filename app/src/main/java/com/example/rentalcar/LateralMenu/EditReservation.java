@@ -126,7 +126,15 @@ public class EditReservation extends AppCompatActivity
                     //e a caricare sull arraylist
                     email=emaileEt.getText().toString();
                     id=Integer.parseInt(idEt.getText().toString());
-                    read_reservation();
+                    if (email.contains("@") && email.contains(".") && !email.contains("\"") && !email.contains(" "))
+                    {
+                        read_reservation();
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(),"E-mail non corretta.",LENGTH_LONG).show();
+                    }
+
                 }
             }
         });

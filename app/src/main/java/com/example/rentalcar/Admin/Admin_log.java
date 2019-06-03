@@ -62,7 +62,7 @@ public class Admin_log extends AppCompatActivity
             public void onClick(View v) {
                 email = editTextEmail.getText().toString();
                 password = editTextPassword.getText().toString();
-                if (email.contains("@") && email.contains(".") && !email.contains("\""))
+                if (email.contains("@") && email.contains(".") && !email.contains("\"")  && !email.contains(" "))
                 {
                     check_authentication();
                 }
