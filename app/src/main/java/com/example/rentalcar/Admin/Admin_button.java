@@ -28,6 +28,7 @@ public class Admin_button extends AppCompatActivity
     Button buttonReservationAdmin;
     Button modifyStationButton;
     Button modifyCarButton;
+    Button readProblemsButton;
 
 
     @Override
@@ -43,6 +44,7 @@ public class Admin_button extends AppCompatActivity
         buttonReservationAdmin=findViewById(R.id.login_admin);
         modifyStationButton=findViewById(R.id.station_admin_button);
         modifyCarButton=findViewById(R.id.car_Admin_button);
+        readProblemsButton=findViewById(R.id.admin_Problemi);
 
         buttonReservationAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +66,14 @@ public class Admin_button extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(Admin_button.this, AddRemoveCarActivity.class);
+                startActivity(i);
+            }
+        });
+
+        readProblemsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(Admin_button.this,AdminProblemi.class);
                 startActivity(i);
             }
         });

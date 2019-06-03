@@ -61,9 +61,13 @@ public class Problems extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 text=editText.getText().toString();
-                insert_problem();
-                Intent i=new Intent(Problems.this,MainActivity.class);
-                startActivity(i);
+                if (text.isEmpty())
+                {Toast.makeText(getApplicationContext(),"Per favore inserisci la tua segnalazione",LENGTH_LONG).show();}
+                else{
+                    insert_problem();
+                    Intent i=new Intent(Problems.this,MainActivity.class);
+                    startActivity(i);
+                }
             }
         });
     }
