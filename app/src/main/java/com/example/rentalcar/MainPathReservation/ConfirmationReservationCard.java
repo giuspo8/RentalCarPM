@@ -144,10 +144,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
                     Toast.makeText(getApplicationContext(),"Per favore inserisci tutti i dati obbligatori.",LENGTH_LONG).show();
                 }
                 else {
-
-                    boolean b1 = Pattern.matches("@", email);
-                    boolean b2 = Pattern.matches(".", email);
-                    if (!b1 || !b2)
+                    if (!(email.contains("@") && email.contains(".")))
                     {
                         Toast.makeText(getApplicationContext(),"E-mail non corretta.",LENGTH_LONG).show();
                     }
