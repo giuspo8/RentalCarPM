@@ -34,6 +34,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Iterator;
+import java.util.regex.Pattern;
 
 import static android.widget.Toast.LENGTH_LONG;
 
@@ -143,6 +144,15 @@ public class ConfirmationReservationCard extends AppCompatActivity
                     Toast.makeText(getApplicationContext(),"Per favore inserisci tutti i dati obbligatori.",LENGTH_LONG).show();
                 }
                 else {
+
+                    boolean b1 = Pattern.matches("@", email);
+                    boolean b2 = Pattern.matches(".", email);
+                    if (!b1 || !b2)
+                    {
+                        Toast.makeText(getApplicationContext(),"E-mail non corretta.",LENGTH_LONG).show();
+                    }
+                    else
+                    {
                     //se pago ora leggo i dati della carta di credito e controllo che abbia credito sufficiente
                     if (payNow) {
                         //se non sono stati riempiti i campi relativi alla carta di credito da messaggio di errore
@@ -206,7 +216,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
                     }
                 }
             }
-        });
+        }});
     }
 
     public void read_id() {

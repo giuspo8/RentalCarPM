@@ -30,6 +30,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.regex.Pattern;
+
+import static android.widget.Toast.LENGTH_LONG;
 
 public class Admin_log extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -59,7 +62,15 @@ public class Admin_log extends AppCompatActivity
             public void onClick(View v) {
                 email = editTextEmail.getText().toString();
                 password = editTextPassword.getText().toString();
-                check_authentication();
+                boolean b1 = Pattern.matches("@", email);
+                boolean b2 = Pattern.matches(".", email);
+                if (!b1 || !b2)
+                {
+                    Toast.makeText(getApplicationContext(),"E-mail non corretta.",LENGTH_LONG).show();
+                }
+                else {
+                    check_authentication();
+                }
             }
         });
 
