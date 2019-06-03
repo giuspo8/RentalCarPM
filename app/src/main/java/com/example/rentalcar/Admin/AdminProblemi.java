@@ -1,5 +1,6 @@
 package com.example.rentalcar.Admin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
@@ -20,9 +21,14 @@ import android.widget.Toast;
 
 import com.example.rentalcar.Adapters.ListViewAdapter;
 import com.example.rentalcar.Adapters.ProblemsAdapter;
+import com.example.rentalcar.LateralMenu.Contacts;
+import com.example.rentalcar.LateralMenu.EditReservation;
+import com.example.rentalcar.LateralMenu.Problems;
+import com.example.rentalcar.LateralMenu.faq;
 import com.example.rentalcar.LinkedReservationClasses.ReadResponse;
 import com.example.rentalcar.LinkedReservationClasses.Segnalations;
 import com.example.rentalcar.LinkedReservationClasses.StationNames;
+import com.example.rentalcar.MainPathReservation.MainActivity;
 import com.example.rentalcar.R;
 
 import org.json.JSONException;
@@ -153,11 +159,6 @@ public class AdminProblemi extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -166,19 +167,26 @@ public class AdminProblemi extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_home) {
-            // Handle the camera action
+        if (id == R.id.nav_camera) {
+            Intent h=new Intent(AdminProblemi.this, EditReservation.class);
+            startActivity(h);
         } else if (id == R.id.nav_gallery) {
-
+            Intent h=new Intent(AdminProblemi.this, Contacts.class);
+            startActivity(h);
         } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            Intent h=new Intent(AdminProblemi.this, Problems.class);
+            startActivity(h);
+        } else if (id == R.id.nav_manage) {
+            Intent h=new Intent(AdminProblemi.this, faq.class);
+            startActivity(h);
+        }
+        else if (id == R.id.ReturnHome) {
+            Intent h1=new Intent(AdminProblemi.this,MainActivity.class);
+            startActivity(h1);
+        }
+        else if (id == R.id.nav_admin) {
+            Intent i=new Intent(AdminProblemi.this, Admin_log.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
