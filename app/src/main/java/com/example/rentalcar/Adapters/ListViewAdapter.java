@@ -72,7 +72,7 @@ public class ListViewAdapter extends BaseAdapter {
         return view;
     }
 
-    // Filter Class prende in ingresso la stringa che stiamo scrivendo in questo momento sulla searchview
+    // Filter prende in ingresso la stringa che stiamo scrivendo in questo momento sulla searchview
     public void filter(String charText) {
         //serve per non fare distinzioni tra minuscole e maiuscole
         //Locale.getdefault ci dice che stiamo utilizzando la scrittura locale(es. italiana)
