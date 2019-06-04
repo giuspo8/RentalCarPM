@@ -132,7 +132,7 @@ public class EditReservation extends AppCompatActivity
                     }
                     else
                     {
-                        Toast.makeText(getApplicationContext(),"E-mail non corretta.",LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Formato e-mail non valido.",LENGTH_LONG).show();
                     }
 
                 }

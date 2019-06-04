@@ -146,7 +146,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
                 else {
                     if (!(email.contains("@") && email.contains(".")))
                     {
-                        Toast.makeText(getApplicationContext(),"E-mail non corretta.",LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Formato email non valido.",LENGTH_LONG).show();
                     }
                     else
                     {

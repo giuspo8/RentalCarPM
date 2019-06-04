@@ -64,11 +64,17 @@ public class Admin_log extends AppCompatActivity
                 password = editTextPassword.getText().toString();
                 if (email.contains("@") && email.contains(".") && !email.contains("\"")  && !email.contains(" "))
                 {
-                    check_authentication();
+                    if (password.contains("\"") || password.contains(" ")) {
+                        Toast.makeText(getApplicationContext(),"Formato password non valido.",LENGTH_LONG).show();
+                    }
+                    else
+                    {
+                        check_authentication();
+                    }
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(),"E-mail non corretta.",LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Formato e-mail non valido.",LENGTH_LONG).show();
                 }
             }
         });
