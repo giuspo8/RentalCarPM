@@ -64,9 +64,16 @@ public class Problems extends AppCompatActivity
                 if (text.isEmpty())
                 {Toast.makeText(getApplicationContext(),"Per favore inserisci la tua segnalazione",LENGTH_LONG).show();}
                 else{
-                    insert_problem();
-                    Intent i=new Intent(Problems.this,MainActivity.class);
-                    startActivity(i);
+                    if (text.contains("\""))
+                    {
+                        Toast.makeText(getApplicationContext(),"Formato Segnalazione non valido",LENGTH_LONG).show();
+                    }
+                    else
+                        {
+                        insert_problem();
+                        Intent i=new Intent(Problems.this,MainActivity.class);
+                        startActivity(i);
+                    }
                 }
             }
         });
