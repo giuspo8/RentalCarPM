@@ -55,5 +55,7 @@
     <string name="title_activity_start_menu">RCM - Rental Car Magnificent</string>
     <string name="title_activity_starting">RCM - Rental Car Magnificent</string>
     <string name="title_activity_start">RCM - Rental Car Magnificent</string>
+    <string name="title_activity_user_login">"Login "</string>
+    <string name="title_activity_registration">Registrazione</string>
 
 </resources>

@@ -1,6 +1,8 @@
 package com.example.rentalcar.MainPathReservation;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -61,6 +63,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
     TextView cardNumbertv;
     TextView expireDatetv;
     TextView secureCodetv;
+    TextView campoobblig;
 
     String creditCardNumber;
     String creditCardExpireDate;
@@ -77,6 +80,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
 
     boolean payNow;
 
+    SharedPreferences sp;
 
 
 
@@ -88,6 +92,12 @@ public class ConfirmationReservationCard extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        sp=getSharedPreferences("datiUtente",Context.MODE_PRIVATE);
+        name=sp.getString("nome","default");
+        surname=sp.getString("cognome","default");
+        telephone=sp.getString("telefono","default");
+        email=sp.getString("email","default");
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -97,15 +107,21 @@ public class ConfirmationReservationCard extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        conferma = (Button) findViewById(R.id.confpre);
+        conferma =findViewById(R.id.confpre);
         emailtv=findViewById(R.id.email);
         nametv=findViewById(R.id.Nome);
         surnametv=findViewById(R.id.Cognome);
         telephonetv=findViewById(R.id.telefono);
 
+        emailtv.setText(email);
+        nametv.setText(name);
+        surnametv.setText(surname);
+        telephonetv.setText(telephone);
+
         cardNumbertv=findViewById(R.id.numerocarta);
         expireDatetv=findViewById(R.id.datascadenza);
         secureCodetv=findViewById(R.id.codicesicurezza);
+        campoobblig=findViewById(R.id.campo);
 
         payNow=getIntent().getBooleanExtra("now",false);
 
@@ -114,6 +130,7 @@ public class ConfirmationReservationCard extends AppCompatActivity
             cardNumbertv.setVisibility(View.VISIBLE);
             expireDatetv.setVisibility(View.VISIBLE);
             secureCodetv.setVisibility(View.VISIBLE);
+            campoobblig.setVisibility(View.VISIBLE);
         }
 
         //prendiamo i dati dall'activity precedente

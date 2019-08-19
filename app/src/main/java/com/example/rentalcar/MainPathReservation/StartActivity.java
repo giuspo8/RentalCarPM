@@ -51,7 +51,7 @@ public class StartActivity extends AppCompatActivity {
                     show_snackbar();
                 }
                 else {
-                    Intent i = new Intent(StartActivity.this, MainActivity.class);
+                    Intent i = new Intent(StartActivity.this, UserLoginActivity.class);
                     startActivity(i);
                 }
             }
@@ -66,7 +66,7 @@ public class StartActivity extends AppCompatActivity {
                     show_snackbar();
                 }
                 else {
-                    Intent i = new Intent(StartActivity.this, MainActivity.class);
+                    Intent i = new Intent(StartActivity.this, RegistrationActivity.class);
                     startActivity(i);
                 }
             }
