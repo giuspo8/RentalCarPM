@@ -52,5 +52,8 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="title_activity_admin_problemi">Visualizza Problemi</string>
+    <string name="title_activity_start_menu">RCM - Rental Car Magnificent</string>
+    <string name="title_activity_starting">RCM - Rental Car Magnificent</string>
+    <string name="title_activity_start">RCM - Rental Car Magnificent</string>
 
 </resources>

@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
                 //non fa niente ci serve solo per aspettare
             }
         }, 2000);
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, StartActivity.class));
         finish();
     }
 }
