@@ -61,6 +61,17 @@
             android:text="SEGNALAZIONI"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/statistics_admin_button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="STATISTICHE"
+            android:textStyle="bold"
+            android:background="@color/colorPrimaryDark"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@id/admin_Problemi"
+            android:layout_marginTop="60dp"/>
+
     </RelativeLayout>
     </ScrollView>
 

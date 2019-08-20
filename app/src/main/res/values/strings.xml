@@ -57,5 +57,7 @@
     <string name="title_activity_start">RCM - Rental Car Magnificent</string>
     <string name="title_activity_user_login">"Login "</string>
     <string name="title_activity_registration">Registrazione</string>
+    <string name="title_activity_email_registration">Registrazione</string>
+    <string name="title_activity_statistics">Statistiche Noleggi</string>
 
 </resources>

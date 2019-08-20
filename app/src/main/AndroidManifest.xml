@@ -13,9 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Admin.StatisticsActivity"
+            android:label="@string/title_activity_statistics"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MainPathReservation.EmailRegistrationActivity"
+            android:label="@string/title_activity_email_registration"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".MainPathReservation.RegistrationActivity"
             android:label="@string/title_activity_registration"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainPathReservation.UserLoginActivity"
             android:label="@string/title_activity_user_login"

@@ -42,6 +42,16 @@ public class RegistrationActivity extends AppCompatActivity {
     String telephone;
     String password;
 
+    String message1;
+    String message2;
+    String message3;
+    String message4;
+    String message5;
+    String message6;
+
+
+
+
     TextView emailtv;
     TextView nametv;
     TextView surnametv;
@@ -134,12 +144,51 @@ conferma.setOnClickListener(new View.OnClickListener() {
             String json_string = ReadResponse.readStream(in).trim();
 
             if (json_string.equals("1")) {
-                Intent i = new Intent(RegistrationActivity.this, MainActivity.class);
+                send_mail();
+                Intent i = new Intent(RegistrationActivity.this, EmailRegistrationActivity.class);
                 startActivity(i);
             } else {
                 Toast.makeText(this, "L'email inserita è già presente. Prego riprovare", LENGTH_LONG).show();
                 Intent i = new Intent(RegistrationActivity.this, RegistrationActivity.class);
                 startActivity(i);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (client != null) {
+                client.disconnect();
+            }
+        }
+    }
+
+    private void send_mail(){
+        HttpURLConnection client = null;
+        URL url;
+        message1="Caro "+name+" "+surname;
+        message2="Le confermiamo la Sua registrazione,";
+        message3="ecco i Suoi dati di accesso:";
+        message4=" Email: "+email;
+        message5="Password: "+password;
+        message6="Grazie per averci scelto";
+        try {
+            url = new URL("http://rentalcar.altervista.org/inviocredenziali.php?Email=" + this.email +
+                    "&msg1=" + URLEncoder.encode(this.message1,"UTF-8")+
+                    "&msg2=" +URLEncoder.encode(this.message2,"UTF-8")+
+                    "&msg3=" +URLEncoder.encode(this.message3,"UTF-8")+
+                    "&msg4=" +URLEncoder.encode(this.message4,"UTF-8")+
+                    "&msg5=" +URLEncoder.encode(this.message5,"UTF-8")+
+                    "&msg6=" +URLEncoder.encode(this.message6,"UTF-8")
+            );
+            client = (HttpURLConnection) url.openConnection();
+            client.setRequestMethod("GET");
+            client.setDoInput(true);
+            InputStream in = client.getInputStream();
+            String json_string = ReadResponse.readStream(in).trim();
+
+            if (json_string.equals("")) {
+                //Toast.makeText(this, "invio effettuato", LENGTH_LONG).show();
+            } else {
+                //Toast.makeText(this, "Errore nell'invio", LENGTH_LONG).show();
             }
         } catch (IOException e) {
             e.printStackTrace();

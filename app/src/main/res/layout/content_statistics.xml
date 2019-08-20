@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="none"
+    android:layout_weight="1"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Admin.StatisticsActivity"
+    tools:showIn="@layout/app_bar_statistics">
+
+    <TableLayout>
+        <TableRow>
+            <TextView
+                android:layout_marginTop="60dp"
+                android:text="Numero di prenotazioni per\n tipologia di auto"
+                android:padding="3dip"
+                android:textSize="20dp"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="40dp"/>
+        </TableRow>
+    </TableLayout>
+
+        <TableRow>
+            <TextView
+                android:padding="3dip"
+                android:layout_marginLeft="20dp"
+                android:text="Compact"/>
+            <TextView
+                android:id="@+id/prima1"
+                android:gravity="right"
+                android:layout_marginRight="20dp"
+                />
+        </TableRow>
+
+    <TableRow>
+        <TextView
+            android:padding="3dip"
+            android:layout_marginLeft="20dp"
+            android:text="Economy"/>
+        <TextView
+            android:id="@+id/prima2"
+            android:gravity="right"
+            android:layout_marginRight="20dp"
+            />
+    </TableRow>
+    <TableRow>
+    <TextView
+        android:padding="3dip"
+        android:layout_marginLeft="20dp"
+        android:text="Standard"/>
+    <TextView
+        android:id="@+id/prima3"
+        android:gravity="right"
+        android:layout_marginRight="20dp"
+        />
+</TableRow>
+    <TableRow>
+    <TextView
+        android:padding="3dip"
+        android:layout_marginLeft="20dp"
+        android:text="Intermediate"/>
+    <TextView
+        android:id="@+id/prima4"
+        android:gravity="right"
+        android:layout_marginRight="20dp"
+        />
+</TableRow>
+    <TableRow>
+    <TextView
+        android:padding="3dip"
+        android:layout_marginLeft="20dp"
+        android:text="Mini"/>
+    <TextView
+        android:id="@+id/prima5"
+        android:gravity="right"
+        android:layout_marginRight="20dp"
+        />
+</TableRow>
+    <TableRow>
+    <TextView
+        android:padding="3dip"
+        android:layout_marginLeft="20dp"
+        android:text="Mini Elite"/>
+    <TextView
+        android:id="@+id/prima6"
+        android:gravity="right"
+        android:layout_marginRight="20dp"
+        />
+</TableRow>
+    <TableRow>
+    <TextView
+        android:padding="3dip"
+        android:layout_marginLeft="20dp"
+        android:text="Premium"/>
+    <TextView
+        android:id="@+id/prima7"
+        android:gravity="right"
+        android:layout_marginRight="20dp"
+        />
+</TableRow>
+    <TableRow>
+    <TextView
+        android:padding="3dip"
+        android:layout_marginLeft="20dp"
+        android:text="Luxury"/>
+    <TextView
+        android:id="@+id/prima8"
+        android:gravity="right"
+        android:layout_marginRight="20dp"
+        />
+</TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Lusso"
+                android:padding="3dip"
+                android:layout_marginLeft="20dp" />
+            <TextView
+                android:id="@+id/prima9"
+                android:gravity="right"
+                android:layout_marginRight="20dp"
+                />
+        </TableRow>
+
+    <TableLayout>
+        <TableRow>
+            <TextView
+                android:text="Percentuali tipologia di pagamento"
+                android:padding="3dip"
+                android:textSize="20dp"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="40dp"/>
+        </TableRow>
+    </TableLayout>
+    <TableRow>
+        <TextView
+            android:text="Online"
+            android:padding="3dip"
+            android:layout_marginLeft="20dp" />
+        <TextView
+            android:id="@+id/seconda1"
+            android:gravity="right"
+            android:layout_marginRight="20dp"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="In Stazione"
+            android:padding="3dip"
+            android:layout_marginLeft="20dp" />
+        <TextView
+            android:id="@+id/seconda2"
+            android:gravity="right"
+            android:layout_marginRight="20dp"
+            />
+    </TableRow>
+
+    <TableLayout>
+        <TableRow>
+            <TextView
+                android:text="Spesa Media di noleggio"
+                android:padding="3dip"
+                android:textSize="20dp"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="40dp"/>
+        </TableRow>
+    </TableLayout>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/terza1"
+            android:padding="3dip"
+            android:layout_marginLeft="60dp"
+            />
+    </TableRow>
+
+    <TableLayout>
+        <TableRow>
+            <TextView
+                android:text="Numero Totale di noleggi"
+                android:padding="3dip"
+                android:textSize="20dp"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="40dp"/>
+        </TableRow>
+    </TableLayout>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/quarta1"
+            android:padding="3dip"
+            android:layout_marginLeft="60dp"
+            />
+    </TableRow>
+    </TableLayout>
+</ScrollView>
