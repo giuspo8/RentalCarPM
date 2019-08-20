@@ -18,24 +18,57 @@ import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rentalcar.Adapters.ReservationAdapter;
 import com.example.rentalcar.LateralMenu.Contacts;
 import com.example.rentalcar.LateralMenu.EditReservation;
 import com.example.rentalcar.LateralMenu.Problems;
 import com.example.rentalcar.LateralMenu.faq;
+import com.example.rentalcar.LinkedReservationClasses.CarItem;
 import com.example.rentalcar.LinkedReservationClasses.ReadResponse;
+import com.example.rentalcar.LinkedReservationClasses.Reservation;
+import com.example.rentalcar.LinkedReservationClasses.StationNames;
 import com.example.rentalcar.MainPathReservation.MainActivity;
 import com.example.rentalcar.R;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.NumberFormat;
+import java.util.Iterator;
 
 public class StatisticsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-TextView prima;
+
+    TextView prima1;
+    TextView prima2;
+    TextView prima3;
+    TextView prima4;
+    TextView prima5;
+    TextView prima6;
+    TextView prima7;
+    TextView prima8;
+    TextView prima9;
+    TextView seconda1;
+    TextView seconda2;
+    TextView terza1;
+    TextView quarta1;
+
+    int total=0;
+    int totCompact=0;
+    int totEconomy=0;
+    int totStandard=0;
+    int totIntermediate=0;
+    int totMini=0;
+    int totMiniElite=0;
+    int totPremium=0;
+    int totLuxury=0;
+    int totLusso=0;
+    int PayStation=0;
+    double priceTotal=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +84,44 @@ TextView prima;
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        prima=findViewById(R.id.prima1);
-        prima.setText("prova");
+        prima1=findViewById(R.id.prima1);
+        prima2=findViewById(R.id.prima2);
+        prima3=findViewById(R.id.prima3);
+        prima4=findViewById(R.id.prima4);
+        prima5=findViewById(R.id.prima5);
+        prima6=findViewById(R.id.prima6);
+        prima7=findViewById(R.id.prima7);
+        prima8=findViewById(R.id.prima8);
+        prima9=findViewById(R.id.prima9);
+        seconda1=findViewById(R.id.seconda1);
+        seconda2=findViewById(R.id.seconda2);
+        terza1=findViewById(R.id.terza1);
+        quarta1=findViewById(R.id.quarta1);
 
-read_reservation();
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(2);
+        nf.setGroupingUsed(false);
+
+
+        read_reservation();
+        double online=((double)total-PayStation)/(double)total*100;
+        double stazione=PayStation/(double)total*100;
+        String average=nf.format(priceTotal/total);
+        prima1.setText(String.valueOf(totCompact));
+        prima2.setText(String.valueOf(totEconomy));
+        prima3.setText(String.valueOf(totStandard));
+        prima4.setText(String.valueOf(totIntermediate));
+        prima5.setText(String.valueOf(totMini));
+        prima6.setText(String.valueOf(totMiniElite));
+        prima7.setText(String.valueOf(totPremium));
+        prima8.setText(String.valueOf(totLuxury));
+        prima9.setText(String.valueOf(totLusso));
+        seconda1.setText(nf.format(online)+"%");
+        seconda2.setText(nf.format(stazione)+"%");
+        terza1.setText(average+" €");
+        quarta1.setText(String.valueOf(total));
+
+
     }
 
     private void read_reservation(){
@@ -72,7 +139,7 @@ read_reservation();
             //convertiamo la stringa in un Json object
             JSONObject json_data = convert2JSON(json_string);
             //popoliamo la lista
-            //fill_listview(json_data);
+            fill_listview(json_data);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -93,6 +160,65 @@ read_reservation();
             Log.e("My App", "Could not parse malformed JSON: \"" + json_data + "\"");
         }
         return obj;
+    }
+
+    private void fill_listview(JSONObject json_data){
+        //il metodo keys() ci ritorna un iteratore di una collezione di oggetti
+        Iterator<String> iter = json_data.keys();
+        //metodo hasNext() ritorna true se ci sono ancora elementi
+        while (iter.hasNext()) {
+            //metodo next() ritorna il prossimo elemento nell'iteratore (la chiave)
+            String key = iter.next();
+            try {
+                //ritorna il valore corrispondente alla chiave key
+                JSONObject value = json_data.getJSONObject(key);
+                //leggiamo tutti gli elementi tramite le loro etichette
+                String car=value.getString("Macchina");
+                switch (car) {
+                    case "Fiat 500 X o similare":
+                    case "Peugeot 308 SW o similare":
+                    case "Alfa Romeo Giulietta o similare":
+                        totCompact++;
+                        break;
+                    case "Fiat Panda o similare":
+                    case "Volkswagen Golf o similare":
+                    case "Renault Clio o similare":
+                        totEconomy++;
+                        break;
+                    case "Fiat Ducato Panorama o similare":
+                    case "Volkswagen Passat o similare":
+                        totStandard++;
+                        break;
+                    case "Audi A3 o similare":
+                        totIntermediate++;
+                        break;
+                    case "Smart for Four o similare":
+                        totMini++;
+                        break;
+                    case "Fiat 500 o similare":
+                        totMiniElite++;
+                        break;
+                    case "Audi Q5":
+                    case "Renault Kadjar o similare":
+                    case "Mercedes Classe C o similare":
+                        totPremium++;
+                        break;
+                    case "Mercedes classe E o similare":
+                        totLuxury++;
+                        break;
+                    case "Ferrari Testarossa":
+                        totLusso++;
+                }
+                int payment=value.getInt("Pagamento");
+                if (payment==0) PayStation++;
+                double price=value.getDouble("Prezzo");
+                priceTotal+=price;
+                total++;
+            } catch (JSONException e) {
+                Toast.makeText(this,"ERRORE",Toast.LENGTH_LONG).show();
+                // Something went wrong!
+            }
+        }
     }
 
     @Override

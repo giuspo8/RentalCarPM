@@ -131,7 +131,7 @@
     <TableLayout>
         <TableRow>
             <TextView
-                android:text="Percentuali tipologia di pagamento"
+                android:text="Percentuali tipologia\n di pagamento"
                 android:padding="3dip"
                 android:textSize="20dp"
                 android:gravity="center_horizontal"
