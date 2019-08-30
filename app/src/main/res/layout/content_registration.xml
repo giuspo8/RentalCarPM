@@ -107,7 +107,7 @@
             android:layout_marginBottom="20dp"
             android:layout_alignTop="@id/campo"
             android:background="@color/colorPrimaryDark"
-            android:text="conferma prenotazione"
+            android:text="conferma"
             android:textColor="@color/black"
             android:textStyle="bold" />
     </RelativeLayout>
